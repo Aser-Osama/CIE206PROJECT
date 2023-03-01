@@ -1,19 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace CIE206PROJECT.Pages
+namespace TEST.Pages;
+
+public class PrivacyModel : PageModel
 {
-	public class PrivacyModel : PageModel
-	{
-		private readonly ILogger<PrivacyModel> _logger;
+    private readonly ILogger<PrivacyModel> _logger;
 
-		public PrivacyModel(ILogger<PrivacyModel> logger)
-		{
-			_logger = logger;
-		}
+    public PrivacyModel(ILogger<PrivacyModel> logger)
+    {
+        _logger = logger;
+    }
 
-		public void OnGet()
-		{
-		}
-	}
+    public void OnGet()
+    {
+    }
 }
+
