@@ -20,3 +20,42 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.ms-6 {
+  margin-left: 4.5rem; 
+}
+
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:link {text-decoration:none}
+a:visited {text-decoration:none}
+a:hover {text-decoration:none}
+a:active {text-decoration:none}
+
+.progress {
+  height: 5px;
+  border-radius: 3px;
+  overflow: hidden;
+  background-color: #ddd;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease-in-out;
+}
+
+/* Colors for different values */
+.progress-bar[aria-valuenow="0"] { background-color: #f44336; }
+.progress-bar[aria-valuenow="25"] { background-color: #ff9800; }
+.progress-bar[aria-valuenow="50"] { background-color: #ffc107; }
+.progress-bar[aria-valuenow="75"] { background-color: #4caf50; }
+.progress-bar[aria-valuenow="100"] { background-color: #2196f3; }
+
+
+.card-body .col-md-6 {
+  padding: 0 8px;
+}
