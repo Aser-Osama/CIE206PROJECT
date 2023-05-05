@@ -32,15 +32,15 @@ a:hover {text-decoration:none}
 a:active {text-decoration:none}
 
 .progress {
-  height: 2px;
-  border-radius: 2px;
+  height: 5px;
+  border-radius: 3px;
   overflow: hidden;
   background-color: #ddd;
 }
 
 .progress-bar {
   height: 100%;
-  border-radius: 2px;
+  border-radius: 3px;
   transition: width 0.3s ease-in-out;
 }
 
