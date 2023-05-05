@@ -2,7 +2,6 @@
 @model CIE206PROJECT.Pages.Group_PageModel
 @{
 }
-
 <section class="head">
 
     <div class="card mb-3">
@@ -13,79 +12,346 @@
                 dy=".3em"></text>
         </svg>
 
-        <div class="card-body">
-
+        <div class="card-body p-5">
             <div class="card-title text-center display-5"> Course Name</div>
-            <div class="card-text text-center display-6 text-muted">Group No</div>
+            <div class="card-text text-center h3 text-muted mb-5">Group No</div>
+            <div class="card-text text-center h4 text-muted mb-3">Trainers</div>
+
+            <div class="d-flex justify-content-center flex-row flex-wrap overflow-auto">
+                <div class="card m-1 h-100 p-4 text-center d-block align-self-stretch">
+
+                    <img src="https://www.tutorialspoint.com/bootstrap/images/64.jpg" class="rounded-circle" width="64">
+                    <div class="card-title m-2">trainer Name <span class="badge bg-primary rounded-pill">trainer</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text text-muted">
+                            trainer level <br>
+                            trainer field
+                        </div>
+                    </div>
+                </div>
+                <div class="card h-100 p-4 m-1 text-center d-block align-self-stretch">
+
+                    <img src="https://www.tutorialspoint.com/bootstrap/images/64.jpg" class="rounded-circle" width="64">
+                    <div class="card-title m-2">trainer Name <span class="badge bg-primary rounded-pill">trainer</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text text-muted">
+                            trainer level <br>
+                            trainer field
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
         </div>
     </div>
-    <div class="card mb-3">
-        <div class="card-body">
-            this will be upcoming lecture information
+    <div class="row  justify-content-center d-flex">
+        <div class="col col-12 col-md-6 col-sm-12 col-lg-6 mb-3">
+            <div class="card h-100 p-4">
+                <div class="card-body">
+                    <div class="card-title h5"> The upcoming Lecture is Scheduled for</div>
+
+                    <div class="card-title display-5"> 12:33 AM</div>
+                    <div class="card-title h5 mb-1"> Thursday - January 53rd</div>
+                    <br>
+
+
+                    And will cover the following topics
+                    <ul>
+                        <li>
+                            Linear coefficient of expansion
+
+                        </li>
+                        <li>
+                            Sauce manufacturing
+                        </li>
+
+                    </ul>
+                    <a class="h5 text-primary">Meeting link</a> <strong class="text-muted">/ ROOM-24e</strong>
+                </div>
+
+
+            </div>
         </div>
+        <div class="col mb-3 col-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="card h-100 ">
+                <div class="card-body m-4">
+                    <div class="card-title text-center mb-3 h5"> Course Information</div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-2">Tutor Emails</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">example@example.com</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-2">Total Sessions</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">123</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-1">Start Date</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">12:44 Januarry 3393</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-1">Capacity</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">123</p>
+                        </div>
+                    </div>
+
+                    <div class="card-title text-center mt-3 mb-3 h5"> Group Information</div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-1">Students in group</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">123</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-1">age group</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">23-44</p>
+
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div>
+            </div>
+
+
+        </div>
+
     </div>
 </section>
 
 <section class="lectures">
     <div class="accordion" id="accordionPanelsStayOpenExample">
-        <div class="accordion-item">
+        <div class="accordion-item mb-3">
+
             <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                    data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
                     aria-controls="panelsStayOpen-collapseOne">
-                    this will be lecture information
+
+
+                    <div class="h5 m-2 me-5"> Lecture 1 </div>
+                    Topics
+                    <div class="ms-3 mt-3">
+                        <ul class="list-inline">
+                            <li class="list-inline-item">Expansion</li>
+                            <li class="list-inline-item">Phasellus</li>
+                            <li class="list-inline-item">Nulla volutpat</li>
+                        </ul>
+                    </div>
+
+                    <div class="m-4 text"> 12:44 2021 january</div>
                 </button>
             </h2>
             <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
                 aria-labelledby="panelsStayOpen-headingOne">
-                <div class="accordion-body">
-                    <strong>Lecture content displayed here</strong>
-                    this will include embeds and such
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, non maxime. Natus enim sapiente rem
-                    sunt accusamus quasi dolore laborum quibusdam asperiores, tempora voluptates eius atque minima nam
-                    iusto porro.
+                <div class="accordion-body p-4">
+                    <div class="display-6 m-4 text-center">Previous Lecture Information</div>
+                    this lecture was held on <strong>12:44 2021 january</strong> in the meetinglink/room
+
+                    <a class="h5 text-primary">Meeting link</a> <strong class="text-muted">/ ROOM-24e</strong>
+                    <br>
+                    <div class="h5 m-4 text-center">The following topics were covered</div>
+                    <dl>
+                        <dt>Advance carpet engineering</dt>
+                        <dd>In this lecture we covered the in depth analysis of carpet fabrication</dd>
+                        <dt>Lorem ipsu</dt>
+                        <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam ipsam esse a unde est
+                            dolor nulla atque id quidem nobis cumque minus, eaque enim praesentium tempora pariatur
+                            laudantium dolorem adipisci.</dd>
+                        <dt>Lorem ipsu</dt>
+                        <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam ipsam esse a unde est
+                            dolor nulla atque id quidem nobis cumque minus, eaque enim praesentium tempora pariatur
+                            laudantium dolorem adipisci.</dd>
+                    </dl>
+
+                    <div class="h5 m-4 text-center">The attatched handout</div>
+                    <svg class="bd-placeholder-img card-img-top " width="100%" height="200px"
+                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap"
+                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6"
+                            dy=".3em"></text>
+                    </svg>
+
+                    <div class="h5 m-4 text-center">The video</div>
+                    <svg class="bd-placeholder-img card-img-top " width="100%" height="200px"
+                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap"
+                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Placeholder</title>
+                        <rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6"
+                            dy=".3em"></text>
+                    </svg>
+
+
+
+
                     <div class="embed-responsive embed-responsive-16by9">
                     </div>
                 </div>
             </div>
         </div>
-        <div class="accordion-item ">
-            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
-                    aria-controls="panelsStayOpen-collapseTwo">
-                    this will be lecture information
-                </button>
-            </h2>
-            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
-                aria-labelledby="panelsStayOpen-headingTwo">
-                <div class="accordion-body">
-                    <strong>This is the second item's accordion body.</strong> It is hidden by default, until the
-                    collapse plugin adds the appropriate classes that we use to style each element. These classes
-                    control the overall appearance, as well as the showing and hiding via CSS transitions. You can
-                    modify any of this with custom CSS or overriding our default variables. It's also worth noting that
-                    just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit
-                    overflow.
+
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseTwo">
+                        <div class="h5 m-2 me-5"> Lecture 2 </div>
+                        Topics
+                        <div class="ms-3 mt-3">
+                            <ul class="list-inline">
+                                <li class="list-inline-item">Expansion</li>
+                                <li class="list-inline-item">Phasellus</li>
+                                <li class="list-inline-item">Nulla volutpat</li>
+                            </ul>
+                        </div>
+
+                        <div class="m-4 text"> 12:44 2021 january</div>
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-headingTwo">
+                    <div class="accordion-body">
+                        this lecture was held on <strong>12:44 2021 january</strong> in the meetinglink/room
+
+                        <a class="h5 text-primary">Meeting link</a> <strong class="text-muted">/ ROOM-24e</strong>
+                        <br>
+                        <div class="h5 m-4 text-center">The following topics were covered</div>
+                        <dl>
+                            <dt>Advance carpet engineering</dt>
+                            <dd>In this lecture we covered the in depth analysis of carpet fabrication</dd>
+                            <dt>Lorem ipsu</dt>
+                            <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam ipsam esse a unde
+                                est
+                                dolor nulla atque id quidem nobis cumque minus, eaque enim praesentium tempora pariatur
+                                laudantium dolorem adipisci.</dd>
+                            <dt>Lorem ipsu</dt>
+                            <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam ipsam esse a unde
+                                est
+                                dolor nulla atque id quidem nobis cumque minus, eaque enim praesentium tempora pariatur
+                                laudantium dolorem adipisci.</dd>
+                        </dl>
+
+                        <div class="h5 m-4 text-center">The attatched handout</div>
+                        <svg class="bd-placeholder-img card-img-top " width="100%" height="200px"
+                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap"
+                            preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6"
+                                dy=".3em"></text>
+                        </svg>
+
+                        <div class="h5 m-4 text-center">The video</div>
+                        <svg class="bd-placeholder-img card-img-top " width="100%" height="200px"
+                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap"
+                            preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6"
+                                dy=".3em"></text>
+                        </svg>
+
+
+
+
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
-                    aria-controls="panelsStayOpen-collapseThree">
-                    this will be lecture information
-                </button>
-            </h2>
-            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
-                aria-labelledby="panelsStayOpen-headingThree">
-                <div class="accordion-body">
-                    <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
-                    collapse plugin adds the appropriate classes that we use to style each element. These classes
-                    control the overall appearance, as well as the showing and hiding via CSS transitions. You can
-                    modify any of this with custom CSS or overriding our default variables. It's also worth noting that
-                    just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit
-                    overflow.
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item mb-4">
+                <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseThree">
+                        <div class="h5 me-5 m-2"> Lecture 3 </div>
+                        Topics
+                        <div class="ms-3 mt-3">
+                            <ul class="list-inline">
+                                <li class="list-inline-item">Expansion</li>
+                                <li class="list-inline-item">Phasellus</li>
+                                <li class="list-inline-item">Nulla volutpat</li>
+                            </ul>
+                        </div>
+
+                        <div class="m-4 text"> 12:44 2021 january</div>
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-headingThree">
+                    <div class="accordion-body">
+                        this lecture was held on <strong>12:44 2021 january</strong> in the meetinglink/room
+
+                        <a class="h5 text-primary">Meeting link</a> <strong class="text-muted">/ ROOM-24e</strong>
+                        <br>
+                        <div class="h5 m-4 text-center">The following topics were covered</div>
+                        <dl>
+                            <dt>Advance carpet engineering</dt>
+                            <dd>In this lecture we covered the in depth analysis of carpet fabrication</dd>
+                            <dt>Lorem ipsu</dt>
+                            <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam ipsam esse a unde
+                                est
+                                dolor nulla atque id quidem nobis cumque minus, eaque enim praesentium tempora pariatur
+                                laudantium dolorem adipisci.</dd>
+                            <dt>Lorem ipsu</dt>
+                            <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam ipsam esse a unde
+                                est
+                                dolor nulla atque id quidem nobis cumque minus, eaque enim praesentium tempora pariatur
+                                laudantium dolorem adipisci.</dd>
+                        </dl>
+
+                        <div class="h5 m-4 text-center">The attatched handout</div>
+                        <svg class="bd-placeholder-img card-img-top " width="100%" height="200px"
+                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap"
+                            preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6"
+                                dy=".3em"></text>
+                        </svg>
+
+                        <div class="h5 m-4 text-center">The video</div>
+                        <svg class="bd-placeholder-img card-img-top " width="100%" height="200px"
+                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap"
+                            preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6"
+                                dy=".3em"></text>
+                        </svg>
+
+
+
+
+                    </div>
                 </div>
             </div>
         </div>
