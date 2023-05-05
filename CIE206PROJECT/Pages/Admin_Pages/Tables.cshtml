@@ -1,0 +1,204 @@
+@page
+@model CIE206PROJECT.Pages.Admin_Pages.Tables
+
+<!-- ==========  the offcanvas head ========== -->
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasDataoptions"
+    aria-labelledby="offcanvasDataoptionsLabel">
+    <div class="offcanvas-header">
+        <h1 class="offcanvas-title display-6" id="offcanvasDataoptionsLabel">
+            Choose Your Data</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <!-- ==================================== -->
+    <!-- ==========  the offcanvas body ========== -->
+
+    <div class="offcanvas-body">
+        <div>
+            <p class="lead">Please choose what data you would like displayed</p>
+        </div>
+        <br>
+
+        <ul class="list-unstyled">
+            <li>
+                <div class="d-grid gap-2 m-3 mx-0">
+                    <button type="submit" class="btn btn-outline-dark " asp-page-handler="Finance" id="Finance">
+                        Finance
+                        Information
+                    </button>
+                </div>
+            </li>
+            <li>
+                <div class="d-grid gap-2 m-3 mx-0">
+                    <button type="submit" class="btn btn-outline-dark" asp-page-handler="CourseAtt" id="CourseAtt">
+                        Course Attendance
+                    </button>
+                </div>
+            </li>
+            <li>
+                <div class="d-grid gap-2 m-3 mx-0">
+                    <button type="submit" class="btn btn-outline-dark" asp-page-handler="InstRate" id="InstRate">
+                        Instructor Ratings
+                    </button>
+                </div>
+            </li>
+            <li>
+                <div class="d-grid gap-2 m-3 mx-0">
+                    <button type="submit" class="btn btn-outline-dark" asp-page-handler="CourseFeedback"
+                        id="CourseFeedback">
+                        Course Feedback
+                    </button>
+                </div>
+            </li>
+
+        </ul>
+
+    </div>
+</div>
+<!-- =================================== -->
+
+<div class="container">
+    <div class="row justify-content-center g-2">
+
+        <div class="col-sm-auto d-flex align-items-stretch align-middle">
+
+            <a class="btn btn-secondary align-self-stretch me-2 pt-4 align-text-center" data-bs-toggle="offcanvas" href="#offcanvasDataoptions"
+            role="button" aria-controls="offcanvasDataoptions">
+            Choose <br> data
+            </a>
+
+            <div class="btn-group-vertical" role="group" aria-label="Vertical radio toggle button group">
+                <input type="radio" class="btn-check " name="options" id="option1" autocomplete="off">
+                <label class="btn btn-outline-secondary" for="option1">Month 1</label>
+
+                <input type="radio" class="btn-check " name="options" id="option2" autocomplete="off">
+                <label class="btn btn-outline-secondary" for="option2">Month 2</label>
+
+                <input type="radio" class="btn-check " name="options" id="option3" autocomplete="off">
+                <label class="btn btn-outline-secondary" for="option3">Both Months</label>
+
+            </div>
+
+        </div>
+
+
+        <div class="col">
+            <h1 class="display-4 text-center">All Courses</h1>
+        </div>
+
+        <div class="col-sm-auto bg align-self-center text-end">
+            <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                <div class="btn-group dropstart" role="group">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Data Formatting
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Charts</a></li>
+                        <li><a class="dropdown-item" href="#">Raw Data</a></li>
+                    </ul>
+                </div>
+
+                <div class="btn-group dropstart just" role="group">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Course Name
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">All Courses</a></li>
+                        <li><a class="dropdown-item" href="#">Learn Scratch</a></li> @* (will be in a for loop of alll
+                        courses) *@
+                        <li><a class="dropdown-item" href="#">Learn Python</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-8">
+            <div class="mb-3">
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Search..">
+            </div>
+        </div>
+        <div class="col-3">
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Sorting By</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </div>
+        <div class="col-1">
+            <div class="d-grid gap-2">
+                <button type="button" name="" id="" class="btn btn-secondary">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>twitter</td>
+                </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">5</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">6</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>twitter</td>
+                </tr>
+                <tr>
+                    <th scope="row">7</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">8</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">9</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>twitter</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
