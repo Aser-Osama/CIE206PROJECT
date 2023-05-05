@@ -10,6 +10,7 @@ CREATE TABLE "user" (
     user_id INT PRIMARY KEY,
     date_of_birth DATE,
     join_date DATE,
+    "address" VARCHAR(255),
     "name" VARCHAR(255),
     password VARCHAR(255),
     email VARCHAR(255),
@@ -26,12 +27,18 @@ CREATE TABLE Trainer (
 CREATE TABLE "group" (
     group_no INT PRIMARY KEY,
     course_id INT,
-    trainer_id INT,
     n_students INT,
     age_grp VARCHAR(10) CHECK (age_grp IN ('young', 'middle', 'old')),
     FOREIGN KEY (course_id) REFERENCES course(course_id) ON DELETE SET NULL,
     FOREIGN KEY (trainer_id) REFERENCES Trainer(user_id) ON DELETE SET NULL 
 );
+
+CREATE TABLE trainer_group(
+    group_no INT,
+    Trainer_id INT,
+    FOREIGN KEY (Trainer_id) REFERENCES Trainer(Trainer_id),
+    FOREIGN KEY (group_no) REFERENCES "group"(group_no)
+)
 
 CREATE TABLE Student (
     user_id INT PRIMARY KEY,
@@ -129,6 +136,7 @@ CREATE TABLE lecture (
 CREATE TABLE lecture_topics (
     lecture_id INT,
     Topic VARCHAR(255),
+    Topic_Description VARCHAR(1000),
     FOREIGN KEY (lecture_id) REFERENCES lecture(lecture_id) ON DELETE CASCADE
 )
 
