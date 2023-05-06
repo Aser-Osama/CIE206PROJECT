@@ -6,4 +6,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'hotreloadprofile' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
+  <ItemGroup>
+    <None Remove="Pages\Content_Dev\" />
+    <None Remove="Pages\STEM_svpages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\Content_Dev\" />
+    <Folder Include="Pages\STEM_svpages\" />
+  </ItemGroup>
 </Project>

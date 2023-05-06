@@ -56,7 +56,3 @@ a:active {text-decoration:none}
 .progress-bar[aria-valuenow="75"] { background-color: #4caf50; }
 .progress-bar[aria-valuenow="100"] { background-color: #2196f3; }
 
-
-.card-body .col-md-6 {
-  padding: 0 8px;
-}
