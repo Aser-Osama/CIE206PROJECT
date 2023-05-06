@@ -1,23 +1,94 @@
 @page
 @model CIE206PROJECT.Pages.Admin_Pages.Send_Request
 
-<div class="container">
-<div class="card" aria-hidden="true">
-    <img class="card-img-top" src="holder.js/100x180/" alt="Some text">
-    <div class="card-body">
-        <h5 class="card-title placeholder">
-            <span class="placeholder col-6">Some text</span>
-        </h5>
-        <p class="card-text placeholder">
-            <span class="placeholder col-7">Some text</span>
-            <span class="placeholder col-4">Some text</span>
-            <span class="placeholder col-4">Some text</span>
-            <span class="placeholder col-6">Some text</span>
-            <span class="placeholder col-8">Some text</span>
-        </p>
-        <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6">Some text</a>
+
+<div class="container-sm">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <form action="" method="get">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h2 class="card-title">Request Subject</h2>
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" placeholder="Subject" aria-label="Username" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row my-4">
+                        <div class="col-12">
+                            <h2>Request description</h2>
+                            <div class="form-outline mb-2">
+                                <textarea class="form-control" id="textAreaExample" rows="6"></textarea>
+                                <label class="form-label" for="textAreaExample">Message</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row my-4 justify-content-center ">
+                        <div class="col-12 col-xl-8 ">
+                            <h2 class="card-title">Request Regarding (Optional)</h2>
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control mt-1 mb-4 mb-xl-0"
+                                    placeholder="ID or Name of person" aria-label="Username" />
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-12">
+                            <h2 class="card-title">Department</h2>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Select Department...</option>
+                                <option value="1">Finance</option>
+                                <option value="2">Sales</option>
+                                <option value="3">Training</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span class="rounded rounded-4 shadow-sm py-0 px-4">
+                            <div class="row">
+                                <div class="col p-3">
+                                    <h3>
+                                        Send To:
+                                    </h3>
+                                    <!-- Default checkbox -->
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value=""
+                                            id="flexCheckDefault" />
+                                        <label class="form-check-label" for="flexCheckDefault">CEO</label>
+                                    </div>
+
+                                    <!-- Checked checkbox -->
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                            checked />
+                                        <label class="form-check-label" for="flexCheckChecked">Senior Supervisor</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-xl-2 p-2 ps-0 m-0 mb-2">
+                                    <button type="button" class="btn btn-outline-primary h-50 w-100 m-2">Submit</button>
+                                    <div class="form-check ms-0 ">
+                                        <input class="ms-0 form-check-input" type="checkbox" value=""
+                                            id="flexCheckChecked" checked />
+                                        <label class="form-check-label ms-0" for="flexCheckChecked">Include Email</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+
+
+                </form>
+
+
+
+
+                </span>
+            </div>
+        </div>
     </div>
 </div>
 
 
-</div>
