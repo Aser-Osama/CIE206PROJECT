@@ -44,8 +44,60 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col">
+    <div class="row g-2">
+        <div class="col-12 col-xl-4">
+            <div class="card mb-2 p-4">
+                <div class="card-body">
+
+
+                    <h4>Start & Finish Dates</h4>
+
+                    <div class="row justify-content-evenly">
+                        <div class="col-12 me-auto ca p-3">
+                            <label for="startDate">Start</label>
+                            <input id="startDate" class="form-control" type="date" />
+                        </div>
+                        <div class="col-12 ms-auto p-3">
+                            <label for="startDate ">End</label>
+                            <input id="startDate" class="form-control" type="date" />
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="card mb-2  p-4">
+                <div class="card-body">
+
+
+
+                    <div class="row justify-content-around">
+                        <h4>Course Status & Visibilty</h4>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-xl-6 me-auto ca p-3 d-flex align-items-center justify-content-center">
+                            <h3 class="text-center">Currently Running: <i class="bi bi-check-circle-fill"></i></h3>
+                        </div>
+                        <div class="col-12 col-xl-6 ms-auto p-3">
+                            <h6 class="text-center">Course Currently Visible?</h6>
+                            <div class="btn-group-vertical text-center d-flex justify-content-center">
+                                <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" />
+                                <label class="btn btn-secondary" for="option1">Visible</label>
+                                <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" />
+                                <label class="btn btn-secondary" for="option2">Hidden</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+        <div class="col-12 col-xl-8">
             <div class="card p-4 mb-2">
                 <div class="card-body">
                     <div class="row">
@@ -79,55 +131,9 @@
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card mb-2 p-4">
-                <div class="card-body">
-
-
-                    <h4>Start & Finish Dates</h4>
-
-                    <div class="row justify-content-evenly">
-                        <div class="col-12 col-xl-6 me-auto ca p-3">
-                            <label for="startDate">Start</label>
-                            <input id="startDate" class="form-control" type="date" />
-                        </div>
-                        <div class="col-12 col-xl-6 ms-auto p-3">
-                            <label for="startDate ">End</label>
-                            <input id="startDate" class="form-control" type="date" />
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
 
     </div>
-    <div class="card p-4">
-        <div class="card-body">
 
-
-
-            <div class="row justify-content-around">
-                <h4>Course Status & Visibilty</h4>
-            </div>
-
-            <div class="row">
-                <div class="col-12 col-xl-6 me-auto ca p-3 d-flex align-items-center justify-content-center">
-                    <h3 class="text-center">Currently Running: <i class="bi bi-check-circle-fill"></i></h3>
-                </div>
-                <div class="col-12 col-xl-6 ms-auto p-3">
-                    <h6 class="text-center">Course Currently Visible?</h6>
-                    <div class="btn-group-vertical text-center d-flex justify-content-center">
-                        <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" />
-                        <label class="btn btn-secondary" for="option1">Visible</label>
-                        <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" />
-                        <label class="btn btn-secondary" for="option2">Hidden</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 </div>
 
