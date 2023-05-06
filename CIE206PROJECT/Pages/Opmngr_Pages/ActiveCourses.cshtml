@@ -1,103 +1,114 @@
 @page
 @model CIE206PROJECT.Pages.Opmngr_Pages.ActiveCourses
 
-<div class="container-sm">
-    <div class="row justify-content-center align-items-center">
-        <div class="col">
-            <h1 class="display-3 text-center mb-3">Currently Active Courses</h1>
-        </div>
-        <hr class="hr hr-blurry" />
-    </div>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
 
-    <div class="row justify-content-start align-items-center mt-3">
-        <div class="col-sm-8  align-items-center">
-            <form action="submit" method="get">
-                <div class="form-outline">
-                <input type="search" id="form1" class="form-control" placeholder="Search" aria-label="Search" />
+            <div class="row justify-content-center align-items-center">
+                <div class="col">
+                    <h1 class="display-3 text-center mb-3">Currently Active Courses</h1>
                 </div>
-            </form>
-        </div>
-        <div class="col-sm-2">
-            <a name="" id="" class="btn btn-light shadow-4 box-shadow text-black-50 w-100" href="#"
-                role="button">Search</a>
-        </div>
-        <div class="col-sm-2">
-            <div class="dropdown">
-                <a class="btn w-100 btn-light shadow-4 text-black-50 box-shadow dropdown-toggle stretch" href="#"
-                    role="button" id="dropdownMenuLink" data-mdb-toggle="dropdown" aria-expanded="false">
-                    Sort By
-                </a>
-
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li><a class="dropdown-item" href="#">Course Name</a></li>
-                    <li><a class="dropdown-item" href="#">Course ID</a></li>
-                    <li><a class="dropdown-item" href="#">Course Tutor</a></li>
-                </ul>
+                <hr class="hr hr-blurry" />
             </div>
+
+            <div class="row justify-content-start align-items-center mt-3">
+                <div class="col-sm-8  align-items-center">
+                    <form action="submit" method="get">
+                        <div class="form-outline">
+                            <input type="search" id="form1" class="form-control" placeholder="Search"
+                                aria-label="Search" />
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-2">
+                    <a name="" id="" class="btn btn-light shadow-4 box-shadow text-black-50 w-100" href="#"
+                        role="button">Search</a>
+                </div>
+                <div class="col-sm-2">
+                    <div class="dropdown">
+                        <a class="btn w-100 btn-light shadow-4 text-black-50 box-shadow dropdown-toggle stretch"
+                            href="#" role="button" id="dropdownMenuLink" data-mdb-toggle="dropdown"
+                            aria-expanded="false">
+                            Sort By
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Course Name</a></li>
+                            <li><a class="dropdown-item" href="#">Course ID</a></li>
+                            <li><a class="dropdown-item" href="#">Course Tutor</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="row justify-content-center align-items-center mt-3">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col" class="text-center">Course Name</th>
+                            <th scope="col" class="text-center">Course ID</th>
+                            <th scope="col" class="text-center">Tutor</th>
+                            <th scope="col" class="text-center">Visible?</th>
+                            <th scope="col" class="text-center">In Progress?</th>
+                            <th scope="col" class="text-center">Start-End Dates?</th>
+                            <th scope="col" class="text-center">Info</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td class="align-middle text-center">Starting with scratch</td>
+                            <td class="align-middle text-center">12</td>
+                            <td class="align-middle text-center">Ahmed Mohamed</td>
+                            <td class="align-middle text-center"> <i class="bi bi-check-circle-fill text-success"></i>
+                            </td>
+                            <td class="align-middle text-center"> <i class="bi bi-x-circle-fill text-danger"></i></td>
+                            <td class="align-middle text-center">12/Apr/'22 to 12/June/'22 </td>
+                            <td class="align-middle text-center"><a href="#">EDIT</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td class="align-middle text-center">Learn Python</td>
+                            <td class="align-middle text-center">12</td>
+                            <td class="align-middle text-center">Mohamed Ahmed</td>
+                            <td class="align-middle text-center"> <i class="bi bi-check-circle-fill text-success"></i>
+                            </td>
+                            <td class="align-middle text-center"> <i class="bi bi-check-circle-fill text-success"></i>
+                            </td>
+                            <td class="align-middle text-center">22/Apr/'22 to 30/June/'22 </td>
+                            <td class="align-middle text-center"><a href="#">EDIT</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td class="align-middle text-center">Basics of Web Devalopment</td>
+                            <td class="align-middle text-center">12</td>
+                            <td class="align-middle text-center">Ahmed Mohamed</td>
+                            <td class="align-middle text-center"><i class="bi bi-x-circle-fill text-danger"></i></td>
+                            <td class="align-middle text-center"><i class="bi bi-x-circle-fill text-danger"></i></td>
+                            <td class="align-middle text-center">12/Apr/'21 to 12/June/'21 </td>
+                            <td class="align-middle text-center"><a href="#">EDIT</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <br>
+
+
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="#" class="btn btn-lg btn-rounded btn-secondary w-100 text-center text-wrap"> <i
+                            class="bi bi-plus-circle-fill "></i> &nbsp Add New Course </a>
+
+                </div>
+
+            </div>
+
         </div>
-
-
     </div>
-
-    <div class="row justify-content-center align-items-center mt-3">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col" class="text-center">Course Name</th>
-                    <th scope="col" class="text-center">Course ID</th>
-                    <th scope="col" class="text-center">Tutor</th>
-                    <th scope="col" class="text-center">Visible?</th>
-                    <th scope="col" class="text-center">In Progress?</th>
-                    <th scope="col" class="text-center">Start-End Dates?</th>
-                    <th scope="col" class="text-center">Info</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td class="align-middle text-center">Starting with scratch</td>
-                    <td class="align-middle text-center">12</td>
-                    <td class="align-middle text-center">Ahmed Mohamed</td>
-                    <td class="align-middle text-center"> <i class="bi bi-check-circle-fill text-success"></i></td>
-                    <td class="align-middle text-center"> <i class="bi bi-x-circle-fill text-danger"></i></td>
-                    <td class="align-middle text-center">12/Apr/'22 to 12/June/'22 </td>
-                    <td class="align-middle text-center"><a href="#">EDIT</a></td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td class="align-middle text-center">Learn Python</td>
-                    <td class="align-middle text-center">12</td>
-                    <td class="align-middle text-center">Mohamed Ahmed</td>
-                    <td class="align-middle text-center"> <i class="bi bi-check-circle-fill text-success"></i></td>
-                    <td class="align-middle text-center"> <i class="bi bi-check-circle-fill text-success"></i></td>
-                    <td class="align-middle text-center">22/Apr/'22 to 30/June/'22 </td>
-                    <td class="align-middle text-center"><a href="#">EDIT</a></td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td class="align-middle text-center">Basics of Web Devalopment</td>
-                    <td class="align-middle text-center">12</td>
-                    <td class="align-middle text-center">Ahmed Mohamed</td>
-                    <td class="align-middle text-center"><i class="bi bi-x-circle-fill text-danger"></i></td>
-                    <td class="align-middle text-center"><i class="bi bi-x-circle-fill text-danger"></i></td>
-                    <td class="align-middle text-center">12/Apr/'21 to 12/June/'21 </td>
-                    <td class="align-middle text-center"><a href="#">EDIT</a></td>
-                </tr>
-            </tbody>
-        </table>
-
-    </div>
-    <br>
-
-
-    <div class="row">
-        <div class="col-md-3">
-        <a href="#" class="btn btn-lg btn-rounded btn-secondary w-100 text-center text-wrap"> <i class="bi bi-plus-circle-fill "></i> &nbsp Add New Course </a>
-
-        </div>
-        
-    </div>
-
 </div>

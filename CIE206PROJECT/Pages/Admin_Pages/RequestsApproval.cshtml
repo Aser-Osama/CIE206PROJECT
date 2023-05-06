@@ -10,7 +10,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Are you sure you want to <span class="fw-bold text-decoration-underline text-success">accept</span> this request?
+        Are you sure you want to <span class="fw-bold text-decoration-underline text-success">accept</span> this
+        request?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -28,7 +29,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Are you sure you want to <span class="fw-bold text-decoration-underline text-danger">decline</span> this request?
+        Are you sure you want to <span class="fw-bold text-decoration-underline text-danger">decline</span> this
+        request?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -38,58 +40,68 @@
   </div>
 </div>
 
-<div class="container-fluid p-3">
-    <div class="row justify-content-center align-items-center ">
+<div class="container p-3">
+  <div class="card">
+    <div class="card-body">
+
+      <div class="row justify-content-center align-items-center ">
         <div class="col">
-            <h1 class="display-3 text-center mb-3">Messages and Requests</h1>
+          <h1 class="display-3 text-center mb-3">Messages and Requests</h1>
+          <hr class="hr hr-blurry" />
+
         </div>
         <div class="row justify-content-center align-items-center mt-3">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col" class="text-center">First Name</th>
-                        <th scope="col" class="text-center">Last Name</th>
-                        <th scope="col" class="text-center">Full Request Info</th>
-                        <th scope="col" class="text-center">Accept?</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td class="align-middle text-center">Mark</td>
-                        <td class="align-middle text-center">Otto</td>
-                        <td class="align-middle text-center">
-                            <a href="#" class="text-decoration-none text-secondary "><i class="bi bi-question-circle-fill"></i></a>
-                        </td>
-                        <td class="align-middle text-center">
-                            <button type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#Modal_Accept">
-                                <i class="bi bi-check-circle-fill"></i>
-                            </button>                            
-                            <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#Modal_Deny">
-                                <i class="bi bi-x-circle-fill"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td class="align-middle text-center">Jacob</td>
-                        <td class="align-middle text-center">Thornton</td>
-                        <td class="align-middle text-center">
-                            <a href="#"><i class="bi bi-question-circle-fill text-secondary"></i></a>
-                        </td>
-                        <td class="align-middle text-center"> 
-                            <button type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#Modal_Accept">
-                                <i class="bi bi-check-circle-fill"></i>
-                            </button>                            
-                            <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#Modal_Deny">
-                                <i class="bi bi-x-circle-fill"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                </tbody>
-            </table>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col" class="text-center">First Name</th>
+                <th scope="col" class="text-center">Last Name</th>
+                <th scope="col" class="text-center">Full Request Info</th>
+                <th scope="col" class="text-center">Accept?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td class="align-middle text-center">Mark</td>
+                <td class="align-middle text-center">Otto</td>
+                <td class="align-middle text-center">
+                  <a href="#" class="text-decoration-none text-secondary "><i
+                      class="bi bi-question-circle-fill"></i></a>
+                </td>
+                <td class="align-middle text-center">
+                  <button type="button" class="btn btn-success me-2" data-bs-toggle="modal"
+                    data-bs-target="#Modal_Accept">
+                    <i class="bi bi-check-circle-fill"></i>
+                  </button>
+                  <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#Modal_Deny">
+                    <i class="bi bi-x-circle-fill"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td class="align-middle text-center">Jacob</td>
+                <td class="align-middle text-center">Thornton</td>
+                <td class="align-middle text-center">
+                  <a href="#"><i class="bi bi-question-circle-fill text-secondary"></i></a>
+                </td>
+                <td class="align-middle text-center">
+                  <button type="button" class="btn btn-success me-2" data-bs-toggle="modal"
+                    data-bs-target="#Modal_Accept">
+                    <i class="bi bi-check-circle-fill"></i>
+                  </button>
+                  <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#Modal_Deny">
+                    <i class="bi bi-x-circle-fill"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+            </tbody>
+          </table>
         </div>
+      </div>
     </div>
+  </div>
 </div>

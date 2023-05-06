@@ -8,11 +8,11 @@ using Microsoft.Extensions.Logging;
 
 namespace CIE206PROJECT.Pages.Admin_Pages
 {
-    public class Graphs : PageModel
+    public class Data : PageModel
     {
-        private readonly ILogger<Graphs> _logger;
+        private readonly ILogger<Data> _logger;
 
-        public Graphs(ILogger<Graphs> logger)
+        public Data(ILogger<Data> logger)
         {
             _logger = logger;
         }

@@ -34,23 +34,49 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Admin_Pages/Tables">Tables</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Admin_Pages/Graphs">Graphs</a>
-                        </li>
-                    </ul>
+
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                data-mdb-toggle="dropdown" aria-expanded="false">
+                                Gui Quick Access
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li class="dropdown-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Admin_Pages/Data">Admin
+                                        Data</a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a class="nav-link text-dark" asp-area=""
+                                        asp-page="/Admin_Pages/RequestsApproval">Admin Approval</a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Admin_Pages/send_request">Send
+                                        Request</a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/opmngr_pages/Activecourses">All
+                                        Courses</a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/opmngr_pages/course_edit">Edit
+                                        Course</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider" />
+                                </li>
+
+                            </ul>
                 </div>
             </div>
         </nav>
     </header>
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-        <br>
-        <br>
-        <br>
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+    <br>
+    <br>
+    <br>
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 - CIE206PROJECT - <a asp-area="" asp-page="/Privacy">Privacy</a>
