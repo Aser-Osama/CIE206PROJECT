@@ -14,7 +14,7 @@ CREATE TABLE "user" (
     password VARCHAR(255),
     email VARCHAR(255),
     user_type VARCHAR(20) CHECK (user_type IN ('Student', 'Parent', 'Trainer', 'Sales', 'op_mngr', 'CEO', 'coordinator', 'content_developer', 'supervisor', 'senior_supervisor'))
-	);
+);
 
 CREATE TABLE Trainer (
     user_id INT PRIMARY KEY,
@@ -29,7 +29,7 @@ CREATE TABLE offering (
     Start_Date DATE,
     Price INT,
     FOREIGN KEY (course_id) REFERENCES course(course_id) ON DELETE CASCADE
-)
+);
 
 CREATE TABLE "group" (
     group_no INT PRIMARY KEY,
@@ -57,7 +57,7 @@ CREATE TABLE Student_groups(
     PRIMARY KEY (group_no,student_id),
     FOREIGN KEY (Student_id) REFERENCES Student(user_id) ON DELETE CASCADE,
     FOREIGN KEY (group_no) REFERENCES "group"(group_no) ON DELETE CASCADE
-)
+);
 
 CREATE TABLE request (
     request_id INT PRIMARY KEY,
@@ -81,23 +81,23 @@ CREATE TABLE content (
     FOREIGN KEY (course_id) REFERENCES course(course_id) ON DELETE SET NULL
 );
 
-CREATE TABLE lecture (
-    lecture_id INT,
-    content_id INT,
-    group_id INT,
-    day DATE,
-    room VARCHAR(255),
-    PRIMARY KEY (lecture_id),
-    FOREIGN KEY (group_id) REFERENCES "group"(group_no) ON DELETE CASCADE,
-    FOREIGN KEY (content_id) REFERENCES content(content_id) ON DELETE CASCADE
+create table lecture (
+    lecture_id int,
+    content_id int,
+    group_id int,
+    day date,
+    room varchar(255),
+    primary key (lecture_id),
+    foreign key (group_id) references "group"(group_no) on delete cascade,
+    foreign key (content_id) references content(content_id) on delete cascade
 );
 
-CREATE TABLE lecture_topics (
-    lecture_id INT,
-    Topic VARCHAR(255),
-    Topic_Description VARCHAR(1000),
-    FOREIGN KEY (lecture_id) REFERENCES lecture(lecture_id) ON DELETE CASCADE
-)
+create table lecture_topics (
+    lecture_id int,
+    topic varchar(255),
+    topic_description varchar(1000),
+    foreign key (lecture_id) references lecture(lecture_id) on delete cascade
+);
 
 
 
