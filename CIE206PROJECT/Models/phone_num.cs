@@ -7,7 +7,7 @@ public class phone_num
 {
 	public int user_id { get; set; }
 
-	public string phone_num { get; set; }
+	public string phonenum { get; set; }
 
 }
 }
