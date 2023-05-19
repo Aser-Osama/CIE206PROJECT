@@ -1,9 +1,8 @@
 CREATE TABLE course (
     course_id INT PRIMARY KEY,
     tot_sessions INT,
-    Start_Date DATE,
-    Capacity INT,
-    Price INT
+    advertisement_text VARCHAR(2000),
+    video_link VARCHAR(200),
 );
 
 CREATE TABLE "user" (
@@ -15,7 +14,7 @@ CREATE TABLE "user" (
     password VARCHAR(255),
     email VARCHAR(255),
     user_type VARCHAR(20) CHECK (user_type IN ('Student', 'Parent', 'Trainer', 'Sales', 'op_mngr', 'CEO', 'coordinator', 'content_developer', 'supervisor', 'senior_supervisor'))
-	);
+);
 
 CREATE TABLE Trainer (
     user_id INT PRIMARY KEY,
@@ -24,92 +23,40 @@ CREATE TABLE Trainer (
     FOREIGN KEY (user_id) REFERENCES "user"(user_id) ON DELETE CASCADE
 );
 
-CREATE TABLE "group" (
-    group_no INT PRIMARY KEY,
+CREATE TABLE offering (
+    offering_id INT PRIMARY KEY,
     course_id INT,
-    n_students INT,
-    age_grp VARCHAR(10) CHECK (age_grp IN ('young', 'middle', 'old')),
-    FOREIGN KEY (course_id) REFERENCES course(course_id) ON DELETE SET NULL,
-    FOREIGN KEY (trainer_id) REFERENCES Trainer(user_id) ON DELETE SET NULL 
+    Start_Date DATE,
+    Price INT,
+    FOREIGN KEY (course_id) REFERENCES course(course_id) ON DELETE CASCADE
 );
 
-CREATE TABLE trainer_group(
-    group_no INT,
+CREATE TABLE "group" (
+    group_no INT PRIMARY KEY,
+    offering_id INT,
     Trainer_id INT,
-    FOREIGN KEY (Trainer_id) REFERENCES Trainer(Trainer_id),
-    FOREIGN KEY (group_no) REFERENCES "group"(group_no)
-)
+    Timeslot DATE,
+    n_students INT,
+    meeting_link VARCHAR(255),
+    age_grp VARCHAR(10) CHECK (age_grp IN ('young', 'middle', 'old')),
+    FOREIGN KEY (offering_id) REFERENCES offering(offering_id) ON DELETE CASCADE,
+    FOREIGN KEY (Trainer_id) REFERENCES Trainer(user_id) ON DELETE SET NULL
+);
 
 CREATE TABLE Student (
     user_id INT PRIMARY KEY,
+    parent_id INT,
     skill_level VARCHAR(20) CHECK (skill_level IN ('beginner', 'intermediate', 'advanced')),
     FOREIGN KEY (user_id) REFERENCES "user"(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (parent_id) REFERENCES "user"(user_id) ON DELETE NO ACTION,
 );
 
-CREATE TABLE Student_groups{
+CREATE TABLE Student_groups(
     group_no INT,
     Student_id INT,
-    FOREIGN KEY (Student_id) REFERENCES Student(Student_id),
-    FOREIGN KEY (group_no) REFERENCES "group"(group_no)
-}
-
-
-CREATE TABLE Parent (
-    user_id INT PRIMARY KEY,
-    student_id INT,
-    FOREIGN KEY (user_id) REFERENCES "user"(user_id) ON DELETE NO ACTION, 
-    FOREIGN KEY (student_id) REFERENCES Student(user_id) ON DELETE NO ACTION
-);
-
-CREATE TABLE op_mngr (
-    user_id INT PRIMARY KEY,
-    FOREIGN KEY (user_id) REFERENCES "user"(user_id) ON DELETE CASCADE
-);
-
-CREATE TABLE Sales (
-    user_id INT PRIMARY KEY,
-    supervisor_id INT,
-    FOREIGN KEY (user_id) REFERENCES "user"(user_id) ON DELETE NO ACTION,
-    FOREIGN KEY (supervisor_id) REFERENCES op_mngr(user_id) ON DELETE NO ACTION
-);
-
-
-
-CREATE TABLE CEO (
-    user_id INT PRIMARY KEY,
-    FOREIGN KEY (user_id) REFERENCES "user"(user_id) ON DELETE CASCADE
-);
-
-CREATE TABLE coordinator (
-    user_id INT PRIMARY KEY,
-    FOREIGN KEY (user_id) REFERENCES "user"(user_id) ON DELETE CASCADE
-);
-
-CREATE TABLE supervisor_user (
-    user_id INT PRIMARY KEY,
-    senior_supervisor VARCHAR(3) CHECK (senior_supervisor IN ('yes', 'no')),
-    FOREIGN KEY (user_id) REFERENCES "user"(user_id) ON DELETE CASCADE
-);
-
-CREATE TABLE content_developer (
-    user_id INT PRIMARY KEY,
-    supervisor_id INT,
-    FOREIGN KEY (user_id) REFERENCES "user"(user_id) ON DELETE NO ACTION,
-    FOREIGN KEY (supervisor_id) REFERENCES supervisor_user(user_id) ON DELETE NO ACTION
-);
-
-
-
-CREATE TABLE senior_supervisor (
-    user_id INT PRIMARY KEY,
-    FOREIGN KEY (user_id) REFERENCES supervisor_user(user_id) ON DELETE CASCADE
-);
-
-CREATE TABLE supervisor (
-    user_id INT PRIMARY KEY,
-    senior_supervisor_user INT,
-    FOREIGN KEY (senior_supervisor_user) REFERENCES senior_supervisor(user_id) ON DELETE NO ACTION,
-    FOREIGN KEY (user_id) REFERENCES supervisor_user(user_id) ON DELETE NO ACTION
+    PRIMARY KEY (group_no,student_id),
+    FOREIGN KEY (Student_id) REFERENCES Student(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (group_no) REFERENCES "group"(group_no) ON DELETE CASCADE
 );
 
 CREATE TABLE request (
@@ -123,27 +70,41 @@ CREATE TABLE request (
     FOREIGN KEY (sent_to) REFERENCES "user"(user_id) ON DELETE NO ACTION
 );
 
-CREATE TABLE lecture (
-    lecture_id INT,
-    group_id INT,
-    meeting_link VARCHAR(255),
-    day DATE,
-    room VARCHAR(255),
-    PRIMARY KEY (lecture_id),
-    FOREIGN KEY (group_id) REFERENCES "group"(group_no) ON DELETE CASCADE
+CREATE TABLE content (
+    content_id INT PRIMARY KEY,
+    course_id INT,
+    summary VARCHAR(2000),
+    summary_vid VARCHAR(255),
+    slides VARCHAR(255),
+    teacher_guide VARCHAR(255),
+    handout VARCHAR(255),
+    FOREIGN KEY (course_id) REFERENCES course(course_id) ON DELETE SET NULL
 );
 
-CREATE TABLE lecture_topics (
-    lecture_id INT,
-    Topic VARCHAR(255),
-    Topic_Description VARCHAR(1000),
-    FOREIGN KEY (lecture_id) REFERENCES lecture(lecture_id) ON DELETE CASCADE
-)
+create table lecture (
+    lecture_id int,
+    content_id int,
+    group_id int,
+    day date,
+    room varchar(255),
+    primary key (lecture_id),
+    foreign key (group_id) references "group"(group_no) on delete cascade,
+    foreign key (content_id) references content(content_id) on delete cascade
+);
+
+create table lecture_topics (
+    lecture_id int,
+    topic varchar(255),
+    topic_description varchar(1000),
+    foreign key (lecture_id) references lecture(lecture_id) on delete cascade
+);
+
 
 
 CREATE TABLE student_eval (
     student_id INT,
     lecture_id INT,
+    attendance BIT,
     criteria_c1 INT,
     criteria_c2 INT,
     criteria_c3 INT,
@@ -156,14 +117,14 @@ CREATE TABLE student_eval (
 
 CREATE TABLE course_payment (
     parent_id INT,
-    course_id INT,
+    group_id INT,
     transaction_no INT,
     one_two_time VARCHAR(3) CHECK (one_two_time IN ('one', 'two')),
     v_cash_msg VARCHAR(255),
     amount_payed INT,
-    PRIMARY KEY (parent_id, course_id),
-    FOREIGN KEY (parent_id) REFERENCES Parent(user_id) ON DELETE CASCADE,
-    FOREIGN KEY (course_id) REFERENCES course(course_id) ON DELETE CASCADE
+    PRIMARY KEY (parent_id, group_id),
+    FOREIGN KEY (parent_id) REFERENCES "user"(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (group_id) REFERENCES "group"(group_no) ON DELETE CASCADE
 );
 
 CREATE TABLE phone_num (
@@ -171,19 +132,6 @@ CREATE TABLE phone_num (
     phone_num VARCHAR(255) UNIQUE,
     FOREIGN KEY (user_id) REFERENCES "user"(user_id) ON DELETE CASCADE
 );
-
-
-CREATE TABLE content (
-    lecture_id INT,
-    summary_vid VARCHAR(255),
-    slides VARCHAR(255),
-    video VARCHAR(255),
-    teacher_guide VARCHAR(255),
-    handout VARCHAR(255),
-    FOREIGN KEY (lecture_id) REFERENCES lecture(lecture_id) ON DELETE SET NULL
-);
-
-
 
 CREATE TABLE  trainer_eval(
     lecture_id INT,
@@ -196,7 +144,6 @@ CREATE TABLE  trainer_eval(
     PRIMARY KEY (lecture_id),
     FOREIGN KEY (lecture_id) REFERENCES lecture(lecture_id) ON DELETE CASCADE
 );
-
 
 CREATE TABLE salary_pt (
     user_id INT,
