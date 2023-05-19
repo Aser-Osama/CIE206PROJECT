@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddSession(options => options.IdleTimeout = TimeSpan.FromMinutes(1));
 builder.Services.AddScoped<Login_Controller>();
-builder.Services.AddSingleton<UserTypes>();
+builder.Services.AddSingleton<DB_Container>();
 
 // Register IHttpContextAccessor
 builder.Services.AddHttpContextAccessor();
