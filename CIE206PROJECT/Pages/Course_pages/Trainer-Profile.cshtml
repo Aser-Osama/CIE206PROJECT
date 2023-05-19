@@ -5,21 +5,23 @@
 <div class="container-sm">
   <section class="profile mt-4">
 
-    <div class="row justify-content-center mb-2 g-2 h-100 d-flex">
+    <div class="row justify-content-center mb-2 g-2 h-10 d-flex">
 
       <div class=" col-4 col-sm-5  col-md-4 col-lg-3 col-xxl-2">
         <div class="card  h-100 p-4 text-center d-block flex-column align-self-stretch">
 
           <div class="card-body justify-content-center d-flex flex-column">
-          <img src="https://www.tutorialspoint.com/bootstrap/images/64.jpg" class=" mx-auto align-self-center rounded-circle" width="64">
-          <div class="card-title m-2 h6">User Name <span class="badge bg-primary rounded-pill">Trainer</span> </div>
+            <img src="https://www.tutorialspoint.com/bootstrap/images/64.jpg"
+              class=" mx-auto align-self-center rounded-circle" width="64">
+            <div class="card-title m-2 h6">User Name <span class="badge bg-primary rounded-pill">Trainer</span> </div>
             <div class="card-text text-muted">
-              Trainer level
+              STudent level
               <br>
-              
+              parent name
             </div>
           </div>
         </div>
+
       </div>
 
       <div class="col-md-8 col-lg-9 col-xxl-10">
@@ -74,214 +76,169 @@
 
     </div>
 
-
     <div class="row g-2 justify-content-center d-flex">
       <div class="col-lg-8 col-md-12">
-
-
         <div class="card">
           <ul class="nav nav-tabs mb-3" id="evaluationTabs" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="tab1" data-bs-toggle="tab" data-bs-target="#content1" type="button"
-                role="tab" aria-controls="content1" aria-selected="true">Course One </button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="tab2" data-bs-toggle="tab" data-bs-target="#content2" type="button"
-                role="tab" aria-controls="content2" aria-selected="false">Course Two</button>
-            </li>
+            @for (int i = 0; 4 > i; i++)
+            {
+              <li class="nav-item" role="presentation">
+                <button class="nav-link " id="tab-@i" data-bs-toggle="tab" data-bs-target="#content-@i" type="button"
+                  role="tab" aria-controls="content-@i" aria-selected="true">Course @i </button>
+              </li>
+            }
             <!-- Add more tabs as needed -->
-          </ul>
 
+
+          </ul>
           <div class="card-body p-4">
             <div class="tab-content" id="evaluationContent">
-              <div class="tab-pane fade show active" id="content1" role="tabpanel" aria-labelledby="tab1">
-                <div class="card-title text-center h5">Trainer Evaluation - Tab 1</div>
-                <div class="card-body">
 
-                  <div class="row">
-                    <div class="col-md-6 mb-3">
-                      <p class="text-center h6 mt-2">Criteria 1</p>
-                      <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 75%;" valuenow="75" aria-valuemin="0"
-                          aria-valuemax="100"></div>
+              @for (int i = 0; 4 > i; i++)
+              {
+                @{
+                  string activeClass = i == 0 ? "show active" : string.Empty;
+                }
+
+                <div class="tab-pane fade @activeClass" id="content-@i" role="tabpanel" aria-labelledby="tab-@i">
+                  <div class="card-title text-center h5">Trainer Evaluation - Tab @i</div>
+                  <div class="card-body">
+
+                    <div class="row">
+                      <div class="col-md-6 mb-3">
+                        <p class="text-center h6 mt-2">Criteria 1</p>
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" style="width: 75%;" valuenow="75" aria-valuemin="0"
+                            aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <p class="text-center h6 mt-2">Criteria 2</p>
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <p class="text-center h6 mt-2">Criteria 3</p>
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <p class="text-center h6 mt-2">Criteria 4</p>
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
                       </div>
                     </div>
-                    <div class="col-md-6 mb-3">
-                      <p class="text-center h6 mt-2">Criteria 2</p>
-                      <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                      <p class="text-center h6 mt-2">Criteria 3</p>
-                      <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                      <p class="text-center h6 mt-2">Criteria 4</p>
-                      <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
+
+
+
                   </div>
-
-
-
                 </div>
-              </div>
 
-              <div class="tab-pane fade" id="content2" role="tabpanel" aria-labelledby="tab2">
-                <div class="card-title text-center h5">Trainer Evaluation - Tab 2</div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-6 mb-3">
-                      <p class="text-center h6 mt-2">Criteria 1</p>
-                      <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 75%;" valuenow="75" aria-valuemin="0"
-                          aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                      <p class="text-center h6 mt-2">Criteria 2</p>
-                      <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                      <p class="text-center h6 mt-2">Criteria 3</p>
-                      <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                      <p class="text-center h6 mt-2">Criteria 4</p>
-                      <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-
-
-
-
-                </div>
-              </div>
-              <!-- Add more tab content sections as needed -->
+              }
             </div>
           </div>
         </div>
 
 
+@{var value=false;}
 
-
-
+      @if(value){
         <section class="courses mt-2">
           <div class="d-flex mb-1 flex-row flex-wrap overflow-auto">
-            <div class="card m-1" style="width: 180px; height: 230px;">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="150" xmlns="http://www.w3.org/2000/svg"
-                role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6"
-                  dy=".3em"></text>
-              </svg>
-              <div class="card-body text-center">
-                <h5 class="card-title">Card Title 1</h5>
-                <p class="card-text">group no <br> Trainer</p>
+            @for (int i = 0; 4 > i; i++)
+            {
+              <div class="card m-1" style="width: 180px; height: 230px;">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="150" xmlns="http://www.w3.org/2000/svg"
+                  role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
+                  <title>Placeholder</title>
+                  <rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6"
+                    dy=".3em"></text>
+                </svg>
+                <div class="card-body text-center">
+                  <h5 class="card-title">Card Title 1</h5>
+                  <p class="card-text">group no <br> Trainer</p>
+                </div>
               </div>
-            </div>
-
-            <div class="card m-1" style="width: 180px; height: 230px;">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="150" xmlns="http://www.w3.org/2000/svg"
-                role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6"
-                  dy=".3em"></text>
-              </svg>
-              <div class="card-body text-center">
-                <h5 class="card-title">Card Title 1</h5>
-                <p class="card-text">group no <br> Trainer</p>
-              </div>
-            </div>
-            <div class="card m-1" style="width: 180px; height: 230px;">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="150" xmlns="http://www.w3.org/2000/svg"
-                role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6"
-                  dy=".3em"></text>
-              </svg>
-              <div class="card-body text-center">
-                <h5 class="card-title">Card Title 2</h5>
-                <p class="card-text">group no <br> Trainer</p>
-              </div>
-            </div>
-            <div class="card m-1" style="width: 180px; height: 230px;">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="150" xmlns="http://www.w3.org/2000/svg"
-                role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6"
-                  dy=".3em"></text>
-              </svg>
-              <div class="card-body text-center">
-                <h5 class="card-title">Card Title 3</h5>
-                <p class="card-text">group no <br> Trainer</p>
-              </div>
-            </div>
+            }
           </div>
+
         </section>
-
-
-
+      }
 
       </div>
+
+
 
       <div class="col-md-12 col-lg-4">
-        <div class="card">
-          <div class="list-group list-group-flush">
-            <div class="list-group-item list-group-item-action flex-column align-items-start">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1 p-1">Subject</h5>
-                <small>3 days ago</small>
+        @if (value)
+        {
+          <div class="card">
+            <div class="list-group list-group-flush">
+
+              @for (int i = 0; 4 > i; i++)
+              {
+                <div class="list-group-item p-3 list-group-item-action flex-column align-items-start">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1 p-1">Subject</h5>
+                    <small>3 days ago</small>
+                  </div>
+                  <p class="mb-1">This is a note left by a trainer. This is note number @i</p>
+                  <div class="text-muted">User name <span class="badge bg-secondary rounded-pill">Trainer</span></div>
+                </div>
+              }
+              <div class="card-footer text-center">
+                <button class="btn btn-primary">Clear Messages</button>
               </div>
-              <p class="mb-1">Content of the message Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Fuga impedit voluptates iusto, repudiandae laudantium laborum? Sapiente, minus, odio et
-                nostrum rerum assumenda adipisci delectus minima sit placeat asperiores deleniti nam.
-                Varius blandit.</p>
-              <div class="text-muted">User name <span class="badge bg-secondary rounded-pill">Trainer</span></div>
-            </div>
-            <div class="list-group-item list-group-item-action flex-column align-items-start">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1 p-1">List group item heading</h5>
-                <small class="text-muted">3 days ago</small>
-              </div>
-              <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus
-                varius blandit.</p>
-              <div class="text-muted">User name <span class="badge bg-secondary rounded-pill">Trainer</span></div>
-            </div>
-            <div class="list-group-item list-group-item-action flex-column align-items-start">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1 p-1">List group item heading</h5>
-                <small class="text-muted">3 days ago</small>
-              </div>
-              <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus
-                varius blandit.</p>
-              <div class="text-muted">User name <span class="badge bg-secondary rounded-pill">Trainer</span></div>
+
+
             </div>
           </div>
-          <div class="card-footer text-center">
-            <button class="btn btn-primary">Clear Messages</button>
+
+        }
+        else
+        {
+          <div class="card h-100">
+            <div class="card-body  d-flex align-items-center justify-content-center flex-column text-center">
+              <i class="bi bi-check-circle-fill " style="font-size: 4rem;"></i>
+              <h5 class="card-title">All Messages are Read</h5>
+              <p class="card-text">There are no new messages at the moment.</p>
+            </div>
           </div>
-        </div>
+
+        }
       </div>
 
 
-      </div>
+    </div>
+
+      @if(!value){
+        <section class="courses mt-2">
+          <div class="d-flex mb-1 flex-row flex-wrap overflow-auto">
+            @for (int i = 0; 4 > i; i++)
+            {
+              <div class="card m-1" style="width: 180px; height: 230px;">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="150" xmlns="http://www.w3.org/2000/svg"
+                  role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
+                  <title>Placeholder</title>
+                  <rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6"
+                    dy=".3em"></text>
+                </svg>
+                <div class="card-body text-center">
+                  <h5 class="card-title">Card Title 1</h5>
+                  <p class="card-text">group no <br> Trainer</p>
+                </div>
+              </div>
+            }
+          </div>
+
+        </section>
+      }
 
 
   </section>
