@@ -6,7 +6,7 @@ namespace CIE206PROJECT.Controllers
 {
     public class DB_Controller
     {
-        public string Connection_string = "Data Source=ASERLAPTOP;Initial Catalog=db_proj;Integrated Security=True";
+        public string Connection_string = "Data Source=ASERLAPTOP;Initial Catalog=db_proj_new;Integrated Security=True";
 
         public DataTable? Exec_Queury(string q) //returns null if there was an error
         {

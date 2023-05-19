@@ -72,7 +72,16 @@ namespace CIE206PROJECT.Pages.Admin_Pages
 			_Handler = "Inst";
 			dt = _DB.getTrainerEval();
 			initalizeSortingList();
-			data_of = "Instructor Ratings and Comments";
+			data_of = "Instructor Ratings";
+
+		}
+		public void OnGetStudents()
+		{
+			_DB = _DBC.dataPage_DB;
+			_Handler = "Stu";
+			dt = _DB.getStudentEval();
+			initalizeSortingList();
+			data_of = "Student Ratings";
 
 		}
 		public void OnGetFinances()
@@ -100,6 +109,12 @@ namespace CIE206PROJECT.Pages.Admin_Pages
 			{
 				_DB = _DBC.dataPage_DB;
 				dt = _DB.sortCourses(itemsort, sortorder);
+
+			}
+			else if (hndlr == "Stu")
+			{
+				_DB = _DBC.dataPage_DB;
+				dt = _DB.sortStudentEval(itemsort, sortorder);
 
 			}
 
