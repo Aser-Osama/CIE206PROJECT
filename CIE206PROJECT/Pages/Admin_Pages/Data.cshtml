@@ -1,7 +1,9 @@
 @page
 @model CIE206PROJECT.Pages.Admin_Pages.Data
+@using System.Data
 
-
+@{
+}
 
 <div class="container">
 	<!-- Tabs navs -->
@@ -14,30 +16,29 @@
 					<ul class="nav nav-tabs mb-3" id="ex1" role="tablist">
 						<li class="nav-item" role="presentation">
 							<a class="nav-link active" id="ex1-tab-1" data-mdb-toggle="tab" href="#ex1-tabs-1"
-								role="tab" aria-controls="ex1-tabs-1" aria-selected="true">Raw Data</a>
+							   role="tab" aria-controls="ex1-tabs-1" aria-selected="true">Raw Data</a>
 						</li>
 						<li class="nav-item" role="presentation">
 							<a class="nav-link" id="ex1-tab-2" data-mdb-toggle="tab" href="#ex1-tabs-2" role="tab"
-								aria-controls="ex1-tabs-2" aria-selected="false">Graphs</a>
+							   aria-controls="ex1-tabs-2" aria-selected="false">Graphs</a>
 						</li>
 					</ul>
 				</div>
 				<div class="col-auto  ms-sm-auto d-flex justify-content-end text-center px-0 px-sm-2">
 					<div class="dropdown  ">
 						<button class="btn btn-outline-secondary dropdown-toggle text-center" type="button"
-							id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
+								id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
 							Data From
 						</button>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							<li><a class="dropdown-item" href="#">Courses</a></li>
-							<li><a class="dropdown-item" href="#">Instuctor Rating</a></li>
-							<li><a class="dropdown-item" href="#">Finances</a></li>
+							<li><a class="dropdown-item" asp-page-handler="Courses">Courses</a></li>
+							<li><a class="dropdown-item" asp-page-handler="Instuctors">Instuctor Rating</a></li>
+							<li><a class="dropdown-item" asp-page-handler="Finances">Finances</a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
 			<!-- Tabs navs -->
-
 			<!-- Tabs content -->
 			<div class="tab-content" id="ex1-content">
 				<div class="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel" aria-labelledby="ex1-tab-1">
@@ -48,7 +49,7 @@
 					<div class="row justify-content-center g-2">
 
 						<div class="col">
-							<h1 class="display-4 text-center">All Courses</h1>
+							<h1 class="display-4 text-center">@Model.data_of</h1>
 							<hr class="hr hr-blurry" />
 
 						</div>
@@ -58,85 +59,51 @@
 						<div class="col-xxl-8 col-12 ">
 							<div class="mb-3">
 								<input type="email" class="form-control" id="exampleFormControlInput1"
-									placeholder="Search..">
+									   placeholder="Search..">
 							</div>
 						</div>
 						<div class="col-xxl-3 col-12 mb-3">
-							<select class="form-select" aria-label="Default select example">
-								<option selected>Sorting By</option>
-								<option value="1">One</option>
-								<option value="2">Two</option>
-								<option value="3">Three</option>
-							</select>
+							<button class="btn btn-outline-secondary dropdown-toggle text-center" type="button"
+									id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
+								@Model.SortingBy
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+								@foreach (var elem in @Model.sortingList)
+								{
+									<li><a class="dropdown-item" asp-page-handler="Sort" asp-route-id="@elem.Item1">@elem.Item2 @elem.Item3 </a></li>
+								}
+							</ul>
 						</div>
 						<div class="col-xxl-1 col-12 ">
 							<div class="d-grid gap-2 ">
-								<button type="button" name="" id="" class="btn btn-secondary">Submit</button>
+								<a asp-page-handler="@Model._Handler" asp-route-id="1" class="btn btn-secondary">Submit</a>
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<table class="table table-striped">
 							<thead>
+							<thead>
 								<tr>
-									<th scope="col">#</th>
-									<th scope="col">First</th>
-									<th scope="col">Last</th>
-									<th scope="col">Handle</th>
+									<th></th>
+										@foreach (DataColumn col in Model.dt.Columns)
+										{
+										<th scope="col">@col</th>
+										}
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<th scope="row">1</th>
-									<td>Mark</td>
-									<td>Otto</td>
-									<td>mdo</td>
-								</tr>
-								<tr>
-									<th scope="row">2</th>
-									<td>Jacob</td>
-									<td>Thornton</td>
-									<td>fat</td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td colspan="2">Larry the Bird</td>
-									<td>twitter</td>
-								</tr>
-								<tr>
-									<th scope="row">4</th>
-									<td>Mark</td>
-									<td>Otto</td>
-									<td>mdo</td>
-								</tr>
-								<tr>
-									<th scope="row">5</th>
-									<td>Jacob</td>
-									<td>Thornton</td>
-									<td>fat</td>
-								</tr>
-								<tr>
-									<th scope="row">6</th>
-									<td colspan="2">Larry the Bird</td>
-									<td>twitter</td>
-								</tr>
-								<tr>
-									<th scope="row">7</th>
-									<td>Mark</td>
-									<td>Otto</td>
-									<td>mdo</td>
-								</tr>
-								<tr>
-									<th scope="row">8</th>
-									<td>Jacob</td>
-									<td>Thornton</td>
-									<td>fat</td>
-								</tr>
-								<tr>
-									<th scope="row">9</th>
-									<td colspan="2">Larry the Bird</td>
-									<td>twitter</td>
-								</tr>
+									@for (int ii = 0; ii < @Model.dt.Rows.Count; ii++)
+									{
+									<tr>
+										<th scope="row">@ii</th>
+											@for (int j = 0; j < @Model.dt.Columns.Count; j++)
+											{
+											<td>@Model.dt.Rows[ii][j]</td>
+											}
+									</tr>
+									}
+
 							</tbody>
 						</table>
 					</div>
@@ -155,14 +122,15 @@
 					</div>
 
 
-					<div class="row mt-5"> @*real image links will be pulled from a cshtml file making them*@
+					<div class="row mt-5">
+						@*real image links will be pulled from a cshtml file making them*@
 						<div class="col-lg-6 col-12">
 							<img src="https://wcs.smartdraw.com/chart/img/basic-bar-graph.png?bn=15100111868"
-								class="img-fluid rounded-top" alt="">
+								 class="img-fluid rounded-top" alt="">
 						</div>
 						<div class="col-lg-6 col-12">
 							<img src="https://proclusacademy.com/images/010_piechart_summary.png"
-								class="img-fluid rounded-top" alt="">
+								 class="img-fluid rounded-top" alt="">
 						</div>
 					</div>
 				</div>

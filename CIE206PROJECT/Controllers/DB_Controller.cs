@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using Microsoft.Net.Http.Headers;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace CIE206PROJECT.Controllers
@@ -85,6 +86,11 @@ namespace CIE206PROJECT.Controllers
             }
         }
 
+        public DataTable ColumnNames(string TableName) 
+        {
+            string q = $"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N'{TableName}'";
+            return Exec_Queury(q);
+        }
 
     }
 }
