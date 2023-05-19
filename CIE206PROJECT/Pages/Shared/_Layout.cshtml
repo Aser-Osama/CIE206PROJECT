@@ -1,8 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var currentPage = Context.Request.Path.ToString();
+}
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - CIE206PROJECT</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -52,7 +55,7 @@
                                 </li>
                                 <li class="dropdown-item">
                                     <a class="nav-link text-dark" asp-area=""
-                                       asp-page="/Admin_Pages/RequestsApproval">Admin Approval</a>
+                                        asp-page="/Admin_Pages/RequestsApproval">Admin Approval</a>
                                 </li>
                                 <li class="dropdown-item">
                                     <a class="nav-link text-dark" asp-area="" asp-page="/Admin_Pages/send_request">
@@ -76,34 +79,50 @@
                                     <hr class="dropdown-divider" />
                                 </li>
                                 <li class="dropdown-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Course_Pages/group-page-tutor">Group Page (tutor)</a>
+                                    <a class="nav-link text-dark" asp-area=""
+                                        asp-page="/Course_Pages/group-page-tutor">Group Page (tutor)</a>
                                 </li>
                                 <li class="dropdown-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Course_Pages/Group-Page">Group Page</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Course_Pages/Group-Page">Group
+                                        Page</a>
                                 </li>
                                 <li class="dropdown-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Course_Pages/Parent-Profile">Parent Profile</a>
+                                    <a class="nav-link text-dark" asp-area=""
+                                        asp-page="/Course_Pages/Parent-Profile">Parent Profile</a>
                                 </li>
                                 <li class="dropdown-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Course_Pages/Student-Profile">Student Profile</a>
+                                    <a class="nav-link text-dark" asp-area=""
+                                        asp-page="/Course_Pages/Student-Profile">Student Profile</a>
                                 </li>
                                 <li class="dropdown-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Course_Pages/Trainer-Profile">Trainer Profile</a>
+                                    <a class="nav-link text-dark" asp-area=""
+                                        asp-page="/Course_Pages/Trainer-Profile">Trainer Profile</a>
                                 </li>
                                 <li class="dropdown-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Course_Pages/UnboughtCoursePage">Unbought Course</a>
+                                    <a class="nav-link text-dark" asp-area=""
+                                        asp-page="/Course_Pages/UnboughtCoursePage">Unbought Course</a>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider" />
                                 </li>
                                 <li class="dropdown-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Content_Dev/content_dev">Content Developer Page</a>
+                                    <a class="nav-link text-dark" asp-area=""
+                                        asp-page="/Content_Dev/content_dev">Content Developer Page</a>
                                 </li>
                                 <li class="dropdown-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/STEM_svpages/Stemsv">Stem Supervisor</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/STEM_svpages/Stemsv">Stem
+                                        Supervisor</a>
                                 </li>
+
+
                             </ul>
+                        </li>
+                   </ul>
+
+
                 </div>
+
+
             </div>
         </nav>
     </header>
