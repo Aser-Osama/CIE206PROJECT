@@ -70,13 +70,13 @@
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 								@foreach (var elem in @Model.sortingList)
 								{
-									<li><a class="dropdown-item" asp-page-handler="Sort" asp-route-id="@elem.Item1">@elem.Item2 @elem.Item3 </a></li>
+									<li><a class="dropdown-item" asp-page-handler="Sort" asp-route-id="@elem.Item1" asp-route-dataofin="@Model.data_of">@elem.Item2 @elem.Item3 </a></li>
 								}
 							</ul>
 						</div>
 						<div class="col-xxl-1 col-12 ">
 							<div class="d-grid gap-2 ">
-								<a asp-page-handler="@Model._Handler" asp-route-id="1" class="btn btn-secondary">Submit</a>
+								<a asp-page-handler="SubmitSearch" asp-route-id="1" class="btn btn-secondary">Submit</a>
 							</div>
 						</div>
 					</div>

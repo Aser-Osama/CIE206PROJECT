@@ -52,14 +52,11 @@ namespace CIE206PROJECT.Pages.Admin_Pages
 				asc_dsc = "Descending";
 				sortingList.Add(new Tuple<int, string, string>(i, col.ColumnName, asc_dsc));
 				i++;
-				Console.WriteLine(col.ColumnName);
 			}
-			Console.WriteLine(sortingList.Count);
 		}
 
         public Data(ILogger<Data> logger)
         {
-			_Handler = string.Empty;
             data_of= string.Empty;
             _logger = logger;
 			SortingBy= "Sort by..";
@@ -78,9 +75,6 @@ namespace CIE206PROJECT.Pages.Admin_Pages
         {
 			initalizeSortingList();
 
-			_Handler = "Courses";
-
-			Console.WriteLine("Courses");
             data_of = "All Courses";
 
 
@@ -88,10 +82,6 @@ namespace CIE206PROJECT.Pages.Admin_Pages
         public void OnGetInstuctors()
         {
 			initalizeSortingList();
-
-			_Handler = "Instuctors";
-
-			Console.WriteLine("Inst");
 			data_of = "Instructor Ratings and Comments";
 
 
@@ -99,22 +89,21 @@ namespace CIE206PROJECT.Pages.Admin_Pages
 		public void OnGetFinances()
         {
 			initalizeSortingList();
-
-			_Handler = "Finances";
-
-			Console.WriteLine("Finances");
 			data_of = "Course Finances";
 
 
 		}
-		public void OnGetSort(int id)
+		public void OnGetSort(int id, string dataofin)
 		{
 
 			
 			initalizeSortingList();
 			var t = sortingList[id];
+			data_of = dataofin;
+			SortingBy = $"{t.Item2} {t.Item3}";
 			Console.WriteLine($"SORTINGGGGGGGGGGGGGGGGGG = {t.Item1} {t.Item2} {t.Item3}");
-			data_of = "Instructor Ratings and Comments";
+			
+			
 
 		}
 	}
