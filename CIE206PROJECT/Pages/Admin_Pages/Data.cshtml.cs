@@ -1,9 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using CIE206PROJECT.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -16,7 +20,8 @@ namespace CIE206PROJECT.Pages.Admin_Pages
 		public List<Tuple<int, string, string>> sortingList = new List<Tuple<int, string, string>>();
 
 
-
+		private readonly DB_Container _DBC;
+		public DataPage _DB { get; set; }
 		public DataTable dt { get; set; }
 		public string _Handler { get; set; }
 		public string data_of { get; set; }
@@ -24,23 +29,9 @@ namespace CIE206PROJECT.Pages.Admin_Pages
 
 		private readonly ILogger<Data> _logger;
 
-		public void initalizeSortingList()
-		{
-			dt = new DataTable();
-			dt.Columns.Add("SNO", typeof(int));
-			dt.Columns.Add("Name", typeof(string));
-			dt.Columns.Add("City", typeof(string));
-			dt.Columns.Add("Date", typeof(DateTime));
-			dt.Rows.Add(1, "Siva", "TUP", DateTime.Now);
-			dt.Rows.Add(2, "Raman", "MAS", DateTime.Now);
-			dt.Rows.Add(3, "Sivaraman", "TRY", DateTime.Now);
-			dt.Rows.Add(4, "Kuble", "MDU", DateTime.Now);
-			dt.Rows.Add(5, "Arun", "Salem", DateTime.Now);
-			dt.Rows.Add(6, "Kumar", "Erode", DateTime.Now);
-			dt.Rows.Add(7, "ghasj", "Tup", DateTime.Now);
-			dt.Rows.Add(8, "dsfd", "yercaud", DateTime.Now);
-			dt.Rows.Add(9, "dsdf", "ui", DateTime.Now);
 
+		public void initalizeSortingList()
+		{ 
 			int i = 0;
 			string asc_dsc = string.Empty;
 			foreach (DataColumn col in dt.Columns)
@@ -55,55 +46,67 @@ namespace CIE206PROJECT.Pages.Admin_Pages
 			}
 		}
 
-        public Data(ILogger<Data> logger)
+        public Data(ILogger<Data> logger, DB_Container container)
         {
             data_of= string.Empty;
             _logger = logger;
 			SortingBy= "Sort by..";
-
+			_DBC = container;
 		}
 
         public void OnGet()
         {
-			
-			Console.WriteLine("general");
-            OnGetCourses();
-
-
+			OnGetCourses();
 		}
         public void OnGetCourses()
         {
+			_DB = _DBC.dataPage_DB;
+			_Handler = "Course";
+			dt = _DB.getCourses();
 			initalizeSortingList();
-
             data_of = "All Courses";
-
-
 		}
         public void OnGetInstuctors()
         {
+			_DB = _DBC.dataPage_DB;
+			_Handler = "Inst";
+			dt = _DB.getTrainerEval();
 			initalizeSortingList();
 			data_of = "Instructor Ratings and Comments";
-
 
 		}
 		public void OnGetFinances()
         {
-			initalizeSortingList();
+			_DB = _DBC.dataPage_DB;
+			dt = _DB.getFinances();
+			_Handler = "Fin";
 			data_of = "Course Finances";
-
-
-		}
-		public void OnGetSort(int id, string dataofin)
-		{
-
-			
 			initalizeSortingList();
-			var t = sortingList[id];
+		}
+
+		public void OnGetSort(string itemsort, string sortorder, string dataofin, string hndlr)
+		{
+			if (hndlr == "Fin")
+			{
+				_DB = _DBC.dataPage_DB;
+				dt = _DB.sortFinances(itemsort, sortorder);
+			}
+			else if (hndlr == "Inst")
+			{
+				_DB = _DBC.dataPage_DB;
+				dt = _DB.sortTrainerEval(itemsort, sortorder);
+			}
+			else if (hndlr == "Course")
+			{
+				_DB = _DBC.dataPage_DB;
+				dt = _DB.sortCourses(itemsort, sortorder);
+
+			}
+
 			data_of = dataofin;
-			SortingBy = $"{t.Item2} {t.Item3}";
-			Console.WriteLine($"SORTINGGGGGGGGGGGGGGGGGG = {t.Item1} {t.Item2} {t.Item3}");
-			
-			
+			_Handler = hndlr;
+			initalizeSortingList();
+			SortingBy = $"{itemsort} {sortorder}";
 
 		}
 	}

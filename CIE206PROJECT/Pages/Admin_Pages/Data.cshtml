@@ -5,6 +5,7 @@
 @{
 }
 
+
 <div class="container">
 	<!-- Tabs navs -->
 	<div class="card">
@@ -55,55 +56,58 @@
 						</div>
 					</div>
 
-					<div class="row mt-5">
-						<div class="col-xxl-8 col-12 ">
-							<div class="mb-3">
-								<input type="email" class="form-control" id="exampleFormControlInput1"
-									   placeholder="Search..">
+						<div class="row mt-5">
+
+							<div class="col-xxl-8 col-12 ">
+								<div class="mb-3">
+									<input type="text" class="form-control" id="searchInput"
+										   placeholder="Search..">
+								</div>
+							</div>
+							<div class="col-xxl-3 col-12 mb-3">
+								<div class="d-grid gap-2 ">
+
+								<button class="btn btn-outline-secondary dropdown-toggle text-center" type="button"
+										id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
+									@Model.SortingBy
+								</button>
+
+								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									@foreach (var elem in @Model.sortingList)
+									{
+										<li><a class="dropdown-item" asp-page-handler="Sort" asp-route-itemsort="@elem.Item2" asp-route-sortorder="@elem.Item3" asp-route-dataofin="@Model.data_of" asp-route-hndlr="@Model._Handler">@elem.Item2 @elem.Item3 </a></li>
+									}
+								</ul>
+								</div>
+							</div>
+							<div class="col-xxl-1 col-12 ">
+								<div class="d-grid gap-2 ">
+									<button onclick="searchTable()" class="btn btn-secondary">Search</button>
+								</div>
 							</div>
 						</div>
-						<div class="col-xxl-3 col-12 mb-3">
-							<button class="btn btn-outline-secondary dropdown-toggle text-center" type="button"
-									id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
-								@Model.SortingBy
-							</button>
-							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-								@foreach (var elem in @Model.sortingList)
-								{
-									<li><a class="dropdown-item" asp-page-handler="Sort" asp-route-id="@elem.Item1" asp-route-dataofin="@Model.data_of">@elem.Item2 @elem.Item3 </a></li>
-								}
-							</ul>
-						</div>
-						<div class="col-xxl-1 col-12 ">
-							<div class="d-grid gap-2 ">
-								<a asp-page-handler="SubmitSearch" asp-route-id="1" class="btn btn-secondary">Submit</a>
-							</div>
-						</div>
-					</div>
 					<div class="row">
 						<table class="table table-striped">
 							<thead>
-							<thead>
 								<tr>
 									<th></th>
-										@foreach (DataColumn col in Model.dt.Columns)
-										{
-										<th scope="col">@col</th>
-										}
+									@foreach (DataColumn col in Model.dt.Columns)
+									{
+										<th scope="col">@col.ColumnName</th>
+									}
 								</tr>
 							</thead>
 							<tbody>
-									@for (int ii = 0; ii < @Model.dt.Rows.Count; ii++)
-									{
-									<tr>
+								@for (int ii = 0; ii < @Model.dt.Rows.Count; ii++)
+								{
+									<tr class="table-row">
 										<th scope="row">@ii</th>
-											@for (int j = 0; j < @Model.dt.Columns.Count; j++)
-											{
-											<td>@Model.dt.Rows[ii][j]</td>
-											}
+										@for (int j = 0; j < @Model.dt.Columns.Count; j++)
+										{
+											<td>@Model.dt.Rows[ii][j].ToString()</td>
+										}
 									</tr>
-									}
-
+								}
 							</tbody>
 						</table>
 					</div>
@@ -139,3 +143,62 @@
 		</div>
 	</div>
 </div>
+<style>
+  .highlight {
+    background-color: yellow;
+    animation: fadeOut 10s forwards;
+  }
+
+	@@keyframes fadeOut {
+		0% {
+			background-color: yellow;
+		}
+    100% { background-color: transparent; }
+  }
+</style>
+
+<script>
+	function searchTable() {
+		const input = document.getElementById('searchInput').value.toLowerCase();
+		const rows = document.getElementsByClassName('table-row');
+		let firstMatch = null;
+
+		// Clear all previous highlights
+		for (let row of rows) {
+			row.classList.remove('highlight');
+		}
+
+		if (input.trim() === '') {
+			return; // Exit early if the input is empty
+		}
+
+		for (let row of rows) {
+			const cells = row.getElementsByTagName('td');
+			let rowMatched = false;
+
+			for (let cell of cells) {
+				const cellText = cell.innerText.toLowerCase();
+				if (cellText.includes(input)) {
+					rowMatched = true;
+					if (firstMatch === null) {
+						firstMatch = row;
+					}
+					break;
+				}
+			}
+
+			if (rowMatched) {
+				row.classList.add('highlight');
+			}
+		}
+
+		if (firstMatch !== null) {
+			firstMatch.scrollIntoView({
+				behavior: 'smooth',
+				block: 'start'
+			});
+		} else {
+			alert('No matching rows found.');
+		}
+	}
+</script>
