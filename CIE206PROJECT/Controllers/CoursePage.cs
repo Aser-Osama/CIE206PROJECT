@@ -150,7 +150,7 @@ namespace CIE206PROJECT.Controllers
                 AVG(se.criteria_c1) AS avg_criteria_c1,
                 AVG(se.criteria_c2) AS avg_criteria_c2,
                 AVG(se.criteria_c3) AS avg_criteria_c3,
-                AVG(se.criteria_c4) AS avg_criteria_c4,
+                AVG(se.criteria_c4) AS avg_criteria_c4
             FROM [group] g
             JOIN lecture l ON g.group_no = l.group_id
             LEFT JOIN student_eval se ON l.lecture_id = se.lecture_id
