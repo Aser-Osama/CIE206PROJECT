@@ -55,6 +55,19 @@ namespace CIE206PROJECT.Controllers
             return dt;
         }
 
+        public DataTable? getUserPhonenumbers(int id)
+        {
+            string q = $@"""
+                SELECT phone_num
+                FROM [phone_num] 
+                WHERE user_id={id};
+                """;
+            DataTable? dt = new DataTable();
+            dt = _Controller.Exec_Queury(q);
+            return dt;
+        }
+
+
         public DataTable? getTrainerInfo(int id)
         {
             string q = $@"""
@@ -70,17 +83,17 @@ namespace CIE206PROJECT.Controllers
         public DataTable? getTrainerEvaluations(int id)
         {
             string q = $@"""
-                    SELECT g.group_no,
-                        AVG(te.criteria_c1) AS avg_criteria_c1,
-                        AVG(te.criteria_c2) AS avg_criteria_c2,
-                        AVG(te.criteria_c3) AS avg_criteria_c3,
-                        AVG(te.criteria_c4) AS avg_criteria_c4
-                    FROM [group] g
-                    JOIN lecture l ON g.group_no = l.group_id
-                    LEFT JOIN trainer_eval te ON l.lecture_id = te.lecture_id
-                    WHERE l.trainer_id = {id}
-                    GROUP BY g.group_no;
-            """;
+                        SELECT g.group_no,
+                            ROUND(AVG(te.criteria_c1) * 100, 2) AS avg_criteria_c1_percentage,
+                            ROUND(AVG(te.criteria_c2) * 100, 2) AS avg_criteria_c2_percentage,
+                            ROUND(AVG(te.criteria_c3) * 100, 2) AS avg_criteria_c3_percentage,
+                            ROUND(AVG(te.criteria_c4) * 100, 2) AS avg_criteria_c4_percentage
+                        FROM [group] g
+                        JOIN lecture l ON g.group_no = l.group_id
+                        LEFT JOIN trainer_eval te ON l.lecture_id = te.lecture_id
+                        WHERE l.trainer_id = {id}
+                        GROUP BY g.group_no;         
+                        """;
             DataTable? dt = new DataTable();
             dt = _Controller.Exec_Queury(q);
             return dt;
@@ -203,10 +216,11 @@ namespace CIE206PROJECT.Controllers
         public DataTable? getStudentsNotes(int id)
         {
             string q =$@"""
-                    SELECT *
-                    FROM request
-                    WHERE sent_to ={id};
-            """;
+                SELECT r.subject, r.content, r.datetime AS date_sent, u.name AS sender_name, u.user_type AS sender_user_type
+                FROM request r
+                JOIN [user] u ON r.sent_by = u.user_id
+                WHERE r.sent_to = {id};
+           """;
 
             DataTable? dt = new DataTable();
             dt = _Controller.Exec_Queury(q);
