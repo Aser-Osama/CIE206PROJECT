@@ -205,17 +205,8 @@ namespace CIE206PROJECT.Controllers
         public DataTable? getGroupContentTopics(int id)
         {
             string q = $@"
-                    SELECT g.group_no,
-                        AVG(te.criteria_c1) AS avg_criteria_c1,
-                        AVG(te.criteria_c2) AS avg_criteria_c2,
-                        AVG(te.criteria_c3) AS avg_criteria_c3,
-                        AVG(te.criteria_c4) AS avg_criteria_c4
-                    FROM [group] g
-                    JOIN lecture l ON g.group_no = l.group_id
-                    LEFT JOIN trainer_eval te ON l.lecture_id = te.lecture_id
-                    WHERE l.trainer_id = {id}
-                    GROUP BY g.group_no;
-            ";
+
+           ";
             DataTable? dt = new DataTable();
             dt = _Controller.Exec_Queury(q);
             return dt;
@@ -237,11 +228,11 @@ namespace CIE206PROJECT.Controllers
             string q = $@"
                 SELECT
                   course.course_name,
+                  [group].group_no,
                   course.course_description,
                   course.tot_sessions,
                   offering.Start_Date,
                   offering.Price,
-                  [group].group_no,
                   [group].Trainer_id,
                   [group].Timeslot,
                   [group].n_students,
