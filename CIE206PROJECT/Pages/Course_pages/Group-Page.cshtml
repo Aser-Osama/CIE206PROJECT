@@ -3,6 +3,8 @@
 @{
 }
 
+
+
 <div class="container-sm">
     <nav class="card mb-2">
         <ul class="nav justify-content-center nav-tabs">
@@ -51,12 +53,12 @@
                                 
 
                                 <dt>
-                                   @Model.UpcomingLecture.Rows[i][0] 
+                                   @Model.UpcomingLectureTopics.Rows[i][0] 
 
                                 </dt>
                                 <dd>
 
-                                   @Model.UpcomingLecture.Rows[i][1] 
+                                   @Model.UpcomingLectureTopics.Rows[i][1] 
                                 </dd>
 
                             }
@@ -111,7 +113,7 @@
                                     <p class="mb-1">Students in group</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">@Model.GroupInfo.Rows[0][8]</p>
+                                    <p class="text-muted mb-0">@Model.StudentCount</p>
                                 </div>
                             </div>
                             <div class="row">

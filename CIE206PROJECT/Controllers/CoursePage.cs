@@ -195,7 +195,8 @@ namespace CIE206PROJECT.Controllers
                     JOIN course ON content.course_id = course.course_id
                     JOIN offering ON course.course_id = offering.course_id
                     JOIN [group] ON offering.offering_id = [group].offering_id
-                    WHERE [group].group_no ={id};
+                    WHERE [group].group_no =12
+					ORDER BY content.content_id ASC;
             ";
             DataTable? dt = new DataTable();
             dt = _Controller.Exec_Queury(q);
@@ -205,7 +206,9 @@ namespace CIE206PROJECT.Controllers
         public DataTable? getGroupContentTopics(int id)
         {
             string q = $@"
-
+                SELECT [topic], [topic_description]
+                FROM [content_topics]
+                WHERE [content_id] = <content_id>;
            ";
             DataTable? dt = new DataTable();
             dt = _Controller.Exec_Queury(q);
@@ -228,17 +231,16 @@ namespace CIE206PROJECT.Controllers
             string q = $@"
                 SELECT
                   course.course_name,
-                  [group].group_no,
                   course.course_description,
                   course.tot_sessions,
                   offering.Start_Date,
                   offering.Price,
+                  [group].group_no,
                   [group].Trainer_id,
                   [group].Timeslot,
                   [group].n_students,
                   [group].meeting_link,
                   [group].age_grp,
-                  [user].[name] AS tutor_name,
                   [user].email AS tutor_email
                 FROM [group]
                 JOIN offering ON [group].offering_id = offering.offering_id
@@ -300,10 +302,16 @@ namespace CIE206PROJECT.Controllers
 
         public DataTable? getUpcomingLecture(int id)
         {
-            string q = $@"SELECT *
-            FROM lecture
-            ORDER BY day DESC
-            LIMIT 1;";
+            string q = $@"SELECT
+                          lecture.lecture_id,
+                          lecture.day,
+                          lecture.room
+                        FROM lecture
+                        JOIN [group] ON lecture.group_id = [group].group_no
+                        WHERE [group].group_no = {id}
+                        ORDER BY lecture.day DESC
+                        LIMIT 1;
+                        ";
             DataTable? dt = new DataTable();
             dt = _Controller.Exec_Queury(q);
             return dt;
