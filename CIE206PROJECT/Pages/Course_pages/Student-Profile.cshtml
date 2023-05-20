@@ -177,7 +177,7 @@
 
 
 
-        @if (Model.Notes != null)
+        @if ((Model.Notes.Rows.Count > 0))
         {
           <section class="courses mt-2">
             <div class="d-flex mb-1 flex-row flex-wrap overflow-auto">
@@ -209,7 +209,7 @@
 
 
       <div class="col-md-12 col-lg-4">
-        @if (Model.Notes != null)
+        @if ((Model.Notes.Rows.Count > 0))
         {
           <div class="card">
             <div class="list-group list-group-flush">
@@ -251,7 +251,7 @@
 
     </div>
 
-    @if (Model.Notes == null)
+    @if (!(Model.Notes.Rows.Count > 0))
     {
       <section class="courses mt-2">
         <div class="d-flex mb-1 flex-row flex-wrap overflow-auto">

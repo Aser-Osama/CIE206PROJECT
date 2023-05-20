@@ -26,6 +26,7 @@ namespace CIE206PROJECT.Pages
 		public DataTable? Stats { get; set; }
 		public DataTable? Courses{ get; set; }
 		public DataTable? UserInfo{ get; set; }
+		public DataTable? StudentID{ get; set; }
 		public DataTable? AdditionalUserInfo{ get; set; }
 		public DataTable? StudentAttendance{ get; set; }
 		public DataTable? PhoneNumbers{ get; set; }
@@ -65,9 +66,13 @@ namespace CIE206PROJECT.Pages
                     Notes=_DB.getStudentsNotes(id);
             }
             else if ((string)UserInfo.Rows[0][6]=="Parent"){
-                    StudentAttendance=_DB.getStudentAttendance(id);
-                    int id_s=(int)_DB.getStudentId(id);
+                
+                    StudentID=_DB.getStudentId(id);
+                    int id_s = (int)StudentID.Rows[0][0];
+
+                    Console.WriteLine(id_s);
                     AdditionalUserInfo=_DB.getStudentInfo(id_s);
+                    StudentAttendance=_DB.getStudentAttendance(id_s);
                     Stats=_DB.getStudentEvaluations(id_s);
                     Courses=_DB.getGroupsStudent(id_s);
                     PhoneNumbers=_DB.getUserPhonenumbers(id_s);

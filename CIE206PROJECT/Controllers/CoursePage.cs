@@ -83,7 +83,7 @@ namespace CIE206PROJECT.Controllers
             return dt;
         }
 
-        public int? getStudentId(int id)
+        public DataTable? getStudentId(int id)
         {
             string q = $@"
                     SELECT Student.user_id
@@ -91,7 +91,8 @@ namespace CIE206PROJECT.Controllers
                     JOIN [user] AS ParentUser ON Student.parent_id = ParentUser.user_id
                     WHERE ParentUser.user_id = {id};
                    ";
-            int dt= (int)_Controller.Exec_Scalar(q);
+            DataTable? dt = new DataTable();
+            dt = _Controller.Exec_Queury(q);
             return dt;
         }
 
