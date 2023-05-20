@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddSession(options => options.IdleTimeout = TimeSpan.FromMinutes(1));
-builder.Services.AddScoped<Login_Controller>();
+builder.Services.AddScoped<LoginController>();
 builder.Services.AddSingleton<DB_Container>();
 
 // Register IHttpContextAccessor
