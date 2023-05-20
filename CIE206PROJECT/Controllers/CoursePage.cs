@@ -71,8 +71,8 @@ namespace CIE206PROJECT.Controllers
             string q = $@"
                         SELECT
                             Student.skill_level,
-                            [parent_user].[name] AS parent_name
-                            [user].[name] AS student_name,
+                            [parent_user].[name] AS parent_name,
+                            [user].[name] AS student_name
                         FROM Student
                         JOIN [user] ON Student.user_id = [user].user_id
                         LEFT JOIN [user] AS [parent_user] ON Student.parent_id = [parent_user].user_id
@@ -150,8 +150,8 @@ namespace CIE206PROJECT.Controllers
                 AVG(se.criteria_c1) AS avg_criteria_c1,
                 AVG(se.criteria_c2) AS avg_criteria_c2,
                 AVG(se.criteria_c3) AS avg_criteria_c3,
-                AVG(se.criteria_c4) AS avg_criteria_c4
-                SUM(CAST(se.attendance AS float)) / COUNT(se.attendance) AS avg_attendance,
+                AVG(se.criteria_c4) AS avg_criteria_c4,
+                SUM(CAST(se.attendance AS float)) / COUNT(se.attendance) AS avg_attendance
             FROM [group] g
             JOIN lecture l ON g.group_no = l.group_id
             LEFT JOIN student_eval se ON l.lecture_id = se.lecture_id
