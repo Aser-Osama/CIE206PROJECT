@@ -40,7 +40,7 @@ namespace CIE206PROJECT.Pages
                 {
                     Console.WriteLine("Logged in as User");
                     int ID = loginController.GetLoggedInUserId();
-                    return RedirectToPage("/Course_pages/Group-Page");
+                    return RedirectToPage("/Course_pages/Student-profile");
                 }
             }
             else

@@ -32,16 +32,17 @@ namespace CIE206PROJECT.Pages
 		public CoursePage _DB { get; set; }
         private int id;
 		private readonly DB_Container _DBC;
+        private readonly LoginController _LC;
 		private readonly ILogger<Student_ProfileModel> _logger;
 
 
-        public Student_ProfileModel(ILogger<Student_ProfileModel> logger, DB_Container container){
-
-
+        public Student_ProfileModel(ILogger<Student_ProfileModel> logger, DB_Container container,LoginController Controller_LG){
             _logger = logger;
 			_DBC = container;
-
+            _LC=Controller_LG;
+            id=_LC.GetLoggedInUserId();
         }
+
         public void OnGet()
         {
 			_DB = _DBC.coursePage_DB;
