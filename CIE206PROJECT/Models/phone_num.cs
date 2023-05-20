@@ -3,11 +3,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CIE206PROJECT.Models
 {
-public class phone_num
-{
-	public int user_id { get; set; }
+    public class phone_num
+    {
+        public int user_id { get; set; }
 
-	public string phonenum { get; set; }
+        public string phonenum { get; set; }
 
-}
+    }
 }

@@ -1,5 +1,7 @@
 CREATE TABLE course (
     course_id INT PRIMARY KEY,
+    course_name varchar(255),
+    course_description varchar(500),
     tot_sessions INT,
     advertisement_text VARCHAR(2000),
     video_link VARCHAR(200),
@@ -8,6 +10,7 @@ CREATE TABLE course (
 CREATE TABLE "user" (
     user_id INT PRIMARY KEY,
     date_of_birth DATE,
+    profile_pic varchar(255),
     join_date DATE,
     "address" VARCHAR(255),
     "name" VARCHAR(255),
@@ -36,7 +39,6 @@ CREATE TABLE "group" (
     offering_id INT,
     Trainer_id INT,
     Timeslot DATE,
-    n_students INT,
     meeting_link VARCHAR(255),
     age_grp VARCHAR(10) CHECK (age_grp IN ('young', 'middle', 'old')),
     FOREIGN KEY (offering_id) REFERENCES offering(offering_id) ON DELETE CASCADE,
@@ -92,11 +94,11 @@ create table lecture (
     foreign key (content_id) references content(content_id) on delete cascade
 );
 
-create table lecture_topics (
-    lecture_id int,
+create table content_topics(
+    content_id int,
     topic varchar(255),
     topic_description varchar(1000),
-    foreign key (lecture_id) references lecture(lecture_id) on delete cascade
+    foreign key (content_id) references content(content_id) on delete cascade
 );
 
 
