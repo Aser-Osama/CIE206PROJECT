@@ -165,7 +165,7 @@
           <div class="d-flex mb-1 flex-row flex-wrap overflow-auto">
             @for (int i = 0; Model.Courses.Rows.Count>i; i++)
             {
-              <a asp-page="/Course_pages/Group-page" asp-route-id="">
+              <a asp-page="/Course_pages/Group-page" asp-route-id="@Model.Courses.Rows[i][0]">
               <div class="card m-1" style="width: 180px; height: 230px;">
                 <svg class="bd-placeholder-img card-img-top" width="100%" height="150" xmlns="http://www.w3.org/2000/svg"
                   role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">

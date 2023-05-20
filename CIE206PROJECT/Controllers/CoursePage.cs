@@ -45,11 +45,18 @@ namespace CIE206PROJECT.Controllers
         public DataTable? getStudentInfo(int id)
         {
             string q = $@"""
-                SELECT *
-                FROM Student
-                JOIN [user] ON Student.user_id = [user].user_id
-                WHERE Student.user_id={id};
-                """;
+                    SELECT Student.user_id,
+                           [user].[name] AS student_name,
+                           Student.skill_level,
+                           [parent_user].[name] AS parent_name,
+                           [user].email,
+                           [user].[address],
+                           [user].join_date,
+                           [user].date_of_birth
+                    FROM Student
+                    JOIN [user] ON Student.user_id = [user].user_id
+                    LEFT JOIN [user] AS [parent_user] ON Student.parent_id = [parent_user].user_id
+                    WHERE Student.user_id = {id};                """;
             DataTable? dt = new DataTable();
             dt = _Controller.Exec_Queury(q);
             return dt;

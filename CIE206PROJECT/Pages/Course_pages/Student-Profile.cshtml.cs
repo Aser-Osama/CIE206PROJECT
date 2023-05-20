@@ -30,6 +30,7 @@ namespace CIE206PROJECT.Pages
 		public DataTable Notes{ get; set; }
 
 		public CoursePage _DB { get; set; }
+        private int id;
 		private readonly DB_Container _DBC;
 		private readonly ILogger<Student_ProfileModel> _logger;
 
@@ -41,7 +42,7 @@ namespace CIE206PROJECT.Pages
 			_DBC = container;
 
         }
-        public void OnGet(int id)
+        public void OnGet()
         {
 			_DB = _DBC.coursePage_DB;
             Stats=_DB.getStudentEvaluations(id);
