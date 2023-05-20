@@ -26,6 +26,7 @@ namespace CIE206PROJECT.Pages
 		public DataTable? Stats { get; set; }
 		public DataTable? Courses{ get; set; }
 		public DataTable? UserInfo{ get; set; }
+		public DataTable? AdditionalUserInfo{ get; set; }
 		public DataTable? PhoneNumbers{ get; set; }
 		public DataTable? Notes{ get; set; }
 
@@ -46,11 +47,30 @@ namespace CIE206PROJECT.Pages
         public void OnGet()
         {
 			_DB = _DBC.coursePage_DB;
-            Stats=_DB.getStudentEvaluations(id);
-            Courses=_DB.getGroupsStudent(id);
-            UserInfo=_DB.getStudentInfo(id);
-            PhoneNumbers=_DB.getUserPhonenumbers(id);
-            Notes=_DB.getStudentsNotes(id);
+            UserInfo=_DB.getUserInfo(id);
+            if((string)UserInfo.Rows[0][6]=="Student"){
+                    AdditionalUserInfo=_DB.getStudentInfo(id);
+                    Stats=_DB.getStudentEvaluations(id);
+                    Courses=_DB.getGroupsStudent(id);
+                    PhoneNumbers=_DB.getUserPhonenumbers(id);
+                    Notes=_DB.getStudentsNotes(id);
+            }
+            else if ((string)UserInfo.Rows[0][6]=="Trainer"){
+                    AdditionalUserInfo=_DB.getTrainerInfo(id);
+                    Stats=_DB.getTrainerEvaluations(id);
+                    Courses=_DB.getGroupsTrainer(id);
+                    PhoneNumbers=_DB.getUserPhonenumbers(id);
+                    Notes=_DB.getStudentsNotes(id);
+            }
+            else if ((string)UserInfo.Rows[0][6]=="Parent"){
+                    int id_s=(int)_DB.getStudentId(id);
+                    AdditionalUserInfo=_DB.getStudentInfo(id_s);
+                    Stats=_DB.getStudentEvaluations(id_s);
+                    Courses=_DB.getGroupsStudent(id_s);
+                    PhoneNumbers=_DB.getUserPhonenumbers(id_s);
+                    Notes=_DB.getStudentsNotes(id);
+            }
+
 
 
         }

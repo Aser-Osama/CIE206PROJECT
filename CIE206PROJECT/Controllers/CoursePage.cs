@@ -42,25 +42,61 @@ namespace CIE206PROJECT.Controllers
             return dt;
         }
 
-        public DataTable? getStudentInfo(int id)
+
+
+
+
+        public DataTable? getUserInfo(int id)
         {
             string q = $@"
-                    SELECT Student.user_id,
-                           [user].[name] AS student_name,
-                           Student.skill_level,
-                           [parent_user].[name] AS parent_name,
-                           [user].email,
-                           [user].[address],
-                           [user].join_date,
-                           [user].date_of_birth
-                    FROM Student
-                    JOIN [user] ON Student.user_id = [user].user_id
-                    LEFT JOIN [user] AS [parent_user] ON Student.parent_id = [parent_user].user_id
-                    WHERE Student.user_id = {id};                ";
+                        SELECT [user].user_id,
+                               [user].[name],
+                               [user].email,
+                               [user].[address],
+                               [user].join_date,
+                               [user].date_of_birth,
+                               [user].user_type
+                        FROM [user]
+                        WHERE [user].user_id = {id};";
+
             DataTable? dt = new DataTable();
             dt = _Controller.Exec_Queury(q);
             return dt;
         }
+
+
+
+        public DataTable? getStudentInfo(int id)
+        {
+            string q = $@"
+                        SELECT
+                            Student.skill_level,
+                            [parent_user].[name] AS parent_name
+                            [user].[name] AS student_name,
+                        FROM Student
+                        JOIN [user] ON Student.user_id = [user].user_id
+                        LEFT JOIN [user] AS [parent_user] ON Student.parent_id = [parent_user].user_id
+                        WHERE Student.user_id = {id};
+                    ";
+            DataTable? dt = new DataTable();
+            dt = _Controller.Exec_Queury(q);
+            return dt;
+        }
+
+        public int? getStudentId(int id)
+        {
+            string q = $@"
+                    SELECT Student.user_id
+                    FROM Student
+                    JOIN [user] AS ParentUser ON Student.parent_id = ParentUser.user_id
+                    WHERE ParentUser.user_id = {id};
+                   ";
+            int dt= (int)_Controller.Exec_Scalar(q);
+            return dt;
+        }
+
+
+
 
         public DataTable? getUserPhonenumbers(int id)
         {
@@ -78,10 +114,11 @@ namespace CIE206PROJECT.Controllers
         public DataTable? getTrainerInfo(int id)
         {
             string q = $@"
-                SELECT *
-                FROM Trainer 
-                JOIN [user] ON Trainer.user_id = [user].user_id
-                WHERE Trainer.user_id={id};
+                    SELECT
+                    Trainer.[level],
+                    Trainer.field
+                    FROM Trainer
+                    WHERE Trainer.user_id = {id};
                 "; 
             DataTable? dt = new DataTable();
             dt = _Controller.Exec_Queury(q);
@@ -110,11 +147,11 @@ namespace CIE206PROJECT.Controllers
         {
 			string q = $@"
             SELECT g.group_no,
-                SUM(CAST(se.attendance AS float)) / COUNT(se.attendance) AS avg_attendance,
                 AVG(se.criteria_c1) AS avg_criteria_c1,
                 AVG(se.criteria_c2) AS avg_criteria_c2,
                 AVG(se.criteria_c3) AS avg_criteria_c3,
                 AVG(se.criteria_c4) AS avg_criteria_c4
+                SUM(CAST(se.attendance AS float)) / COUNT(se.attendance) AS avg_attendance,
             FROM [group] g
             JOIN lecture l ON g.group_no = l.group_id
             LEFT JOIN student_eval se ON l.lecture_id = se.lecture_id
