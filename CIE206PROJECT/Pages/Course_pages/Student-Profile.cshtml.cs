@@ -23,11 +23,11 @@ namespace CIE206PROJECT.Pages
 
 
 
-		public DataTable Stats { get; set; }
-		public DataTable Courses{ get; set; }
-		public DataTable UserInfo{ get; set; }
-		public DataTable PhoneNumbers{ get; set; }
-		public DataTable Notes{ get; set; }
+		public DataTable? Stats { get; set; }
+		public DataTable? Courses{ get; set; }
+		public DataTable? UserInfo{ get; set; }
+		public DataTable? PhoneNumbers{ get; set; }
+		public DataTable? Notes{ get; set; }
 
 		public CoursePage _DB { get; set; }
         private int id;
@@ -51,6 +51,8 @@ namespace CIE206PROJECT.Pages
             UserInfo=_DB.getStudentInfo(id);
             PhoneNumbers=_DB.getUserPhonenumbers(id);
             Notes=_DB.getStudentsNotes(id);
+
+
         }
     }
 }
