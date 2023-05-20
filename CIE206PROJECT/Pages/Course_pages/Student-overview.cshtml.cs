@@ -37,8 +37,14 @@ namespace CIE206PROJECT.Pages.Course_pages
             id=_LC.GetLoggedInUserId();
         }
 
-        public void OnGet()
-        {
+        public void OnGet(int id)
+        {	
+            _DB = _DBC.coursePage_DB;
+            UserInfo=_DB.getUserInfo(id);
+            StudentAttendance=_DB.getStudentAttendance(id);
+            AdditionalUserInfo=_DB.getStudentInfo(id);
+            Stats=_DB.getStudentEvaluations(id);
+            PhoneNumbers=_DB.getUserPhonenumbers(id);
         }
     }
 }

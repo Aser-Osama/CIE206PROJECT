@@ -43,11 +43,14 @@ namespace CIE206PROJECT.Pages
 			_DBC = container;
             _LC=Controller_LG;
             user_id=_LC.GetLoggedInUserId();
+            ContentTopics = new List<DataTable?>(); // Initialize ContentTopics list
+
         }
 
         public void OnGet(int id)
         {
 
+			_DB = _DBC.coursePage_DB;
             GroupContent=_DB.getGroupContent(id);
             Students=_DB.getStudentsGroup(id);
             StudentCount=_DB.getStudentCount(id);

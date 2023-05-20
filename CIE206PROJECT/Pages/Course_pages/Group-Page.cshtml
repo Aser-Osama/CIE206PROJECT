@@ -48,22 +48,18 @@
 
 
                             And will cover the following topics
-                            <dl>
+                            <ul>
                             @for(int i=0;@Model.UpcomingLectureTopics.Rows.Count>i;i++){
                                 
 
-                                <dt>
+                                <li>
                                    @Model.UpcomingLectureTopics.Rows[i][0] 
 
-                                </dt>
-                                <dd>
-
-                                   @Model.UpcomingLectureTopics.Rows[i][1] 
-                                </dd>
+                                </li>
 
                             }
-                            </dl>
-                            <a class="h5 text-primary">@Model.GroupInfo.Rows[0][9]</a> <strong class="text-muted">/ @Model.UpcomingLecture.Rows[0][2] </strong>
+                            </ul>
+                            <a class="h5 text-primary">@Model.GroupInfo.Rows[0][8]</a> <strong class="text-muted">/ @Model.UpcomingLecture.Rows[0][2] </strong>
 
                         </div>
 
@@ -79,7 +75,7 @@
                                     <p class="mb-2">Tutor Emails</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">@Model.GroupInfo.Rows[0][11]</p>
+                                    <p class="text-muted mb-0">@Model.GroupInfo.Rows[0][10]</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -99,14 +95,6 @@
                                     <p class="text-muted mb-0">@Model.GroupInfo.Rows[0][3]</p>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-1">Capacity</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <p class="text-muted mb-0">@Model.GroupInfo.Rows[0][8]</p>
-                                </div>
-                            </div>
                             <div class="card-title mt-3 mb-3 h5"> Group Information</div>
                             <div class="row">
                                 <div class="col-sm-3">
@@ -121,7 +109,7 @@
                                     <p class="mb-1">age group</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">@Model.GroupInfo.Rows[0][10]</p>
+                                    <p class="text-muted mb-0">@Model.GroupInfo.Rows[0][9]</p>
 
 
                                 </div>
@@ -140,7 +128,8 @@
 
             </div>
 
-            @for (int i = 0; @Model.GroupContent.Rows.Count > i; i++)
+            @for (int i = 0; @Model.GroupContent.Rows.Count> i; i++)
+            
             {
 
 
@@ -155,8 +144,10 @@
                                 Topics
                                 <div class="ms-3 mt-3">
                                     <ul class="list-inline">
+                                    @if(@Model.GroupContent.Rows.Count<@Model.ContentTopics.Count){
                                         @for(int j=0;@Model.ContentTopics[i].Rows.Count>j;j++){
                                         <li class="list-inline-item">@Model.ContentTopics[i].Rows[j][0]</li>
+                                            }
                                         }
                                     </ul>
                                 </div>
@@ -172,28 +163,30 @@
                                 <a class="h5 text-primary">Meeting link</a> <strong class="text-muted">/
                                     ROOM-24e</strong>
                                 <br>
+                                    @if(@Model.GroupContent.Rows.Count<@Model.ContentTopics.Count){
                                 <div class="h5 m-4 text-center">The following topics were covered</div>
                                 <dl>
-                                    @for(int j=0;@Model.ContentTopics[i].Rows.Count>j;j++){
-                                    <dt>@Model.ContentTopics[i].Rows[j][0]</dt>
-                                    <dd>@Model.ContentTopics[i].Rows[j][1]</dd>
-                                    }
+                                        @for(int j=0;@Model.ContentTopics[i].Rows.Count>j;j++){
+                                        <dt>@Model.ContentTopics[i].Rows[j][0]</dt>
+                                        <dd>@Model.ContentTopics[i].Rows[j][1]</dd>
+                                        }
                                 </dl>
 
+                                    }
                                 <div class="h5 m-4 text-center">Summary</div>
-                                <div class="text-muted m-4 text-center">@Model.GroupContent.Rows[0][0]</div>
+                                <div class="text-muted m-4 text-center">@Model.GroupContent.Rows[i][1]</div>
 
                                 <div class="h5 m-4 text-center">Video</div>
-                                <div class="text-muted m-4 text-center">@Model.GroupContent.Rows[0][1]</div>
+                                <div class="text-muted m-4 text-center">@Model.GroupContent.Rows[i][2]</div>
 
                                 <div class="h5 m-4 text-center">Slides</div>
-                                <div class="text-muted m-4 text-center">@Model.GroupContent.Rows[0][2]</div>
+                                <div class="text-muted m-4 text-center">@Model.GroupContent.Rows[i][3]</div>
 
                                 <div class="h5 m-4 text-center">teacher Guide</div>
-                                <div class="text-muted m-4 text-center">@Model.GroupContent.Rows[0][3]</div>
+                                <div class="text-muted m-4 text-center">@Model.GroupContent.Rows[i][4]</div>
 
                                 <div class="h5 m-4 text-center">handout</div>
-                                <div class="text-muted m-4 text-center">@Model.GroupContent.Rows[0][4]</div>
+                                <div class="text-muted m-4 text-center">@Model.GroupContent.Rows[i][5]</div>
 
 
 
@@ -226,8 +219,8 @@
                                         <img src="https://www.tutorialspoint.com/bootstrap/images/64.jpg"
                                             class="rounded-circle me-3" width="32" height="32">
                                         <div class="mt-1 d-flex flex-column justify-content-between align-items-start">
-                                            <div class="card-text h6 me-2">@Model.Students.Rows[0][1]<span
-                                                    class="badge bg-primary rounded-pill">Student</span></div>
+                                            <div class="card-text h6 me-2">@Model.Students.Rows[0][1] <span
+                                                    class="badge bg-primary rounded-pill"> Student</span></div>
                                         </div>
                                         <div class="ms-auto mt-1">
                                             <div class="text-end">
