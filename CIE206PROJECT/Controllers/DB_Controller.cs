@@ -6,7 +6,7 @@ namespace CIE206PROJECT.Controllers
 {
     public class DB_Controller
     {
-        public string Connection_string = "Data Source=ASERLAPTOP;Initial Catalog=db_proj_new;Integrated Security=True";
+        public string Connection_string = "Data Source=LAPTOP-EOAIN8PD;Initial Catalog=THIS_IS_THE_DATABASE;Integrated Security=True";
 
         public DataTable? Exec_Queury(string q) //returns null if there was an error
         {
@@ -23,8 +23,9 @@ namespace CIE206PROJECT.Controllers
                         return dt;
 
                     }
-                    catch (SqlException) 
+                    catch (SqlException s)
                     {
+                        Console.WriteLine(s.ToString());
                         Connection.Close();
                         return null;
                     }
@@ -45,7 +46,7 @@ namespace CIE206PROJECT.Controllers
                         connection.Close();
                         return scalar;
                     }
-                    catch (SqlException)
+                    catch (SqlException s)
                     {
                         connection.Close();
                         return null;
@@ -71,8 +72,9 @@ namespace CIE206PROJECT.Controllers
                         connection.Close();
                         return true;
                     }
-                    catch (SqlException)
+                    catch (SqlException s)
                     {
+                        Console.WriteLine(s.ToString());
                         connection.Close();
                         return false;
                     }
