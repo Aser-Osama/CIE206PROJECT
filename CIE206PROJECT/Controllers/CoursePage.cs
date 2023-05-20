@@ -127,16 +127,16 @@ namespace CIE206PROJECT.Controllers
         public DataTable? getTrainerEvaluations(int id)
         {
             string q = $@"
-                        SELECT g.group_no,
-                            ROUND(AVG(te.criteria_c1) * 100, 2) AS avg_criteria_c1_percentage,
-                            ROUND(AVG(te.criteria_c2) * 100, 2) AS avg_criteria_c2_percentage,
-                            ROUND(AVG(te.criteria_c3) * 100, 2) AS avg_criteria_c3_percentage,
-                            ROUND(AVG(te.criteria_c4) * 100, 2) AS avg_criteria_c4_percentage
+                        SELECT g.group_no, 
+                               AVG(te.criteria_c1) AS avg_criteria_c1, 
+                               AVG(te.criteria_c2) AS avg_criteria_c2, 
+                               AVG(te.criteria_c3) AS avg_criteria_c3, 
+                               AVG(te.criteria_c4) AS avg_criteria_c4
                         FROM [group] g
                         JOIN lecture l ON g.group_no = l.group_id
-                        LEFT JOIN trainer_eval te ON l.lecture_id = te.lecture_id
-                        WHERE l.trainer_id = {id}
-                        GROUP BY g.group_no;         
+                        JOIN trainer_eval te ON l.lecture_id = te.lecture_id
+                        WHERE g.Trainer_id = {id}
+                        GROUP BY g.group_no;
                         ";
             DataTable? dt = new DataTable();
             dt = _Controller.Exec_Queury(q);
