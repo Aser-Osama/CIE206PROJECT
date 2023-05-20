@@ -151,6 +151,21 @@ namespace CIE206PROJECT.Controllers
                 AVG(se.criteria_c2) AS avg_criteria_c2,
                 AVG(se.criteria_c3) AS avg_criteria_c3,
                 AVG(se.criteria_c4) AS avg_criteria_c4,
+            FROM [group] g
+            JOIN lecture l ON g.group_no = l.group_id
+            LEFT JOIN student_eval se ON l.lecture_id = se.lecture_id
+            WHERE se.student_id = {id}
+            GROUP BY g.group_no;
+            ";
+
+			DataTable? dt = new DataTable();
+            dt = _Controller.Exec_Queury(q);
+            return dt;
+        }
+        public DataTable? getStudentAttendance(int id)
+        {
+			string q = $@"
+            SELECT g.group_no,
                 SUM(CAST(se.attendance AS float)) / COUNT(se.attendance) AS avg_attendance
             FROM [group] g
             JOIN lecture l ON g.group_no = l.group_id
@@ -163,6 +178,7 @@ namespace CIE206PROJECT.Controllers
             dt = _Controller.Exec_Queury(q);
             return dt;
         }
+
 
         public DataTable? getGroupContent(int id)
         {
