@@ -1,20 +1,32 @@
 ﻿@page
 @model CIE206PROJECT.Pages.Group_PageModel
 @{
+    Layout = "CoursePageShared";
 }
 
-<div class="container-sm">
-    <nav class="card mb-2">
+    @if (Model.UserType == "Trainer")
+    {
+ 
+ 
+    <nav class="card mb-4">
         <ul class="nav justify-content-center nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link active" data-bs-toggle="tab" href="#content">Group Content Page</a>
+            <li class="nav-item ">
+                <a class="nav-link p-4 active" data-bs-toggle="tab" href="#content">Group Content Page</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#list">Student List Page</a>
+            <li class="nav-item ">
+                <a class="nav-link p-4" data-bs-toggle="tab" href="#list">Student List Page</a>
             </li>
         </ul>
     </nav>
 
+    }else{
+    <nav class="card mb-4">
+    </nav>
+
+    }
+
+
+<div class="container-sm">
 
     <div class="card mb-2">
         <div class="row g-0">
@@ -23,8 +35,8 @@
             </div>
             <div class="col-md-12 col-lg-8 col-12 col-sm-12">
                 <div class="card-body p-3">
-                    <div class="card-title text-center display-5"> Course Name</div>
-                    <div class="card-text text-center display-6 text-muted">Group No</div>
+                    <div class="card-title text-center display-5">@Model.GroupInfo.Rows[0][0]</div>
+                    <div class="card-text text-center display-6 text-muted">@Model.GroupInfo.Rows[0][1]</div>
                     <div class="d-flex justify-content-center flex-row flex-wrap overflow-auto">
 
                     </div>
@@ -32,6 +44,7 @@
             </div>
         </div>
     </div>
+ 
     <div class="tab-content">
         <div class="tab-pane fade show active" id="content">
             <div class="row g-2 mb-2 justify-content-center d-flex">
@@ -40,23 +53,27 @@
                         <div class="card-body">
                             <div class="card-title h5"> The upcoming Lecture is Scheduled for</div>
 
-                            <div class="card-title display-5"> 12:33 AM</div>
-                            <div class="card-title h4 mb-1"> Thursday - January 53rd</div>
+                            <div class="card-title display-5">@Model.GroupInfo.Rows[0][7]</div>
+                            <div class="card-title h4 mb-1">@Model.UpcomingLecture.Rows[0][1]</div>
                             <br>
 
 
                             And will cover the following topics
                             <ul>
-                            @for(int i=0;3>i;i++){
+                                @for (int i = 0; Model.UpcomingLectureTopics.Rows.Count > i; i++)
+                                {
 
-                                <li>
-                                    Linear coefficient of expansion
 
-                                </li>
+                                    <li>
+                                        @Model.UpcomingLectureTopics.Rows[i][0]
 
-                            }
+                                    </li>
+
+                                }
                             </ul>
-                            <a class="h5 text-primary">Meeting link</a> <strong class="text-muted">/ ROOM-24e</strong>
+                            <a class="h5 text-primary">@Model.GroupInfo.Rows[0][8]</a> <strong class="text-muted">/
+                                @Model.UpcomingLecture.Rows[0][2] </strong>
+
                         </div>
 
 
@@ -71,7 +88,7 @@
                                     <p class="mb-2">Tutor Emails</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">example@example.com</p>
+                                    <p class="text-muted mb-0">@Model.GroupInfo.Rows[0][10]</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -79,7 +96,7 @@
                                     <p class="mb-2">Total Sessions</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">123</p>
+                                    <p class="text-muted mb-0">@Model.GroupInfo.Rows[0][2]</p>
                                 </div>
                             </div>
 
@@ -88,15 +105,7 @@
                                     <p class="mb-1">Start Date</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">12:44 Januarry 3393</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-1">Capacity</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <p class="text-muted mb-0">123</p>
+                                    <p class="text-muted mb-0">@Model.GroupInfo.Rows[0][3]</p>
                                 </div>
                             </div>
                             <div class="card-title mt-3 mb-3 h5"> Group Information</div>
@@ -105,7 +114,7 @@
                                     <p class="mb-1">Students in group</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">123</p>
+                                    <p class="text-muted mb-0">@Model.StudentCount</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -113,7 +122,7 @@
                                     <p class="mb-1">age group</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">23-44</p>
+                                    <p class="text-muted mb-0">@Model.GroupInfo.Rows[0][9]</p>
 
 
                                 </div>
@@ -132,7 +141,8 @@
 
             </div>
 
-            @for (int i = 0; 8 > i; i++)
+            @for (int i = 0; @Model.GroupContent.Rows.Count > i; i++)
+
             {
 
 
@@ -141,15 +151,18 @@
                         <h2 class="accordion-header;" id="panelsStayOpen-heading@i">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#panelsStayOpen-collapse-@i" aria-expanded="false"
-                                
                                 aria-controls="panelsStayOpen-collapse-@i">
                                 <div class="h5 m-2 me-5"> Lecture @i </div>
                                 Topics
                                 <div class="ms-3 mt-3">
                                     <ul class="list-inline">
-                                        <li class="list-inline-item">Expansion</li>
-                                        <li class="list-inline-item">Phasellus</li>
-                                        <li class="list-inline-item">Nulla volutpat</li>
+                                        @if (Model.GroupContent.Rows.Count < Model.ContentTopics.Count)
+                                        {
+                                            @for (int j = 0; @Model.ContentTopics[i].Rows.Count > j; j++)
+                                            {
+                                                <li class="list-inline-item">@Model.ContentTopics[i].Rows[j][0]</li>
+                                            }
+                                        }
                                     </ul>
                                 </div>
 
@@ -164,43 +177,33 @@
                                 <a class="h5 text-primary">Meeting link</a> <strong class="text-muted">/
                                     ROOM-24e</strong>
                                 <br>
-                                <div class="h5 m-4 text-center">The following topics were covered</div>
-                                <dl>
-                                    <dt>Advance carpet engineering</dt>
-                                    <dd>In this lecture we covered the in depth analysis of carpet fabrication</dd>
-                                    <dt>Lorem ipsu</dt>
-                                    <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam ipsam esse
-                                        a unde
-                                        est
-                                        dolor nulla atque id quidem nobis cumque minus, eaque enim praesentium tempora
-                                        pariatur
-                                        laudantium dolorem adipisci.</dd>
-                                    <dt>Lorem ipsu</dt>
-                                    <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam ipsam esse
-                                        a unde
-                                        est
-                                        dolor nulla atque id quidem nobis cumque minus, eaque enim praesentium tempora
-                                        pariatur
-                                        laudantium dolorem adipisci.</dd>
-                                </dl>
+                                @if (Model.GroupContent.Rows.Count < Model.ContentTopics.Count)
+                                {
+                                    <div class="h5 m-4 text-center">The following topics were covered</div>
+                                    <dl>
+                                        @for (int j = 0; @Model.ContentTopics[i].Rows.Count > j; j++)
+                                        {
+                                            <dt>@Model.ContentTopics[i].Rows[j][0]</dt>
+                                            <dd>@Model.ContentTopics[i].Rows[j][1]</dd>
+                                        }
+                                    </dl>
 
-                                <div class="h5 m-4 text-center">The attatched handout</div>
-                                <svg class="bd-placeholder-img card-img-top " width="100%" height="200px"
-                                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap"
-                                    preserveAspectRatio="xMidYMid slice" focusable="false">
-                                    <title>Placeholder</title>
-                                    <rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%"
-                                        fill="#dee2e6" dy=".3em"></text>
-                                </svg>
+                                }
+                                <div class="h5 m-4 text-center">Summary</div>
+                                <div class="text-muted m-4 text-center">@Model.GroupContent.Rows[i][1]</div>
 
-                                <div class="h5 m-4 text-center">The video</div>
-                                <svg class="bd-placeholder-img card-img-top " width="100%" height="200px"
-                                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap"
-                                    preserveAspectRatio="xMidYMid slice" focusable="false">
-                                    <title>Placeholder</title>
-                                    <rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%"
-                                        fill="#dee2e6" dy=".3em"></text>
-                                </svg>
+                                <div class="h5 m-4 text-center">Video</div>
+                                <div class="text-muted m-4 text-center">@Model.GroupContent.Rows[i][2]</div>
+
+                                <div class="h5 m-4 text-center">Slides</div>
+                                <div class="text-muted m-4 text-center">@Model.GroupContent.Rows[i][3]</div>
+
+                                <div class="h5 m-4 text-center">teacher Guide</div>
+                                <div class="text-muted m-4 text-center">@Model.GroupContent.Rows[i][4]</div>
+
+                                <div class="h5 m-4 text-center">handout</div>
+                                <div class="text-muted m-4 text-center">@Model.GroupContent.Rows[i][5]</div>
+
 
 
 
@@ -211,49 +214,52 @@
                 </div>
             }
 
-            </div>
+        </div>
 
 
+        @if (Model.UserType == "Trainer")
+        {
+ 
 
 
-
-            <div class="tab-pane fade" id="list">
+           <div class="tab-pane fade" id="list">
                 <div class="mb-2">
-                    <div class="row g-2 row-cols-2 row-cols-md-2 row-cols-lg-3">
+                    <div class="row g-2 row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-3">
 
 
-                            @for (int i = 0; 12 > i; i++)
-                            {
+                        @for (int i = 0; Model.Students.Rows.Count > i; i++)
+                        {
                             <div class="col">
-                                <a asp-page="/Course_pages/Student-overview" asp-route-id="">
+                                <a asp-page="/Course_pages/Student-overview" asp-route-id="@Model.Students.Rows[i][0]">
 
-                                <div class="card text-center">
-                                    <div class="card-body d-flex">
-                                        <img src="https://www.tutorialspoint.com/bootstrap/images/64.jpg"
-                                            class="rounded-circle me-3" width="32" height="32">
-                                        <div class="mt-1 d-flex flex-column justify-content-between align-items-start">
-                                            <div class="card-text h6 me-2">Parent Name <span
-                                                    class="badge bg-primary rounded-pill">Parent</span></div>
-                                        </div>
-                                        <div class="ms-auto mt-1">
-                                            <div class="text-end">
-                                                <i class="bi bi-three-dots"></i>
+                                    <div class="card text-center">
+                                        <div class="card-body d-flex">
+                                            <img src="https://www.tutorialspoint.com/bootstrap/images/64.jpg"
+                                                class="rounded-circle me-3" width="32" height="32">
+                                            <div class="mt-1 d-flex flex-column justify-content-between align-items-start">
+                                                <div class="card-text h6 me-2">@Model.Students.Rows[i][1] <span
+                                                        class="badge bg-primary rounded-pill"> Student</span></div>
+                                            </div>
+                                            <div class="ms-auto mt-1">
+                                                <div class="text-end">
+                                                    <i class="bi bi-three-dots"></i>
 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                 </a>
 
                             </div>
                             <!-- Repeat the above 'col' divs to create more cards -->
-                            }
+                        }
                     </div>
 
 
                 </div>
             </div>
-        </div>
-
+        }
     </div>
+
+</div>
 

@@ -26,8 +26,9 @@ namespace CIE206PROJECT.Controllers
                         return dt;
 
                     }
-                    catch (SqlException) 
+                    catch (SqlException s)
                     {
+                        Console.WriteLine(s.ToString());
                         Connection.Close();
                         return null;
                     }
@@ -48,7 +49,7 @@ namespace CIE206PROJECT.Controllers
                         connection.Close();
                         return scalar;
                     }
-                    catch (SqlException)
+                    catch (SqlException s)
                     {
                         connection.Close();
                         return null;
@@ -74,8 +75,9 @@ namespace CIE206PROJECT.Controllers
                         connection.Close();
                         return true;
                     }
-                    catch (SqlException)
+                    catch (SqlException s)
                     {
+                        Console.WriteLine(s.ToString());
                         connection.Close();
                         return false;
                     }

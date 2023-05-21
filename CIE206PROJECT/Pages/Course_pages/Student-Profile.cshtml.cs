@@ -23,11 +23,14 @@ namespace CIE206PROJECT.Pages
 
 
 
-		public DataTable Stats { get; set; }
-		public DataTable Courses{ get; set; }
-		public DataTable UserInfo{ get; set; }
-		public DataTable PhoneNumbers{ get; set; }
-		public DataTable Notes{ get; set; }
+		public DataTable? Stats { get; set; }
+		public DataTable? Courses{ get; set; }
+		public DataTable? UserInfo{ get; set; }
+		public DataTable? StudentID{ get; set; }
+		public DataTable? AdditionalUserInfo{ get; set; }
+		public DataTable? StudentAttendance{ get; set; }
+		public DataTable? PhoneNumbers{ get; set; }
+		public DataTable? Notes{ get; set; }
 
 		public CoursePage _DB { get; set; }
         private int id;
@@ -46,11 +49,38 @@ namespace CIE206PROJECT.Pages
         public void OnGet()
         {
 			_DB = _DBC.coursePage_DB;
-            Stats=_DB.getStudentEvaluations(id);
-            Courses=_DB.getGroupsStudent(id);
-            UserInfo=_DB.getStudentInfo(id);
-            PhoneNumbers=_DB.getUserPhonenumbers(id);
-            Notes=_DB.getStudentsNotes(id);
+            UserInfo=_DB.getUserInfo(id);
+            if((string)UserInfo.Rows[0][6]=="Student"){
+                    StudentAttendance=_DB.getStudentAttendance(id);
+                    AdditionalUserInfo=_DB.getStudentInfo(id);
+                    Stats=_DB.getStudentEvaluations(id);
+                    Courses=_DB.getGroupsStudent(id);
+                    PhoneNumbers=_DB.getUserPhonenumbers(id);
+                    Notes=_DB.getStudentsNotes(id);
+            }
+            else if ((string)UserInfo.Rows[0][6]=="Trainer"){
+                    AdditionalUserInfo=_DB.getTrainerInfo(id);
+                    Stats=_DB.getTrainerEvaluations(id);
+                    Courses=_DB.getGroupsTrainer(id);
+                    PhoneNumbers=_DB.getUserPhonenumbers(id);
+                    Notes=_DB.getStudentsNotes(id);
+            }
+            else if ((string)UserInfo.Rows[0][6]=="Parent"){
+                
+                    StudentID=_DB.getStudentId(id);
+                    int id_s = (int)StudentID.Rows[0][0];
+
+                    Console.WriteLine(id_s);
+                    AdditionalUserInfo=_DB.getStudentInfo(id_s);
+                    StudentAttendance=_DB.getStudentAttendance(id_s);
+                    Stats=_DB.getStudentEvaluations(id_s);
+                    Courses=_DB.getGroupsStudent(id_s);
+                    PhoneNumbers=_DB.getUserPhonenumbers(id_s);
+                    Notes=_DB.getStudentsNotes(id);
+            }
+
+
+
         }
     }
 }
