@@ -25,7 +25,6 @@ namespace CIE206PROJECT.Pages.Course_pages
 		public DataTable? PhoneNumbers{ get; set; }
 		public DataTable? StudentAttendance{ get; set; }
 		public CoursePage _DB { get; set; }
-        private int id;
 		private readonly DB_Container _DBC;
         private readonly LoginController _LC;
 		private readonly ILogger<Student_ProfileModel> _logger;
@@ -34,7 +33,6 @@ namespace CIE206PROJECT.Pages.Course_pages
             _logger = logger;
 			_DBC = container;
             _LC=Controller_LG;
-            id=_LC.GetLoggedInUserId();
         }
 
         public void OnGet(int id)

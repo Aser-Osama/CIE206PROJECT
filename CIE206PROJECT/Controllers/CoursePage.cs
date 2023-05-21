@@ -258,7 +258,7 @@ namespace CIE206PROJECT.Controllers
         public DataTable? getStudentsGroup(int id)
         {
             string q = $@"
-                    SELECT [user].[name] AS student_name, [user].profile_pic
+                    SELECT [user].user_id,[user].[name] AS student_name, [user].profile_pic
                     FROM Student_groups
                     JOIN [user] ON Student_groups.Student_id = [user].user_id
                     WHERE Student_groups.group_no = {id};
