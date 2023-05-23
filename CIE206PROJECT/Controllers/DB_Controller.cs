@@ -88,5 +88,10 @@ namespace CIE206PROJECT.Controllers
             return Exec_Queury(q);
         }
 
+        public DataTable GetStudentGroupData()
+        {
+            string query = "SELECT group_no, Student_id FROM Student_groups;";
+            return Exec_Queury(query);
+        }
     }
 }
