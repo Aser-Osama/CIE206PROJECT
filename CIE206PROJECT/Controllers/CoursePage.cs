@@ -195,8 +195,10 @@ namespace CIE206PROJECT.Controllers
                     JOIN course ON content.course_id = course.course_id
                     JOIN offering ON course.course_id = offering.course_id
                     JOIN [group] ON offering.offering_id = [group].offering_id
-                    WHERE [group].group_no ={id};
+                    WHERE [group].group_no ={id}
+					ORDER BY content.content_id ASC;
             ";
+            Console.WriteLine(q);
             DataTable? dt = new DataTable();
             dt = _Controller.Exec_Queury(q);
             return dt;
@@ -205,17 +207,10 @@ namespace CIE206PROJECT.Controllers
         public DataTable? getGroupContentTopics(int id)
         {
             string q = $@"
-                    SELECT g.group_no,
-                        AVG(te.criteria_c1) AS avg_criteria_c1,
-                        AVG(te.criteria_c2) AS avg_criteria_c2,
-                        AVG(te.criteria_c3) AS avg_criteria_c3,
-                        AVG(te.criteria_c4) AS avg_criteria_c4
-                    FROM [group] g
-                    JOIN lecture l ON g.group_no = l.group_id
-                    LEFT JOIN trainer_eval te ON l.lecture_id = te.lecture_id
-                    WHERE l.trainer_id = {id}
-                    GROUP BY g.group_no;
-            ";
+                SELECT [topic], [topic_description]
+                FROM [content_topics]
+                WHERE [content_id] = {id};
+           ";
             DataTable? dt = new DataTable();
             dt = _Controller.Exec_Queury(q);
             return dt;
@@ -244,10 +239,8 @@ namespace CIE206PROJECT.Controllers
                   [group].group_no,
                   [group].Trainer_id,
                   [group].Timeslot,
-                  [group].n_students,
                   [group].meeting_link,
                   [group].age_grp,
-                  [user].[name] AS tutor_name,
                   [user].email AS tutor_email
                 FROM [group]
                 JOIN offering ON [group].offering_id = offering.offering_id
@@ -265,11 +258,11 @@ namespace CIE206PROJECT.Controllers
         public DataTable? getStudentsGroup(int id)
         {
             string q = $@"
-                JOIN [user] ON Student_gr
-                SELECT [user].[name] AS student_name, [user].profile_pic 
-                FROM Student_groupsoups.Student_id = [user].user_id
-                WHERE Student_groups.group_no = {id};
-            ";
+                    SELECT [user].user_id,[user].[name] AS student_name, [user].profile_pic
+                    FROM Student_groups
+                    JOIN [user] ON Student_groups.Student_id = [user].user_id
+                    WHERE Student_groups.group_no = {id};
+          ";
             DataTable? dt = new DataTable();
             dt = _Controller.Exec_Queury(q);
             return dt;
@@ -309,10 +302,16 @@ namespace CIE206PROJECT.Controllers
 
         public DataTable? getUpcomingLecture(int id)
         {
-            string q = $@"SELECT *
-            FROM lecture
-            ORDER BY day DESC
-            LIMIT 1;";
+            string q = $@"SELECT TOP 1
+                          lecture.lecture_id,
+                          lecture.day,
+                          lecture.room
+                        FROM lecture
+                        JOIN [group] ON lecture.group_id = [group].group_no
+                        WHERE [group].group_no = 19
+                        ORDER BY lecture.day DESC;
+
+                        ";
             DataTable? dt = new DataTable();
             dt = _Controller.Exec_Queury(q);
             return dt;
