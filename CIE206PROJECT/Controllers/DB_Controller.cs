@@ -6,8 +6,7 @@ namespace CIE206PROJECT.Controllers
 {
     public class DB_Controller
     {
-        public string Connection_string = "Data Source=ASERLAPTOP;Initial Catalog=db_proj_new;Integrated Security=True";
-<<<<<<< Updated upstream
+        public string Connection_string = "Server=tcp:moghaith.database.windows.net;Database=cie206proj;User ID=Admin1;Password=CIE@206P;Encrypt=true;TrustServerCertificate=false;";
 
 =======
 >>>>>>> Stashed changes
@@ -91,5 +90,10 @@ namespace CIE206PROJECT.Controllers
             return Exec_Queury(q);
         }
 
+        public DataTable GetStudentGroupData()
+        {
+            string query = "SELECT group_no, Student_id FROM Student_groups;";
+            return Exec_Queury(query);
+        }
     }
 }

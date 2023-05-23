@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CIE206PROJECT", "CIE206PROJECT.csproj", "{6AD6DB6F-D8F3-4D6B-AE7E-10407A83F4CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PreLab10", "..\..\..\Projects\PreLab10 copy\PreLab10\PreLab10.csproj", "{9010D261-0918-44DE-88EC-6B23087BAE05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6AD6DB6F-D8F3-4D6B-AE7E-10407A83F4CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AD6DB6F-D8F3-4D6B-AE7E-10407A83F4CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AD6DB6F-D8F3-4D6B-AE7E-10407A83F4CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9010D261-0918-44DE-88EC-6B23087BAE05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9010D261-0918-44DE-88EC-6B23087BAE05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9010D261-0918-44DE-88EC-6B23087BAE05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9010D261-0918-44DE-88EC-6B23087BAE05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

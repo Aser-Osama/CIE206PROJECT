@@ -4,8 +4,28 @@ from faker import Faker
 
 fake = Faker()
 
+server = 'tcp:moghaith.database.windows.net' 
+database = 'cie206proj'
+username = 'Admin1' 
+password = 'CIE@206P'
+driver = '{ODBC Driver 18 for SQL Server}'
+
+try:
+    conn = pyodbc.connect('DRIVER=' + driver + 
+                      ';SERVER=' + server + 
+                      ';DATABASE=' + database + 
+                      ';UID=' + username + 
+                      ';PWD=' + password)
+
+    cursor = conn.cursor()
+    print('Connection established')
+except:
+    print('Cannot connect to SQL server')
 # Database connectionpyodbc.connect("Driver={SQL Server};Server=ASERLAPTOP;Database=db_proj_new;Trusted_Connection=yes;"
-conn=pyodbc.connect("Driver={SQL Server};Server=LAPTOP-EOAIN8PD;Database=THIS_IS_THE_DATABASE;Trusted_Connection=yes;")
+# conn=pyodbc.connect("Driver={SQL Server};Server=LAPTOP-EOAIN8PD;Database=THIS_IS_THE_DATABASE;Trusted_Connection=yes;")
+# conn = pyodbc.connect("Driver={ODBC Driver 18 for SQL Server};Server=localhost,1433;Database=CIE206PROJ;User ID=SA;Password=yourStrong(!)Password;Trusted_Connection=yes;")
+# conn = pyodbc.connect("Driver={ODBC Driver 18 for SQL Server};Server=moghaith.database.windows.net;Database=cie206proj;User ID=Admin1;Password=CIE@206P;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;")
+
 
 cursor = conn.cursor()
 
