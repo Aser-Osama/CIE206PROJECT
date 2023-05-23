@@ -53,7 +53,12 @@ namespace CIE206PROJECT.Pages.STEM_svpages
         public IActionResult OnPost(int groupNumber, int studentId)
         {
 
-            string insertQuery = $"INSERT INTO Student_groups (group_no, Student_id) VALUES ({groupNumber}, {studentId})";
+            // string insertQuery = $"INSERT INTO Student_groups (group_no, Student_id) VALUES ({groupNumber}, {studentId})";
+            // use this query to insert data into the database 
+            //INSERT INTO [dbo].[group] ([group_no]) VALUES (2);
+            //INSERT INTO [dbo].[Student_groups] ([group_no], [Student_id])
+            //VALUES (2, 1002);
+            string insertQuery = $"INSERT INTO [dbo].[group] ([group_no]) VALUES ({groupNumber}); INSERT INTO [dbo].[Student_groups] ([group_no], [Student_id]) VALUES ({groupNumber}, {studentId})";
             _dbController.Exec_NonQ(insertQuery);
 
             return RedirectToPage("./Stemsv");
