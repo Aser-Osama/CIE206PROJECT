@@ -1,7 +1,7 @@
 ﻿
 <!DOCTYPE html>
 <html lang="en">
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - CIE206PROJECT</title>
@@ -25,7 +25,7 @@
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">CIE206PROJECT</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
@@ -40,7 +40,7 @@
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                                data-mdb-toggle="dropdown" aria-expanded="false">
+                               data-mdb-toggle="dropdown" aria-expanded="false">
                                 Gui Quick Access
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -52,7 +52,7 @@
                                 </li>
                                 <li class="dropdown-item">
                                     <a class="nav-link text-dark" asp-area=""
-                                        asp-page="/Admin_Pages/RequestsApproval">Admin Approval</a>
+                                       asp-page="/Admin_Pages/RequestsApproval">Admin Approval</a>
                                 </li>
                                 <li class="dropdown-item">
                                     <a class="nav-link text-dark" asp-area="" asp-page="/Admin_Pages/send_request">
@@ -77,44 +77,48 @@
                                 </li>
                                 <li class="dropdown-item">
                                     <a class="nav-link text-dark" asp-area=""
-                                        asp-page="/Course_Pages/group-page-tutor">Group Page (tutor)</a>
+                                       asp-page="/Course_Pages/group-page-tutor">Group Page (tutor)</a>
                                 </li>
                                 <li class="dropdown-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Course_Pages/Group-Page">Group
-                                        Page</a>
-                                </li>
-                                <li class="dropdown-item">
-                                    <a class="nav-link text-dark" asp-area=""
-                                        asp-page="/Course_Pages/Parent-Profile">Parent Profile</a>
-                                </li>
-                                <li class="dropdown-item">
-                                    <a class="nav-link text-dark" asp-area=""
-                                        asp-page="/Course_Pages/Student-Profile">Student Profile</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Course_Pages/Group-Page">
+                                        Group
+                                        Page
+                                    </a>
                                 </li>
                                 <li class="dropdown-item">
                                     <a class="nav-link text-dark" asp-area=""
-                                        asp-page="/Course_Pages/Trainer-Profile">Trainer Profile</a>
+                                       asp-page="/Course_Pages/Parent-Profile">Parent Profile</a>
                                 </li>
                                 <li class="dropdown-item">
                                     <a class="nav-link text-dark" asp-area=""
-                                        asp-page="/Course_Pages/UnboughtCoursePage">Unbought Course</a>
+                                       asp-page="/Course_Pages/Student-Profile">Student Profile</a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a class="nav-link text-dark" asp-area=""
+                                       asp-page="/Course_Pages/Trainer-Profile">Trainer Profile</a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a class="nav-link text-dark" asp-area=""
+                                       asp-page="/Course_Pages/UnboughtCoursePage">Unbought Course</a>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider" />
                                 </li>
                                 <li class="dropdown-item">
                                     <a class="nav-link text-dark" asp-area=""
-                                        asp-page="/Content_Dev/content_dev">Content Developer Page</a>
+                                       asp-page="/Content_Dev/content_dev">Content Developer Page</a>
                                 </li>
                                 <li class="dropdown-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/STEM_svpages/Stemsv">Stem
-                                        Supervisor</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/STEM_svpages/Stemsv">
+                                        Stem
+                                        Supervisor
+                                    </a>
                                 </li>
 
 
                             </ul>
                         </li>
-                   </ul>
+                    </ul>
 
 
                 </div>
@@ -136,6 +140,7 @@
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>

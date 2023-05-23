@@ -2,28 +2,31 @@
 @model CIE206PROJECT.Pages.STEM_svpages.StemsvModel
 @{
 }
+
 <header>
     <!-- Sidebar -->
     <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
         <div class="position-sticky">
             <div class="list-group list-group-flush mx-3 mt-4">
-                <a href="#" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
-                    <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Teams</span>
-                </a>
-                <button href="#modalreview" class="list-group-item list-group-item-action py-2 ripple">
+                <button type="button" id="viewTrainersEvaluationButton" class="list-group-item list-group-item-action py-2 ripple" onclick='viewGroups()'>
+                    <i class="fas fa-chart-area fa-fw me-3"></i><span>Groups</span>
+                </button>
+                <button href="#modalreview" class="list-group-item list-group-item-action py-2 ripple" onclick="evaluateTrainer()">
                     <i class="fas fa-chart-area fa-fw me-3"></i><span>Evaluate Trainers</span>
                 </button>
-                <a href="#" class="list-group-item list-group-item-action py-2 ripple ">
+                <button type="button" id="viewTrainersEvaluationButton" class="list-group-item list-group-item-action py-2 ripple" onclick='viewTrainersEv()'>
                     <i class="fas fa-chart-area fa-fw me-3"></i><span>View Trainers Evaluation</span>
-                </a>
+                </button>
+
+               
             </div>
         </div>
     </nav>
 </header>
-<main>
-    <div class="container">
+<main id="pagemain">
+    <div class="container" id="trainersev" style="display:none;">
         <ul class="cards">
-            <li class="card">
+            @*<li class="card">
                 <img src="https://placehold.co/252" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Trainer</h5>
@@ -62,296 +65,23 @@
                     <a href="#" class="btn btn-primary">Button</a>
                 </div>
 
-            </li>
-            <li class="card">
-                <img src="https://placehold.co/252" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Trainer</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repudiandae magnam harum natus fuga et repellat in maiores.</p>
-                </div>
-                <div>
-                    <div class="stars">
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star1" value="star1">
-                            <div class="face"></div>
-                            <i class="far fa-star star one-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star2" value="star2">
-                            <div class="face"></div>
-                            <i class="far fa-star star two-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star3" value="star3">
-                            <div class="face"></div>
-                            <i class="far fa-star star three-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star4" value="star4">
-                            <div class="face"></div>
-                            <i class="far fa-star star four-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star5" value="star5">
-                            <div class="face"></div>
-                            <i class="far fa-star star five-star"></i>
-                        </label>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <a href="#" class="btn btn-primary">Button</a>
-                </div>
-
-            </li>
-            <li class="card">
-                <img src="https://placehold.co/252" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Trainer</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repudiandae magnam harum natus fuga et repellat in maiores.</p>
-                </div>
-                <div>
-                    <div class="stars">
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star1" value="star1">
-                            <div class="face"></div>
-                            <i class="far fa-star star one-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star2" value="star2">
-                            <div class="face"></div>
-                            <i class="far fa-star star two-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star3" value="star3">
-                            <div class="face"></div>
-                            <i class="far fa-star star three-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star4" value="star4">
-                            <div class="face"></div>
-                            <i class="far fa-star star four-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star5" value="star5">
-                            <div class="face"></div>
-                            <i class="far fa-star star five-star"></i>
-                        </label>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <a href="#" class="btn btn-primary">Button</a>
-                </div>
-
-            </li>
-            <li class="card">
-                <img src="https://placehold.co/252" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Trainer</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repudiandae magnam harum natus fuga et repellat in maiores.</p>
-                </div>
-                <div>
-                    <div class="stars">
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star1" value="star1">
-                            <div class="face"></div>
-                            <i class="far fa-star star one-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star2" value="star2">
-                            <div class="face"></div>
-                            <i class="far fa-star star two-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star3" value="star3">
-                            <div class="face"></div>
-                            <i class="far fa-star star three-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star4" value="star4">
-                            <div class="face"></div>
-                            <i class="far fa-star star four-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star5" value="star5">
-                            <div class="face"></div>
-                            <i class="far fa-star star five-star"></i>
-                        </label>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <a href="#" class="btn btn-primary">Button</a>
-                </div>
-
-            </li>
-            <li class="card">
-                <img src="https://placehold.co/252" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Trainer</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repudiandae magnam harum natus fuga et repellat in maiores.</p>
-                </div>
-                <div>
-                    <div class="stars">
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star1" value="star1">
-                            <div class="face"></div>
-                            <i class="far fa-star star one-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star2" value="star2">
-                            <div class="face"></div>
-                            <i class="far fa-star star two-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star3" value="star3">
-                            <div class="face"></div>
-                            <i class="far fa-star star three-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star4" value="star4">
-                            <div class="face"></div>
-                            <i class="far fa-star star four-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star5" value="star5">
-                            <div class="face"></div>
-                            <i class="far fa-star star five-star"></i>
-                        </label>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <a href="#" class="btn btn-primary">Button</a>
-                </div>
-
-            </li>
-            <li class="card">
-                <img src="https://placehold.co/252" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Trainer</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repudiandae magnam harum natus fuga et repellat in maiores.</p>
-                </div>
-                <div>
-                    <div class="stars">
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star1" value="star1">
-                            <div class="face"></div>
-                            <i class="far fa-star star one-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star2" value="star2">
-                            <div class="face"></div>
-                            <i class="far fa-star star two-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star3" value="star3">
-                            <div class="face"></div>
-                            <i class="far fa-star star three-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star4" value="star4">
-                            <div class="face"></div>
-                            <i class="far fa-star star four-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star5" value="star5">
-                            <div class="face"></div>
-                            <i class="far fa-star star five-star"></i>
-                        </label>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <a href="#" class="btn btn-primary">Button</a>
-                </div>
-
-            </li>
-            <li class="card">
-                <img src="https://placehold.co/252" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Trainer</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repudiandae magnam harum natus fuga et repellat in maiores.</p>
-                </div>
-                <div>
-                    <div class="stars">
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star1" value="star1">
-                            <div class="face"></div>
-                            <i class="far fa-star star one-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star2" value="star2">
-                            <div class="face"></div>
-                            <i class="far fa-star star two-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star3" value="star3">
-                            <div class="face"></div>
-                            <i class="far fa-star star three-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star4" value="star4">
-                            <div class="face"></div>
-                            <i class="far fa-star star four-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star5" value="star5">
-                            <div class="face"></div>
-                            <i class="far fa-star star five-star"></i>
-                        </label>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <a href="#" class="btn btn-primary">Button</a>
-                </div>
-
-            </li>
-            <li class="card">
-                <img src="https://placehold.co/252" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Trainer</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repudiandae magnam harum natus fuga et repellat in maiores.</p>
-                </div>
-                <div>
-                    <div class="stars">
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star1" value="star1">
-                            <div class="face"></div>
-                            <i class="far fa-star star one-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star2" value="star2">
-                            <div class="face"></div>
-                            <i class="far fa-star star two-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star3" value="star3">
-                            <div class="face"></div>
-                            <i class="far fa-star star three-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star4" value="star4">
-                            <div class="face"></div>
-                            <i class="far fa-star star four-star"></i>
-                        </label>
-                        <label class="rate">
-                            <input type="radio" name="radio1" id="star5" value="star5">
-                            <div class="face"></div>
-                            <i class="far fa-star star five-star"></i>
-                        </label>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <a href="#" class="btn btn-primary">Button</a>
-                </div>
-
-            </li>
+            </li>*@
+            @Html.Raw(Model.TrainersHtml);
         </ul>
-        <div class="container">
-            <div class="row">
-                <!-- Use ViewData["GroupsHtml"] to display the generated HTML -->
-                @Html.Raw(ViewData["GroupsHtml"])
-            </div>
         </div>
+        <div id="Groups" style="display:block;">
+        <div class="container" >
+            @*<div class="row">*@
+            <ul class="cards">
+                <!-- Use ViewData["GroupsHtml"] to display the generated HTML -->
+                @*@Html.Raw(ViewData["GroupsHtml"])*@
+                @Html.Raw(Model.GroupsHtml)
 
-        <form method="post">
+            </ul>
+            <button class="btn btn-primary" onclick='viewGroupsForm()'>Add Group</button>
+            @*</div>*@
+        </div>
+        <form method="post" id="grpform" style="display:none;">
             <div class="form-group">
                 <label for="groupNumber">Group Number:</label>
                 <input type="number" class="form-control" id="groupNumber" name="groupNumber" required>
@@ -361,7 +91,46 @@
                 <input type="number" class="form-control" id="studentId" name="studentId" required>
             </div>
             <button type="submit" class="btn btn-primary">Add Group</button>
+            <button onclick="cancelGroupsForm()" class="btn btn-secondary">Cancel</button>
         </form>
+        </div>
+        <div class ="container" id="Evaluate" style="display:none;">
+            <form method="post" asp-page-handler="AddTrainerEvaluation">
+                <!-- Other form fields -->
+                <form method="post" asp-page-handler="AddTrainerEvaluation">
+                    <div class="form-group">
+                        <label for="lectureId">Lecture ID:</label>
+                        <input type="number" class="form-control" id="lectureId" name="lectureId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="criteriaC1">Criteria C1:</label>
+                        <input type="number" class="form-control" id="criteriaC1" name="criteriaC1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="criteriaC2">Criteria C2:</label>
+                        <input type="number" class="form-control" id="criteriaC2" name="criteriaC2" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="criteriaC3">Criteria C3:</label>
+                        <input type="number" class="form-control" id="criteriaC3" name="criteriaC3" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="criteriaC4">Criteria C4:</label>
+                        <input type="number" class="form-control" id="criteriaC4" name="criteriaC4" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date:</label>
+                        <input type="date" class="form-control" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="attended">Attended:</label>
+                        <input type="number" class="form-control" id="attended" name="attended" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </form>
+
+        </div>
 
         @*<section>
             <div>
@@ -395,9 +164,10 @@
 
     </div>
     
+
+
 </main>
-<script>
-    $(function () {
+<script>$(function () {
 
         $(document).on({
             mouseover: function (event) {
@@ -421,7 +191,52 @@
             }
         });
 
-    });
+});
 
-</script>
+    function changeContent() {
+        var content1Div = document.getElementById('Groups');
+        var content2Div = document.getElementById('content2');
+        content1Div.style.display = 'none';
+        content2Div.style.display = 'block';
+    }
+    function viewGroupsForm() {
+        var grpfomDiv = document.getElementById('grpform');
+        var content2Div = document.getElementById('content2');
+            grpfomDiv.style.display = 'block';
+    }
+    function viewGroups() {
+        var grpdiv = document.getElementById('Groups');
+        var tevdiv = document.getElementById('trainersev');
+        var evaldiv = document.getElementById('Evaluate');
+        grpdiv.style.display = 'block';
+        tevdiv.style.display = 'none';
+        evaldiv.style.display = 'none';
+
+    }
+    function evaluateTrainer() {
+        var grpdiv = document.getElementById('Groups');
+        var tevdiv = document.getElementById('trainersev');
+        var evaldiv = document.getElementById('Evaluate');
+        grpdiv.style.display = 'none';
+        tevdiv.style.display = 'none';
+        evaldiv.style.display = 'block';
+
+    }
+    function viewTrainersEv() {
+        var grpdiv = document.getElementById('Groups');
+        var tevdiv = document.getElementById('trainersev');
+        var evaldiv = document.getElementById('Evaluate');
+        grpdiv.style.display = 'none';
+        tevdiv.style.display = 'block';
+        evaldiv.style.display = 'none';
+
+    }
+
+
+    function cancelGroupsForm() {
+        var grpfomDiv = document.getElementById('grpform');
+        var content2Div = document.getElementById('content2');
+        grpfomDiv.style.display = 'none';
+    }
+    </script>
 
