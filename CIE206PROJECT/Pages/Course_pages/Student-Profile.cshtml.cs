@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Metadata;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using CIE206PROJECT.Controllers;
@@ -80,7 +81,15 @@ namespace CIE206PROJECT.Pages
             }
 
 
-
         }
+        public IActionResult OnPost()
+        {	
+            
+            _DB = _DBC.coursePage_DB;
+            _DB.deleteStudentNote(_LC.GetLoggedInUserId());
+            return RedirectToPage("/Course_pages/Student-Profile");
+        }
+
+
     }
 }

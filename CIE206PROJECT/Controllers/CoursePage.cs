@@ -1,3 +1,4 @@
+using CIE206PROJECT.Models;
 using System.Data;
 
 namespace CIE206PROJECT.Controllers
@@ -24,7 +25,26 @@ namespace CIE206PROJECT.Controllers
             dt = _Controller.Exec_Queury(q);
             return dt;
         }
+        public void removeAllNotes(int id)
+        {
+            string q = $@"Delete from request where sent_to={id}";
+            DataTable? dt = new DataTable();
+            _Controller.Exec_NonQ(q);
+        }
+        public int? TopNote()
+        {
+            string q = $@"select count(*) from request";
+            DataTable? dt = new DataTable();
+            return _Controller.Exec_Scalar(q);
 
+        }
+ 
+        public void CreateNote(Request request,int id_by,int id_to)
+        {
+            string q = $@"Insert into request(request_id, content, subject, datetime, sent_by, set_to) values({TopNote()+1},{request.content},{request.subject},{DateTime.Now},{id_by},{id_to})";
+            DataTable? dt = new DataTable();
+            _Controller.Exec_NonQ(q);
+        }
         public DataTable? getGroupsStudent(int id)
         {
             string q = $@"

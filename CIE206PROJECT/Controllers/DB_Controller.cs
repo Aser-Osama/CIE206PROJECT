@@ -6,6 +6,7 @@ namespace CIE206PROJECT.Controllers
 {
     public class DB_Controller
     {
+
         public string Connection_string = "Server=tcp:moghaith.database.windows.net;Database=cie206proj;User ID=Admin1;Password=CIE@206P;Encrypt=true;TrustServerCertificate=false;";
         public DataTable? Exec_Queury(string q) //returns null if there was an error
         {
