@@ -35,6 +35,11 @@ namespace CIE206PROJECT.Pages
                     Console.WriteLine("Logged in as admin");
                     return RedirectToPage("/Admin_Pages/Data");
                 }
+                else if(loginController.IsContentDev())
+                {
+                    Console.WriteLine("Logged in as Content Dev");
+                    return RedirectToPage("/Content_Dev/content_dev");
+                }
                 else
                 {
                     Console.WriteLine("Logged in as User");

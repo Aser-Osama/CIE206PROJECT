@@ -64,7 +64,14 @@ namespace CIE206PROJECT.Controllers
             string? userType = _httpContextAccessor.HttpContext.Session.GetString("user_type");
             if (userType == null) { return false; }
 
-            return (userType == "CEO" || userType == "op_mngr" || userType == "senior_supervisor" || userType == "coordinator");
+            return (userType == "op_mngr" || userType == "CEO" || userType == "Admin");
+        }
+        public bool IsContentDev()
+        {
+            string? userType = _httpContextAccessor.HttpContext.Session.GetString("user_type");
+            if (userType == null) { return false; }
+
+            return (  userType == "senior_supervisor" || userType == "coordinator" || userType == "supervisor");
         }
     }
 }
