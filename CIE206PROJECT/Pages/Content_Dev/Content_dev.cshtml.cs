@@ -107,6 +107,46 @@ namespace CIE206PROJECT.Pages.Content_Dev
 
             return courses;
         }
+        public IActionResult OnPostEditL(int lectureId, DateTime day, string room)
+        {
+            try
+            {
+                // Perform any necessary validation or checks before adding the lecture
+
+                // Create a new lecture object
+                lecture newLecture = new lecture
+                {
+                    lecture_id = lectureId,
+                    day = day,
+                    room = room
+                };
+
+                // Add the lecture to the database
+                EditLecture(newLecture);
+
+                return RedirectToPage("/Content_Dev/content_dev");
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception and display an error message to the user
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return Page();
+            }
+        }
+        public IActionResult OnPostDeleteL(int lectureId)
+        {
+            try
+            {
+                deleteLecture(lectureId);
+
+                return RedirectToPage("/Content_Dev/content_dev");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return Page();
+            }
+        }
         public IActionResult OnPostAddContent(int contentId, int courseId, string summary, string summaryVideoUrl, string slidesUrl, string teacherGuideUrl, string handoutUrl)
         {
             try
@@ -159,6 +199,23 @@ namespace CIE206PROJECT.Pages.Content_Dev
                                  $"'{newContent.summary_vid}', '{newContent.slides}', '{newContent.teacher_guide}', '{newContent.handout}')";
 
             dbController.Exec_NonQ(insertQuery);
+        }
+        // private void EditLecture(lecture newLecture)
+        // {
+        //     string updateQuery = $"UPDATE lecture SET day = '{newLecture.day}', room = '{newLecture.room}' " +
+        //                          $"WHERE lecture_id = {newLecture.lecture_id}";
+        //     dbController.Exec_NonQ(updateQuery);
+        // }
+        private void EditLecture(lecture newLecture)
+        {
+            string updateQuery = $"UPDATE lecture SET day = '{newLecture.day.ToString("yyyy-MM-dd")}', room = '{newLecture.room}' " +
+                                 $"WHERE lecture_id = {newLecture.lecture_id}";
+            dbController.Exec_NonQ(updateQuery);
+        }
+        private void deleteLecture(int lectureId)
+        {
+            string deleteQuery = $"DELETE FROM lecture WHERE lecture_id = {lectureId}";
+            dbController.Exec_NonQ(deleteQuery);
         }
 
 

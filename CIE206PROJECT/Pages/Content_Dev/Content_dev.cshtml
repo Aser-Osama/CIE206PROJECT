@@ -183,14 +183,30 @@ else
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">Lecture @lecture.lecture_id</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <p class="card-text">Lecture date: @lecture.day</p>
+                            <p class="card-text"> Lecture room: @lecture.room</p>
                             <p class="card-text">Last updated 3 mins ago</p>
                         </div>
+                        <div class="card-body">
+                            <form method="post" asp-page-handler="DeleteL">
+                                <input type="hidden" name="lectureId" value="@lecture.lecture_id" />
+                                <button type="submit" class="btn btn-secondary">Delete</button>
+                            </form>
+                        </div>
+                        <button onclick="viewUpdateform()" type="button" class="btn btn-primary btn-md">Update</button>
+                        <div class="card-body EditLec" style="display:none;">
+                            <form method="post" asp-page-handler="EditL">
+                                <input type="hidden" name="lectureId" value="@lecture.lecture_id" />
+                                <input type="date" name="day" value="@lecture.day" />
+                                <input type="text" name="room" value="@lecture.room" />
+                                <button type="submit" class="btn btn-primary">Commit</button>
+                                <button onclick = "hideUpdateform()" type="button" class="btn btn-secondary">Cancel</button>
+                            </form>
+                       </div>
                     </div>
                 }
             </ul>
         </div>
-
         @*<div class="mt-4">
             <h3>Add Lecture</h3>
             <form method="post">
@@ -213,6 +229,12 @@ else
                 <button type="submit" class="btn btn-primary">Add Lecture</button>
             </form>
         </div>*@
+        <div id="EditL" class="mt-4">
+            <h3>Edit Lecture</h3>
+            <form>
+
+            </form>
+            </div>
         <div class="mt-4">
             <h3>Add Lecture</h3>
             <form method="post">
@@ -288,7 +310,25 @@ else
 
     </section>
 </div>
-
+<script>
+    function viewUpdateform() {
+        @* document.getElementById("EditL").style.display = "block"; *@
+        const editLec = document.getElementsByClassName("EditLec");
+        for (let i = 0; i < editLec.length; i++) {
+            editLec[i].style.display = "block";
+        }
+    }
+    @* function hideUpdateform() {
+        document.getElementById("EditL").style.display = "none";
+    } *@
+    function hideUpdateform() {
+        @* document.getElementById("EditL").style.display = "none"; *@
+        const editLec = document.getElementsByClassName("EditLec");
+        for (let i = 0; i < editLec.length; i++) {
+            editLec[i].style.display = "none";
+        }
+    }
+</script>
 
 
 }
