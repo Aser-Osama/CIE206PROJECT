@@ -1,7 +1,10 @@
 @page
 @model CIE206PROJECT.Pages.Admin_Pages.RequestsApproval
-
+@using System.Data
 <!-- Modal -->
+<input type="hidden" name="rowIndex" id="acceptRowIndex" value="">
+<input type="hidden" name="rowIndex" id="denyRowIndex" value="">
+
 <div class="modal fade" id="Modal_Accept" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -15,7 +18,11 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+      <form method="post">
+        <input type="hidden" name="rowIndex" id="acceptRowIndex" value="">
+        <input type="hidden" name="actionType" value="accept">
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </form>
       </div>
     </div>
   </div>
@@ -34,8 +41,12 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+          <form method="post">
+            <input type="hidden" name="rowIndex" id="denyRowIndex" value="">
+            <input type="hidden" name="actionType" value="deny">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
     </div>
   </div>
 </div>
@@ -50,58 +61,66 @@
           <hr class="hr hr-blurry" />
 
         </div>
-        <div class="row justify-content-center align-items-center mt-3">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col" class="text-center">First Name</th>
-                <th scope="col" class="text-center">Last Name</th>
-                <th scope="col" class="text-center">Full Request Info</th>
-                <th scope="col" class="text-center">Accept?</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td class="align-middle text-center">Mark</td>
-                <td class="align-middle text-center">Otto</td>
-                <td class="align-middle text-center">
-                  <a href="#" class="text-decoration-none text-secondary "><i
-                      class="bi bi-question-circle-fill"></i></a>
-                </td>
-                <td class="align-middle text-center">
-                  <button type="button" class="btn btn-success me-2" data-bs-toggle="modal"
-                    data-bs-target="#Modal_Accept">
-                    <i class="bi bi-check-circle-fill"></i>
-                  </button>
-                  <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#Modal_Deny">
-                    <i class="bi bi-x-circle-fill"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td class="align-middle text-center">Jacob</td>
-                <td class="align-middle text-center">Thornton</td>
-                <td class="align-middle text-center">
-                  <a href="#"><i class="bi bi-question-circle-fill text-secondary"></i></a>
-                </td>
-                <td class="align-middle text-center">
-                  <button type="button" class="btn btn-success me-2" data-bs-toggle="modal"
-                    data-bs-target="#Modal_Accept">
-                    <i class="bi bi-check-circle-fill"></i>
-                  </button>
-                  <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#Modal_Deny">
-                    <i class="bi bi-x-circle-fill"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-            </tbody>
-          </table>
+        <div class="row justify-content-center align-items-center mt-3 table-responsive">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th></th>
+									@foreach (DataColumn col in Model.dt.Columns)
+									{
+										<th scope="col">@col.ColumnName</th>
+									}
+                    <th scope="col" class="text-center"> Body </th>
+                    <th scope="col" class="text-center">Accept?</th>
+								</tr>
+							</thead>
+							<tbody>
+								@for (int ii = 0; ii < @Model.dt.Rows.Count; ii++)
+								{
+									<tr class="table-row">
+										<th scope="row">@ii</th>
+										@for (int j = 0; j < @Model.dt.Columns.Count; j++)
+										{
+											<td>@Model.dt.Rows[ii][j].ToString()</td>
+										}
+                      <td class="align-middle text-center">
+                      <a>
+                        <i class="bi bi-question-circle-fill"></i>
+                      </a>
+                      </td>
+                      <td class="align-middle text-center">
+                      <button type="button" class="btn btn-success me-2" data-bs-toggle="modal"
+                        data-bs-target="#Modal_Accept" data-rowindex="@Model.dt.Rows[ii][0]">
+                        <i class="bi bi-check-circle-fill"></i>
+                      </button>
+                      <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#Modal_Deny" data-rowindex="@Model.dt.Rows[ii][0]">
+                        <i class="bi bi-x-circle-fill"></i>
+                      </button>
+                    </td>
+									</tr>
+								}
+							</tbody>
+						</table>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function () {
+    $('.btn-accept').on('click', function () {
+      var rowIndex = $(this).data('rowindex');
+      $.get('/YourController/OnAccept', { rowIndex: rowIndex }, function (response) {
+        // You can handle the response here, like showing a confirmation message
+      });
+    });
+
+    $('.btn-deny').on('click', function () {
+      var rowIndex = $(this).data('rowindex');
+      $.get('/YourController/OnDeny', { rowIndex: rowIndex }, function (response) {
+        // You can handle the response here, like showing a confirmation message
+      });
+    });
+  });
+</script>

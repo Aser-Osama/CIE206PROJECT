@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CIE206PROJECT.Models
 {
-    public class Trainer
+    public class SalaryPt
     {
         [Key]
         [Required]
@@ -10,12 +10,15 @@ namespace CIE206PROJECT.Models
 
         [Key]
         [Required]
-        public string level { get; set; }
+        public int hours_worked { get; set; }
 
         [Key]
         [Required]
-        public string field { get; set; }
+        public int pay_per_session { get; set; }
 
+        [Key]
+        [Required]
+        public int pay_in_month { get; set; }
 
 
     }
