@@ -6,7 +6,7 @@ namespace CIE206PROJECT.Controllers
 {
     public class DB_Controller
     {
-        public string Connection_string = "Data Source=ASERLAPTOP;Initial Catalog=db_proj_new;Integrated Security=True";
+        public string Connection_string = "Server=tcp:moghaith.database.windows.net;Database=cie206proj;User ID=Admin1;Password=CIE@206P;Encrypt=true;TrustServerCertificate=false;";
         public DataTable? Exec_Queury(string q) //returns null if there was an error
         {
             using (var Connection =new SqlConnection(Connection_string))
@@ -94,5 +94,6 @@ namespace CIE206PROJECT.Controllers
             string query = "SELECT group_no, Student_id FROM Student_groups;";
             return Exec_Queury(query);
         }
+
     }
 }
