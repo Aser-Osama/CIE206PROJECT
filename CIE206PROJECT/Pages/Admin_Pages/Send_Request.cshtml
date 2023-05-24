@@ -1,8 +1,32 @@
 @page
 @model CIE206PROJECT.Pages.Admin_Pages.Send_Request
+@{
+    if (Model.isadmin())
+    {
+
+        Layout = "_AdminLayout";
+    }
+    else
+    {
+        Layout = "_StudentLayout";
+
+    }
+}
 
 
-<div class="container-sm">
+@using CIE206PROJECT.Controllers
+@inject LoginController lc
+
+@if (!lc.IsLoggedIn())
+{
+    <script>
+        window.location.href = "/index";
+    </script>
+}
+else
+{
+
+<div class="container-sm mt-4">
     <div class="card">
         <div class="card-body">
             <div class="row">
@@ -57,18 +81,12 @@
                         <h3 class = "lead">@Model.errorstring</h3>
                         </span>
                     </div>
-            
-
-
+           
                 </form>
-
-
-
-
-                </span>
             </div>
         </div>
     </div>
 </div>
 
 
+}

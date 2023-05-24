@@ -1,6 +1,8 @@
 ﻿@page
 @model CIE206PROJECT.Pages.Content_Dev.content_devModel
+
 @{
+    Layout = "_AdminLayout";
 
     string GetYouTubeEmbedUrl(string videoUrl)
     {
@@ -10,6 +12,19 @@
     }
 
 }
+
+@using CIE206PROJECT.Controllers
+@inject LoginController lc
+
+@if (!lc.IsLoggedIn())
+{
+    <script>
+        window.location.href = "/index";
+    </script>
+}
+else
+{
+
 
 <div class="container-sm">
     <section class="profile mt-4">
@@ -205,3 +220,4 @@
 
 
 
+}

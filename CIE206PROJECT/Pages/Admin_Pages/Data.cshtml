@@ -3,8 +3,19 @@
 @using System.Data
 
 @{
+	Layout = "_AdminLayout";
 }
+@using CIE206PROJECT.Controllers
+@inject LoginController lc
 
+@if (!lc.IsLoggedIn())
+{
+    <script>
+        window.location.href = "/index";
+    </script>
+}
+else
+{
 
 <div class="container">
 	<!-- Tabs navs -->
@@ -256,4 +267,4 @@
 
 
 
-
+}

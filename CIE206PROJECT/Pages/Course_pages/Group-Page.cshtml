@@ -1,8 +1,22 @@
 ﻿@page
 @model CIE206PROJECT.Pages.Group_PageModel
 @{
-    Layout = "CoursePageShared";
+    Layout = "_StudentLayout";
 }
+
+
+@using CIE206PROJECT.Controllers
+@inject LoginController lc
+
+@if (!lc.IsLoggedIn())
+{
+    <script>
+        window.location.href = "/index";
+    </script>
+}
+else
+{
+
 
     @if (Model.UserType == "Trainer")
     {
@@ -263,3 +277,4 @@
 
 </div>
 
+}

@@ -2,8 +2,20 @@
 @model CIE206PROJECT.Pages.Admin_Pages.RequestsApproval
 @using System.Data
 <!-- Modal -->
+@{
+	Layout = "_AdminLayout";
+}
+@using CIE206PROJECT.Controllers
+@inject LoginController lc
 
-
+@if (!lc.IsLoggedIn())
+{
+    <script>
+        window.location.href = "/index";
+    </script>
+}
+else
+{
 <div class="modal fade" id="Modal_Accept" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -128,3 +140,4 @@ $(document).ready(function () {
     });
 });
 </script>
+}

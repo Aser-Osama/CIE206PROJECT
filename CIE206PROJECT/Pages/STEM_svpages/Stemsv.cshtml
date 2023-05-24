@@ -1,7 +1,19 @@
 ﻿@page
 @model CIE206PROJECT.Pages.STEM_svpages.StemsvModel
 @{
+    Layout = "_AdminLayout";
 }
+@using CIE206PROJECT.Controllers
+@inject LoginController lc
+
+@if (!lc.IsLoggedIn())
+{
+    <script>
+        window.location.href = "/index";
+    </script>
+}
+else
+{
 
 <header>
     <!-- Sidebar -->
@@ -162,7 +174,6 @@
             </div>
         </section>*@
 
-    </div>
     
 
 
@@ -240,3 +251,4 @@
     }
     </script>
 
+        }
