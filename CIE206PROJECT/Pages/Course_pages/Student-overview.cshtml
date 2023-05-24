@@ -1,7 +1,21 @@
 ﻿@page
 @model CIE206PROJECT.Pages.Course_pages.Student_overviewModel
 @{
+    Layout = "_StudentLayout";
 }
+
+
+@using CIE206PROJECT.Controllers
+@inject LoginController lc
+
+@if (!lc.IsLoggedIn())
+{
+    <script>
+        window.location.href = "/index";
+    </script>
+}
+else
+{
 <div class="container-sm">
 
 
@@ -204,3 +218,4 @@
   </section>
 
 </div>
+}
