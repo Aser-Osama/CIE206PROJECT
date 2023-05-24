@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CIE206PROJECT.Models
 {
-    public class Trainer
+    public class PhoneNum
     {
         [Key]
         [Required]
@@ -10,12 +10,7 @@ namespace CIE206PROJECT.Models
 
         [Key]
         [Required]
-        public string level { get; set; }
-
-        [Key]
-        [Required]
-        public string field { get; set; }
-
+        public string phone_num { get; set; }
 
 
     }

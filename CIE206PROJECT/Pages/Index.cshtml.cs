@@ -2,7 +2,6 @@
 using CIE206PROJECT.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using static CIE206PROJECT.Models.UserTypes;
 
 namespace CIE206PROJECT.Pages
 {
