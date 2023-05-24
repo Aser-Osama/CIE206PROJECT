@@ -12,7 +12,7 @@ namespace CIE206PROJECT.Models
 
 		public int group_id { get; set; }
 
-		public object day { get; set; }
+		public DateTime day { get; set; }
 
 		public string room { get; set; }
 		public string video_url { get; set; }
