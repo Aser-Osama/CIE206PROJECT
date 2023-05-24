@@ -2,78 +2,77 @@
 @model CIE206PROJECT.Pages.Admin_Pages.RequestsApproval
 @using System.Data
 <!-- Modal -->
-<input type="hidden" name="rowIndex" id="acceptRowIndex" value="">
-<input type="hidden" name="rowIndex" id="denyRowIndex" value="">
+
 
 <div class="modal fade" id="Modal_Accept" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Are you sure you want to <span class="fw-bold text-decoration-underline text-success">accept</span> this
-        request?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      <form method="post">
-        <input type="hidden" name="rowIndex" id="acceptRowIndex" value="">
-        <input type="hidden" name="actionType" value="accept">
-        <button type="submit" class="btn btn-primary">Save changes</button>
-      </form>
-      </div>
-    </div>
-  </div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="exampleModalLabel">Confirm</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				Are you sure you want to <span class="fw-bold text-decoration-underline text-success">accept</span> this
+				request?
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<form method="post">
+					<input type="hidden" name="rowIndex" id="acceptRowIndex" value="">
+					<input type="hidden" name="actionType" value="accept">
+					<button type="submit" class="btn btn-primary">Save changes</button>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="modal fade" id="Modal_Deny" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Are you sure you want to <span class="fw-bold text-decoration-underline text-danger">decline</span> this
-        request?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <form method="post">
-            <input type="hidden" name="rowIndex" id="denyRowIndex" value="">
-            <input type="hidden" name="actionType" value="deny">
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-        </div>
-    </div>
-  </div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="exampleModalLabel">Confirm</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				Are you sure you want to <span class="fw-bold text-decoration-underline text-danger">decline</span> this
+				request?
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<form method="post">
+					<input type="hidden" name="rowIndex" id="denyRowIndex" value="">
+					<input type="hidden" name="actionType" value="deny">
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="container p-3">
-  <div class="card">
-    <div class="card-body">
+	<div class="card">
+		<div class="card-body">
 
-      <div class="row justify-content-center align-items-center ">
-        <div class="col">
-          <h1 class="display-3 text-center mb-3">Messages and Requests</h1>
-          <hr class="hr hr-blurry" />
+			<div class="row justify-content-center align-items-center ">
+				<div class="col">
+					<h1 class="display-3 text-center mb-3">Messages and Requests</h1>
+					<hr class="hr hr-blurry" />
 
-        </div>
-        <div class="row justify-content-center align-items-center mt-3 table-responsive">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th></th>
-									@foreach (DataColumn col in Model.dt.Columns)
-									{
-										<th scope="col">@col.ColumnName</th>
-									}
-                    <th scope="col" class="text-center"> Body </th>
-                    <th scope="col" class="text-center">Accept?</th>
-								</tr>
-							</thead>
+				</div>
+				<div class="row justify-content-center align-items-center mt-3 table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th></th>
+								@foreach (DataColumn col in Model.dt.Columns)
+								{
+									<th scope="col">@col.ColumnName</th>
+								}
+								<th scope="col" class="text-center"> Body </th>
+								<th scope="col" class="text-center">Accept?</th>
+							</tr>
+						</thead>
 							<tbody>
 								@for (int ii = 0; ii < @Model.dt.Rows.Count; ii++)
 								{
@@ -83,44 +82,49 @@
 										{
 											<td>@Model.dt.Rows[ii][j].ToString()</td>
 										}
-                      <td class="align-middle text-center">
-                      <a>
-                        <i class="bi bi-question-circle-fill"></i>
-                      </a>
-                      </td>
-                      <td class="align-middle text-center">
-                      <button type="button" class="btn btn-success me-2" data-bs-toggle="modal"
-                        data-bs-target="#Modal_Accept" data-rowindex="@Model.dt.Rows[ii][0]">
-                        <i class="bi bi-check-circle-fill"></i>
-                      </button>
-                      <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#Modal_Deny" data-rowindex="@Model.dt.Rows[ii][0]">
-                        <i class="bi bi-x-circle-fill"></i>
-                      </button>
-                    </td>
+										<td class="align-middle text-center">
+											<a>
+												<i class="bi bi-question-circle-fill"></i>
+											</a>
+										</td>
+										<td class="align-middle text-center">
+											<button type="button" class="btn btn-success me-2" data-bs-toggle="modal"
+												data-bs-target="#Modal_Accept" data-reqid="@Model.dt.Rows[ii]["Req. ID"].ToString()">
+												<i class="bi bi-check-circle-fill"></i>
+											</button>
+											<button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#Modal_Deny" data-reqid="@Model.dt.Rows[ii]["Req. ID"]">
+												<i class="bi bi-x-circle-fill"></i>
+											</button>
+										</td>
 									</tr>
 								}
 							</tbody>
 						</table>
-        </div>
-      </div>
-    </div>
-  </div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
+<!-- ... -->
 <script>
-  $(document).ready(function () {
-    $('.btn-accept').on('click', function () {
-      var rowIndex = $(this).data('rowindex');
-      $.get('/YourController/OnAccept', { rowIndex: rowIndex }, function (response) {
-        // You can handle the response here, like showing a confirmation message
-      });
-    });
+$(document).ready(function () {
+    $('.btn-accept, .btn-deny').on('click', function () {
+        var reqId = $(this).data('reqid');
+        var actionType = $(this).hasClass('btn-accept') ? 'accept' : 'deny';
 
-    $('.btn-deny').on('click', function () {
-      var rowIndex = $(this).data('rowindex');
-      $.get('/YourController/OnDeny', { rowIndex: rowIndex }, function (response) {
-        // You can handle the response here, like showing a confirmation message
-      });
+        $.ajax({
+            url: '/YourPageName/OnPost',
+            method: 'POST',
+            data: {
+                reqId: reqId,
+                actionType: actionType
+            },
+            success: function (response) {
+                // Handle the response here, like reloading the page
+                location.reload();
+            }
+        });
     });
-  });
+});
 </script>

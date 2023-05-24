@@ -10,6 +10,9 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
   <ItemGroup>
+    <Content Remove="Pages\Shared\_StudentLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Pages\Content_Dev\" />
     <None Remove="Pages\STEM_svpages\" />
   </ItemGroup>
@@ -19,6 +22,10 @@
     <Folder Include="Pages\STEM_svpages\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Pages\Shared\_StudentLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
 </Project>
