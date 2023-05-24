@@ -94,6 +94,5 @@ namespace CIE206PROJECT.Controllers
             string query = "SELECT group_no, Student_id FROM Student_groups;";
             return Exec_Queury(query);
         }
-
     }
 }
