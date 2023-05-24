@@ -7,17 +7,18 @@ using CIE206PROJECT.Controllers;
 using CIE206PROJECT.Pages.Admin_Pages;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 
 namespace CIE206PROJECT.Pages.STEM_svpages
 {
     public class StemsvModel : PageModel
     {
-        public DataTable dt { get; set; }
+        public string GroupsHtml { get; set; }
+        public string TrainersHtml { get; set; }
         private readonly DB_Controller _dbController;
+        private readonly ILogger<StemsvModel> _logger;
 
-        private readonly ILogger<Data> _logger;
-
-        public StemsvModel(ILogger<Data> logger)
+        public StemsvModel(ILogger<StemsvModel> logger)
         {
             _logger = logger;
             _dbController = new DB_Controller();
@@ -25,38 +26,109 @@ namespace CIE206PROJECT.Pages.STEM_svpages
 
         public void OnGet()
         {
-            DB_Controller dbController = new DB_Controller();
-            DataTable groupData = dbController.Exec_Queury("SELECT * FROM Student_groups");
-            string html = "";
-            foreach (DataRow row in groupData.Rows)
+            DataTable groupData = _dbController.Exec_Queury("SELECT * FROM Student_groups");
+            string groupHtml = "";
+            var groupedData = groupData.AsEnumerable().GroupBy(row => row.Field<int>("group_no"));
+            foreach (var group in groupedData)
             {
-                int groupNo = Convert.ToInt32(row["group_no"]);
-                int studentId = Convert.ToInt32(row["Student_id"]);
+                int groupNo = group.Key;
                 string groupName = $"Group {groupNo}";
-                string cardHtml = @"
+
+                groupHtml += @"
                 <div class='col-md-4'>
                   <div class='card'>
                     <div class='card-body'>
                       <h5 class='card-title'>Group: " + groupName + @"</h5>
                       <p class='card-text'>Group Members:</p>
-                      <ul class='list-group'>
-                        <li class='list-group-item'>Student ID: " + studentId + @"</li>
+                      <ul class='list-group'>";
+
+                foreach (DataRow row in group)
+                {
+                    int studentId = Convert.ToInt32(row["Student_id"]);
+                    groupHtml += "<li class='list-group-item'>Student ID: " + studentId + "</li>";
+                }
+
+                groupHtml += @"
                       </ul>
                     </div>
                   </div>
                 </div>";
-
-                html += cardHtml;
             }
-            ViewData["GroupsHtml"] = html;
+
+            GroupsHtml = groupHtml;
+
+            DataTable evalData = _dbController.Exec_Queury("SELECT * FROM trainer_eval");
+            string trainerHtml = "";
+            foreach (DataRow row in evalData.Rows)
+            {
+                int lectureId = Convert.ToInt32(row["lecture_id"]);
+                int criteriaC1 = Convert.ToInt32(row["criteria_c1"]);
+                int criteriaC2 = Convert.ToInt32(row["criteria_c2"]);
+                int criteriaC3 = Convert.ToInt32(row["criteria_c3"]);
+                int criteriaC4 = Convert.ToInt32(row["criteria_c4"]);
+                DateTime date = Convert.ToDateTime(row["date"]);
+                int attended = Convert.ToInt32(row["attended"]);
+
+                string starRatingC1 = GetStarRating(criteriaC1);
+                string starRatingC2 = GetStarRating(criteriaC2);
+                string starRatingC3 = GetStarRating(criteriaC3);
+                string starRatingC4 = GetStarRating(criteriaC4);
+
+                trainerHtml += @"
+<div class='col-md-4 mb-4 custom-card-margin '>
+    <div class='card'>
+        <img src='https://placehold.co/252' class='card-img-top' alt='...'>
+        <div class='card-body'>
+            <h5 class='card-title'>Trainer Evaluation - Lecture ID: " + lectureId + @"</h5>
+            <p class='card-text'>Criteria:</p>
+            <ul class='list-group'>
+                <li class='list-group-item'>Criteria C1: " + starRatingC1 + @"</li>
+                <li class='list-group-item'>Criteria C2: " + starRatingC2 + @"</li>
+                <li class='list-group-item'>Criteria C3: " + starRatingC3 + @"</li>
+                <li class='list-group-item'>Criteria C4: " + starRatingC4 + @"</li>
+            </ul>
+            <p class='card-text'>Date: " + date + @"</p>
+            <p class='card-text'>Attended: " + attended + @"</p>
+            <a href='#' class='btn btn-primary'>Button</a>
+        </div>
+    </div>
+</div>";
+
+
+            }
+
+            TrainersHtml = trainerHtml;
+
         }
+
+        private string GetStarRating(int rating)
+        {
+            string starRating = "";
+            for (int i = 0; i < rating; i++)
+            {
+                starRating += "<i class='fas fa-star'></i>";
+            }
+            return starRating;
+        }
+
         public IActionResult OnPost(int groupNumber, int studentId)
         {
-
-            string insertQuery = $"INSERT INTO Student_groups (group_no, Student_id) VALUES ({groupNumber}, {studentId})";
+            string insertQuery = $"INSERT INTO [dbo].[group] ([group_no]) VALUES ({groupNumber}); INSERT INTO [dbo].[Student_groups] ([group_no], [Student_id]) VALUES ({groupNumber}, {studentId})";
             _dbController.Exec_NonQ(insertQuery);
 
             return RedirectToPage("./Stemsv");
         }
+        public IActionResult OnPostAddTrainerEvaluation(int lectureId, int criteriaC1, int criteriaC2, int criteriaC3, int criteriaC4, DateTime date, int attended)
+        {
+            // Perform validation or additional logic as needed
+
+            // Insert the trainer evaluation into the database
+            _dbController.Exec_NonQ("INSERT INTO trainer_eval (lecture_id, criteria_c1, criteria_c2, criteria_c3, criteria_c4, date, attended) " +
+                $"VALUES ({lectureId}, {criteriaC1}, {criteriaC2}, {criteriaC3}, {criteriaC4}, '{date.ToString("yyyy-MM-dd")}', {attended})");
+
+            // Redirect back to the Stemsv page
+            return RedirectToPage("/STEM_svpages/Stemsv");
+        }
+
     }
 }
