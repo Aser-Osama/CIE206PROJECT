@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cool Animation Landing Page</title>
+    <style>
+        /* CSS styles for the animation */
+        .animation {
+            width: 200px;
+            height: 200px;
+            background-color: #ff00ff;
+            position: relative;
+            animation: spin 2s infinite linear;
+        }
+
+        /* Keyframes animation */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="animation"></div>
+
+    <h1>Welcome to Our Cool Landing Page!</h1>
+
+    <script>
+        // JavaScript code to trigger the animation
+        window.onload = function() {
+            var animationDiv = document.querySelector('.animation');
+            animationDiv.style.animationPlayState = 'running';
+        };
+    </script>
+</body>
+</html>
