@@ -89,6 +89,7 @@ namespace CIE206PROJECT.Pages.STEM_svpages
             </ul>
             <p class='card-text'>Date: " + date + @"</p>
             <p class='card-text'>Attended: " + attended + @"</p>
+            <a href='#' class='btn btn-primary'>Button</a>
         </div>
     </div>
 </div>";
@@ -117,49 +118,17 @@ namespace CIE206PROJECT.Pages.STEM_svpages
 
             return RedirectToPage("./Stemsv");
         }
-        //public IActionResult OnPostAddTrainerEvaluation(int lectureId, int criteriaC1, int criteriaC2, int criteriaC3, int criteriaC4, DateTime date, int attended)
-        //{
-
-        //    _dbController.Exec_NonQ("INSERT INTO trainer_eval (lecture_id, criteria_c1, criteria_c2, criteria_c3, criteria_c4, date, attended) " +
-        //        $"VALUES ({lectureId}, {criteriaC1}, {criteriaC2}, {criteriaC3}, {criteriaC4}, '{date.ToString("yyyy-MM-dd")}', {attended})");
-        //    return RedirectToPage("/STEM_svpages/Stemsv");
-        //}
         public IActionResult OnPostAddTrainerEvaluation(int lectureId, int criteriaC1, int criteriaC2, int criteriaC3, int criteriaC4, DateTime date, int attended)
         {
-            try
-            {
-                // Check if the provided lecture ID exists in the lecture table
-                bool isValidLectureId = CheckIfValidLectureId(lectureId);
+            // Perform validation or additional logic as needed
 
-                if (!isValidLectureId)
-                {
-                    throw new Exception("Invalid lecture ID. Please provide a valid lecture ID.");
-                }
+            // Insert the trainer evaluation into the database
+            _dbController.Exec_NonQ("INSERT INTO trainer_eval (lecture_id, criteria_c1, criteria_c2, criteria_c3, criteria_c4, date, attended) " +
+                $"VALUES ({lectureId}, {criteriaC1}, {criteriaC2}, {criteriaC3}, {criteriaC4}, '{date.ToString("yyyy-MM-dd")}', {attended})");
 
-                // Insert the evaluation record
-                _dbController.Exec_NonQ("INSERT INTO trainer_eval (lecture_id, criteria_c1, criteria_c2, criteria_c3, criteria_c4, date, attended) " +
-                    $"VALUES ({lectureId}, {criteriaC1}, {criteriaC2}, {criteriaC3}, {criteriaC4}, '{date.ToString("yyyy-MM-dd")}', {attended})");
-
-                return RedirectToPage("/STEM_svpages/Stemsv");
-            }
-            catch (Exception ex)
-            {
-                // Handle the exception and display an error message to the user
-                ModelState.AddModelError(string.Empty, ex.Message);
-                return Page();
-            }
+            // Redirect back to the Stemsv page
+            return RedirectToPage("/STEM_svpages/Stemsv");
         }
-
-        private bool CheckIfValidLectureId(int lectureId)
-        {
-            string query = $"SELECT COUNT(*) FROM lecture WHERE lecture_id = {lectureId}";
-
-            int? count = _dbController.Exec_Scalar(query);
-
-            // If the count is greater than 0, the lecture ID exists
-            return count > 0;
-        }
-
 
     }
 }
