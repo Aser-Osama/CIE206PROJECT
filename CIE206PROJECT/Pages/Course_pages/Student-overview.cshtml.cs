@@ -8,6 +8,7 @@ using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using CIE206PROJECT.Controllers;
+using CIE206PROJECT.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -18,6 +19,9 @@ namespace CIE206PROJECT.Pages.Course_pages
 {
     public class Student_overviewModel : PageModel
     {
+        [BindProperty]
+        public Request request { get; set; }
+
 
 		public DataTable? Stats { get; set; }
 		public DataTable? UserInfo{ get; set; }
@@ -38,11 +42,27 @@ namespace CIE206PROJECT.Pages.Course_pages
         public void OnGet(int id)
         {	
             _DB = _DBC.coursePage_DB;
+            TempData["ID"] = id;
             UserInfo=_DB.getUserInfo(id);
             StudentAttendance=_DB.getStudentAttendance(id);
             AdditionalUserInfo=_DB.getStudentInfo(id);
             Stats=_DB.getStudentEvaluations(id);
             PhoneNumbers=_DB.getUserPhonenumbers(id);
         }
+        public IActionResult OnPost()
+        {
+			if (ModelState.IsValid)
+			{
+				_DB.CreateNote(request,_LC.GetLoggedInUserId(),(int)TempData["ID"]);
+                return RedirectToPage($@"/Course_pages/Student-overview?id={TempData["ID"]}");
+
+			}
+			else
+			{
+                return RedirectToPage($@"/Course_pages/Student-overview?id={TempData["ID"]}");
+			}
+
+		}
+
     }
 }
