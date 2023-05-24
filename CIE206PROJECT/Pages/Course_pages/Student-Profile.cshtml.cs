@@ -87,7 +87,7 @@ namespace CIE206PROJECT.Pages
             
             _DB = _DBC.coursePage_DB;
             _DB.deleteStudentNote(_LC.GetLoggedInUserId());
-            return RedirectToPage("Course_pages/Student-Profil");
+            return RedirectToPage("/Course_pages/Student-Profile");
         }
 
 

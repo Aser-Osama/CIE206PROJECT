@@ -21,8 +21,8 @@ namespace CIE206PROJECT.Pages.Course_pages
     {
         [BindProperty]
         public Request request { get; set; }
-
-
+		[BindProperty(SupportsGet =true)]
+		public int id_in {set; get; }
 		public DataTable? Stats { get; set; }
 		public DataTable? UserInfo{ get; set; }
 		public DataTable? AdditionalUserInfo{ get; set; }
@@ -42,8 +42,15 @@ namespace CIE206PROJECT.Pages.Course_pages
         public void OnGet(int id)
         {	
             _DB = _DBC.coursePage_DB;
+            if (id > 0) { 
             TempData["ID"] = id;
-            UserInfo=_DB.getUserInfo(id);
+            }
+            else
+            {
+				TempData["ID"] = id_in;
+
+			}
+			UserInfo =_DB.getUserInfo(id);
             StudentAttendance=_DB.getStudentAttendance(id);
             AdditionalUserInfo=_DB.getStudentInfo(id);
             Stats=_DB.getStudentEvaluations(id);
@@ -54,12 +61,12 @@ namespace CIE206PROJECT.Pages.Course_pages
 			if (ModelState.IsValid)
 			{
 				_DB.CreateNote(request,_LC.GetLoggedInUserId(),(int)TempData["ID"]);
-                return RedirectToPage($@"/Course_pages/Student-overview?id={TempData["ID"]}");
+                return RedirectToPage("/Course_pages/Student-overview", new { id = (int)TempData["ID"] });
 
 			}
 			else
 			{
-                return RedirectToPage($@"/Course_pages/Student-overview?id={TempData["ID"]}");
+				return RedirectToPage("/Course_pages/Student-overview", new { id= (int)TempData["ID"] });
 			}
 
 		}
