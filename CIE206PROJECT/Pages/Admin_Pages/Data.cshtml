@@ -3,8 +3,19 @@
 @using System.Data
 
 @{
+	Layout = "_AdminLayout";
 }
+@using CIE206PROJECT.Controllers
+@inject LoginController lc
 
+@if (!lc.IsLoggedIn())
+{
+    <script>
+        window.location.href = "/index";
+    </script>
+}
+else
+{
 
 <div class="container">
 	<!-- Tabs navs -->
@@ -17,18 +28,18 @@
 					<ul class="nav nav-tabs mb-3" id="ex1" role="tablist">
 						<li class="nav-item" role="presentation">
 							<a class="nav-link active" id="ex1-tab-1" data-mdb-toggle="tab" href="#ex1-tabs-1"
-							   role="tab" aria-controls="ex1-tabs-1" aria-selected="true">Raw Data</a>
+								role="tab" aria-controls="ex1-tabs-1" aria-selected="true">Raw Data</a>
 						</li>
 						<li class="nav-item" role="presentation">
 							<a class="nav-link" id="ex1-tab-2" data-mdb-toggle="tab" href="#ex1-tabs-2" role="tab"
-							   aria-controls="ex1-tabs-2" aria-selected="false">Graphs</a>
+								aria-controls="ex1-tabs-2" aria-selected="false">Graphs</a>
 						</li>
 					</ul>
 				</div>
 				<div class="col-auto  ms-sm-auto d-flex justify-content-end text-center px-0 px-sm-2">
 					<div class="dropdown  ">
 						<button class="btn btn-outline-secondary dropdown-toggle text-center" type="button"
-								id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
+							id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
 							Data From
 						</button>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -58,37 +69,39 @@
 						</div>
 					</div>
 
-						<div class="row mt-5">
+					<div class="row mt-5">
 
-							<div class="col-xxl-8 col-12 ">
-								<div class="mb-3">
-									<input type="text" class="form-control" id="searchInput"
-										   placeholder="Search..">
-								</div>
+						<div class="col-xxl-8 col-12 ">
+							<div class="mb-3">
+								<input type="text" class="form-control" id="searchInput" placeholder="Search..">
 							</div>
-							<div class="col-xxl-3 col-12 mb-3">
-								<div class="d-grid gap-2 ">
+						</div>
+						<div class="col-xxl-3 col-12 mb-3">
+							<div class="d-grid gap-2 ">
 
 								<button class="btn btn-outline-secondary dropdown-toggle text-center" type="button"
-										id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
+									id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
 									@Model.SortingBy
 								</button>
 
 								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 									@foreach (var elem in @Model.sortingList)
 									{
-										<li><a class="dropdown-item" asp-page-handler="Sort" asp-route-itemsort="@elem.Item2" asp-route-sortorder="@elem.Item3" asp-route-dataofin="@Model.data_of" asp-route-hndlr="@Model._Handler">@elem.Item2 @elem.Item3 </a></li>
+										<li><a class="dropdown-item" asp-page-handler="Sort"
+												asp-route-itemsort="@elem.Item2" asp-route-sortorder="@elem.Item3"
+												asp-route-dataofin="@Model.data_of"
+												asp-route-hndlr="@Model._Handler">@elem.Item2 @elem.Item3 </a></li>
 									}
 								</ul>
-								</div>
-							</div>
-							<div class="col-xxl-1 col-12 ">
-								<div class="d-grid gap-2 ">
-									<button onclick="searchTable()" class="btn btn-secondary">Search</button>
-								</div>
 							</div>
 						</div>
-					<div class="row">
+						<div class="col-xxl-1 col-12 ">
+							<div class="d-grid gap-2 ">
+								<button onclick="searchTable()" class="btn btn-secondary">Search</button>
+							</div>
+						</div>
+					</div>
+					<div class="row table-res">
 						<table class="table table-striped">
 							<thead>
 								<tr>
@@ -121,86 +134,137 @@
 				<div class="tab-pane fade show" id="ex1-tabs-1" role="tabpanel" aria-labelledby="ex1-tab-1">
 					<div class="row justify-content-center g-2">
 						<div class="col">
-							<h1 class="display-4 text-center">All Courses</h1>
+							<h1 class="display-4 text-center">@Model.data_of</h1>
 							<hr class="hr hr-blurry mb-0" />
 
 						</div>
 					</div>
-
-
-					<div class="row mt-5">
-						@*real image links will be pulled from a cshtml file making them*@
-						<div class="col-lg-6 col-12">
-							<img src="https://wcs.smartdraw.com/chart/img/basic-bar-graph.png?bn=15100111868"
-								 class="img-fluid rounded-top" alt="">
-						</div>
-						<div class="col-lg-6 col-12">
-							<img src="https://proclusacademy.com/images/010_piechart_summary.png"
-								 class="img-fluid rounded-top" alt="">
-						</div>
+			<div class="row mt-5">
+				<div class="col">
+					<div class="chart-container @(string.IsNullOrEmpty(Model.ChartJson) ? "hidden" : "")" width="600" height="400">
+						<canvas id="barChart"></canvas>
 					</div>
+				</div>
+			</div>
+			<div class="row mt-5">
+				<div class="col">
+					<div class="chart-container @(string.IsNullOrEmpty(Model.criteriaChartJson) ? "hidden" : "")" width="600" height="400">
+						<canvas id="criteriaChart" width="600" height="400"></canvas>
+					</div>
+				</div>
+			</div>
+			<div class="row mt-5">
+				<div class="col">
+					<div class="chart-container @(string.IsNullOrEmpty(Model.studentsChartJson) ? "hidden" : "")" width="600" height="400">
+						<canvas id="studentsChart" width="600" height="400"></canvas>
+					</div>
+				</div>
+			</div>
+
 				</div>
 			</div>
 			<!-- Tabs content -->
 		</div>
 	</div>
 </div>
+
+@section Scripts {
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+	<script type="module">
+		document.addEventListener('DOMContentLoaded', (event) => {
+			var ctx = document.getElementById('criteriaChart');
+			var myChart = new Chart(ctx, @Html.Raw(Model.criteriaChartJson) );
+		});
+	</script>
+	<script type="module">
+		document.addEventListener('DOMContentLoaded', (event) => {
+			var ctx = document.getElementById('studentsChart');
+			var myChart = new Chart(ctx, @Html.Raw(Model.studentsChartJson) );
+		});
+	</script>
+
+	<script type="module">
+		document.addEventListener('DOMContentLoaded', (event) => {
+			var ctx = document.getElementById('barChart');
+			var myChart = new Chart(ctx, @Html.Raw(Model.ChartJson) );
+		});
+	</script>
+
+
+	<script>
+		function searchTable() {
+			const input = document.getElementById('searchInput').value.toLowerCase();
+			const rows = document.getElementsByClassName('table-row');
+			let firstMatch = null;
+
+			// Clear all previous highlights
+			for (let row of rows) {
+				row.classList.remove('highlight');
+			}
+
+			if (input.trim() === '') {
+				return; // Exit early if the input is empty
+			}
+
+			for (let row of rows) {
+				const cells = row.getElementsByTagName('td');
+				let rowMatched = false;
+
+				for (let cell of cells) {
+					const cellText = cell.innerText.toLowerCase();
+					if (cellText.includes(input)) {
+						rowMatched = true;
+						if (firstMatch === null) {
+							firstMatch = row;
+						}
+						break;
+					}
+				}
+
+				if (rowMatched) {
+					row.classList.add('highlight');
+				}
+			}
+
+			if (firstMatch !== null) {
+				firstMatch.scrollIntoView({
+					behavior: 'smooth',
+					block: 'start'
+				});
+			} else {
+				alert('No matching rows found.');
+			}
+		}
+	</script>
+
+
+
+}
+
+
 <style>
-  .highlight {
-    background-color: yellow;
-    animation: fadeOut 10s forwards;
-  }
+	.highlight {
+		background-color: yellow;
+		animation: fadeOut 10s forwards;
+	}
 
 	@@keyframes fadeOut {
 		0% {
 			background-color: yellow;
 		}
-    100% { background-color: transparent; }
-  }
-</style>
 
-<script>
-	function searchTable() {
-		const input = document.getElementById('searchInput').value.toLowerCase();
-		const rows = document.getElementsByClassName('table-row');
-		let firstMatch = null;
-
-		// Clear all previous highlights
-		for (let row of rows) {
-			row.classList.remove('highlight');
-		}
-
-		if (input.trim() === '') {
-			return; // Exit early if the input is empty
-		}
-
-		for (let row of rows) {
-			const cells = row.getElementsByTagName('td');
-			let rowMatched = false;
-
-			for (let cell of cells) {
-				const cellText = cell.innerText.toLowerCase();
-				if (cellText.includes(input)) {
-					rowMatched = true;
-					if (firstMatch === null) {
-						firstMatch = row;
-					}
-					break;
-				}
-			}
-
-			if (rowMatched) {
-				row.classList.add('highlight');
-			}
-		}
-
-		if (firstMatch !== null) {
-			firstMatch.scrollIntoView({
-				behavior: 'smooth',
-				block: 'start'
-			});
-		} else {
-			alert('No matching rows found.');
+		100% {
+			background-color: transparent;
 		}
 	}
-</script>
+
+	.chart-container.hidden {
+		display: none;
+	}
+</style>
+
+
+
+
+}

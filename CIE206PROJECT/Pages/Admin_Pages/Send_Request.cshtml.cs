@@ -45,6 +45,10 @@ namespace CIE206PROJECT.Pages.Admin_Pages
             _DB = _DBC.requestsPage_DB;
         }
 
+        public bool isadmin()
+        {
+            return _LC.IsAdmin();
+        }
         public IActionResult OnPostSendRequest()
         {
                 _DB = _DBC.requestsPage_DB;

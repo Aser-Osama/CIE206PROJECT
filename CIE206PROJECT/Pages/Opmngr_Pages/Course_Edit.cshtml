@@ -1,7 +1,22 @@
 @page
 @model CIE206PROJECT.Pages.Opmngr_Pages.Course_Edit
-<head>
-</head>
+@{
+    Layout = "_AdminLayout";
+}
+
+
+@using CIE206PROJECT.Controllers
+@inject LoginController lc
+
+@if (!lc.IsLoggedIn())
+{
+    <script>
+        window.location.href = "/index";
+    </script>
+}
+else
+{
+
 <div class="container-sm">
     <div class="card mb-2">
         <div class="row g-0">
@@ -136,6 +151,6 @@
     </div>
 
 </div>
-</div>
+}
 
-
+ 

@@ -41,9 +41,10 @@ namespace CIE206PROJECT.Pages
             ContentTopics = new List<DataTable?>(); // Initialize ContentTopics list
         }
 
-        public void OnGet(int id)
+        public void OnGet()
         {
-            _DB = _DBC.coursePage_DB;
+			int id = _LC.GetLoggedInUserId();
+			_DB = _DBC.coursePage_DB;
             GroupContent = _DB.getGroupContent(id);
             Students = _DB.getStudentsGroup(id);
             StudentCount = _DB.getStudentCount(id);
